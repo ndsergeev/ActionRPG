@@ -1,0 +1,191 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shade_Combat_AvatarMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Shade_Face
+    m_Weight: 0
+  - m_Path: Shade_LowPoly
+    m_Weight: 0
+  - m_Path: Shade_Mask
+    m_Weight: 0
+  - m_Path: Shade_Rig
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn
+    m_Weight: 1
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Index_1_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Index_1_Bn.L/Index_2_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Index_1_Bn.L/Index_2_Bn.L/Index_3_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Middle_1_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Middle_1_Bn.L/Middle_2_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Middle_1_Bn.L/Middle_2_Bn.L/Middle_3_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Pinky_1_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Pinky_1_Bn.L/Pinky_2_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Pinky_1_Bn.L/Pinky_2_Bn.L/Pinky_3_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Ring_1_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Ring_1_Bn.L/Ring_2_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Ring_1_Bn.L/Ring_2_Bn.L/Ring_3_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Thumb_1_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Thumb_1_Bn.L/Thumb_2_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.L/Shoulder_Bn.L/Elbow_Bn.L/Hand_Bn.L/Thumb_1_Bn.L/Thumb_2_Bn.L/Thumb_3_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R
+    m_Weight: 1
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R
+    m_Weight: 1
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R
+    m_Weight: 1
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R
+    m_Weight: 1
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Index_1_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Index_1_Bn.R/Index_2_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Index_1_Bn.R/Index_2_Bn.R/Index_3_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Middle_1_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Middle_1_Bn.R/Middle_2_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Middle_1_Bn.R/Middle_2_Bn.R/Middle_3_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Pinky_1_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Pinky_1_Bn.R/Pinky_2_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Pinky_1_Bn.R/Pinky_2_Bn.R/Pinky_3_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Ring_1_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Ring_1_Bn.R/Ring_2_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Ring_1_Bn.R/Ring_2_Bn.R/Ring_3_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Sword_Bn
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Sword_Bn/Sword_LinkBase_Sword_Cube.001
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Thumb_1_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Thumb_1_Bn.R/Thumb_2_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Clav_Bn.R/Shoulder_Bn.R/Elbow_Bn.R/Hand_Bn.R/Thumb_1_Bn.R/Thumb_2_Bn.R/Thumb_3_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2
+    m_Weight: 1
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.L/Ear_2_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.L/Ear_2_Bn.L/Ear_3_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.L/Ear_2_Bn.L/Ear_3_Bn.L/Ear_4_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.L/Ear_2_Bn.L/Ear_3_Bn.L/Ear_4_Bn.L/Ear_5_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.L/Ear_2_Bn.L/Ear_3_Bn.L/Ear_4_Bn.L/Ear_5_Bn.L/Ear_6_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.L/Ear_2_Bn.L/Ear_3_Bn.L/Ear_4_Bn.L/Ear_5_Bn.L/Ear_6_Bn.L/Ear_7_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.L/Ear_2_Bn.L/Ear_3_Bn.L/Ear_4_Bn.L/Ear_5_Bn.L/Ear_6_Bn.L/Ear_7_Bn.L/Ear_8_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.R/Ear_2_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.R/Ear_2_Bn.R/Ear_3_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.R/Ear_2_Bn.R/Ear_3_Bn.R/Ear_4_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.R/Ear_2_Bn.R/Ear_3_Bn.R/Ear_4_Bn.R/Ear_5_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.R/Ear_2_Bn.R/Ear_3_Bn.R/Ear_4_Bn.R/Ear_5_Bn.R/Ear_6_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.R/Ear_2_Bn.R/Ear_3_Bn.R/Ear_4_Bn.R/Ear_5_Bn.R/Ear_6_Bn.R/Ear_7_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Neck_Bn_1/Neck_Bn_2/Head_Bn/Ear_1_Bn.R/Ear_2_Bn.R/Ear_3_Bn.R/Ear_4_Bn.R/Ear_5_Bn.R/Ear_6_Bn.R/Ear_7_Bn.R/Ear_8_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Wings_1_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Wings_1_Bn.L/Wings_2_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Wings_1_Bn.L/Wings_2_Bn.L/Wings_3_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Wings_1_Bn.L/Wings_2_Bn.L/Wings_3_Bn.L/Wings_4_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Wings_1_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Wings_1_Bn.R/Wings_2_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Wings_1_Bn.R/Wings_2_Bn.R/Wings_3_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Spine_1_Bn/Spine_2_Bn/Chest_Bn/Wings_1_Bn.R/Wings_2_Bn.R/Wings_3_Bn.R/Wings_4_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Tail_1_Bn
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Tail_1_Bn/Tail_2_Bn
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Tail_1_Bn/Tail_2_Bn/Tail_3_Bn
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Tail_1_Bn/Tail_2_Bn/Tail_3_Bn/Tail_4_Bn
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Thigh_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Thigh_Bn.L/Knee_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Thigh_Bn.L/Knee_Bn.L/Foot_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Thigh_Bn.L/Knee_Bn.L/Foot_Bn.L/Toe_Bn.L
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Thigh_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Thigh_Bn.R/Knee_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Thigh_Bn.R/Knee_Bn.R/Foot_Bn.R
+    m_Weight: 0
+  - m_Path: Shade_Rig/Root_Bn/Hips_Bn/Thigh_Bn.R/Knee_Bn.R/Foot_Bn.R/Toe_Bn.R
+    m_Weight: 0
+  - m_Path: Wings
+    m_Weight: 0
