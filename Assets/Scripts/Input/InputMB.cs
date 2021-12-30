@@ -1,5 +1,5 @@
 
-namespace NAMESPACE
+namespace Main.InputControls
 {
     using UnityEngine;
     
