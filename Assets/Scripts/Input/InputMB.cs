@@ -1,35 +1,34 @@
-
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine;
 
-namespace Main.InputControls
+using ScriptableObjects;
+
+namespace Main.Input
 {
-    using System.Collections.Generic;
-    using UnityEngine;
-    
     public class InputMB : MonoBehaviour
     {
         [SerializeField]
-        private UnityEvent<Vector2> walkEvent;
+        private InputReaderSO  m_InputReaderSO;
         
         private void OnEnable()
         {
-            SubscribeToWalkInput();
+            SubscribeToInputManager();
         }
 
         public void OnDisable()
         {
-            UnsubscribeFromWalkInput();
+            UnsubscribeFromInputManager();
         }
 
-        private void SubscribeToWalkInput()
+        private void SubscribeToInputManager()
         {
-            InputEvents.moveEvents.Add(walkEvent);
+            InputManagerMB.instance.SubscribeInputReader((this));
         }
 
-        private void UnsubscribeFromWalkInput()
+        private void UnsubscribeFromInputManager()
         {
-            InputEvents.moveEvents.Remove((walkEvent));
+            InputManagerMB.instance.UnsubscribeInputReader((this));
         }
     }
 }

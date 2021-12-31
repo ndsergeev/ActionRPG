@@ -3,7 +3,7 @@ using System.ComponentModel.Design;
 using ICSharpCode.NRefactory.PrettyPrinter;
 using UnityEngine.Events;
 
-namespace Main.InputControls
+namespace Main.Input
 {
     using System.Collections.Generic;
     using UnityEngine;
