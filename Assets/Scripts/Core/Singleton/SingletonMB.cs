@@ -1,5 +1,5 @@
 
-namespace Core
+namespace Main.Core
 {
     using UnityEngine;
     
