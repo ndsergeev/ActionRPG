@@ -1,7 +1,8 @@
 
+using System.Diagnostics;
+
 namespace Main.Core.Console
 {
-    using System.Diagnostics;
     using Debug = UnityEngine.Debug;
     
     /// <summary>
@@ -36,6 +37,14 @@ namespace Main.Core.Console
         [Conditional(ConditionalString)]
         public static void LogError(string format, params object[] args)
             => Debug.LogErrorFormat(format, args);
+        
+        [Conditional(ConditionalString)]
+        public static void Assert(bool condition, string format)
+            => Debug.Assert(condition, format);
+        
+        [Conditional(ConditionalString)]
+        public static void Assert(bool condition, string format, params object[] args)
+            => Debug.AssertFormat(condition, format, args);
         
         // add more Debug-related methods if needed
     }

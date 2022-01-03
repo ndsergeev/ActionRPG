@@ -1,30 +1,28 @@
 
+using System;
+
 namespace Main.Core
 {
+    using System;
     using UnityEngine;
+
+    using Console;
     
     public abstract class SingletonMB<T> : MonoBehaviour where T : SingletonMB<T>
     {
-        /*
-         * ToDo: make it lazy
-         */
-        public static T instance { get; private set; }
+        private static readonly Lazy<T> LazyInstance = new Lazy<T>(InitSingleton);
 
-        protected virtual void Awake()
+        public static T instance => LazyInstance.Value;
+
+        private static T InitSingleton()
         {
-            InitSingleton();
-        }
-
-        private void InitSingleton()
-        {
-            if (instance != null && instance != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
-            instance = (T) this;
-            DontDestroyOnLoad(gameObject);
+            var ownerGameObject = new GameObject($"{typeof(T).Name}");
+            var singletonComponent = ownerGameObject.AddComponent<T>();
+            DontDestroyOnLoad(ownerGameObject);
+            
+            EditorLogger.Log($"<color=green>{ownerGameObject.name} created!</color>");
+            
+            return singletonComponent;
         }
     }
 }
