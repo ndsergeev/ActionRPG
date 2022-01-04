@@ -15,12 +15,14 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public partial class @InputControls : IInputActionCollection2, IDisposable
+namespace Main.Input
 {
-    public InputActionAsset asset { get; }
-    public @InputControls()
+    public partial class @InputControls : IInputActionCollection2, IDisposable
     {
-        asset = InputActionAsset.FromJson(@"{
+        public InputActionAsset asset { get; }
+        public @InputControls()
+        {
+            asset = InputActionAsset.FromJson(@"{
     ""name"": ""InputControls"",
     ""maps"": [
         {
@@ -264,149 +266,150 @@ public partial class @InputControls : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // CharacterControl
-        m_CharacterControl = asset.FindActionMap("CharacterControl", throwIfNotFound: true);
-        m_CharacterControl_Move = m_CharacterControl.FindAction("Move", throwIfNotFound: true);
-        m_CharacterControl_Look = m_CharacterControl.FindAction("Look", throwIfNotFound: true);
-        m_CharacterControl_Jump = m_CharacterControl.FindAction("Jump", throwIfNotFound: true);
-        m_CharacterControl_Focus = m_CharacterControl.FindAction("Focus", throwIfNotFound: true);
-        m_CharacterControl_Crouch = m_CharacterControl.FindAction("Crouch", throwIfNotFound: true);
-        m_CharacterControl_Sprint = m_CharacterControl.FindAction("Sprint", throwIfNotFound: true);
-    }
+            // CharacterControl
+            m_CharacterControl = asset.FindActionMap("CharacterControl", throwIfNotFound: true);
+            m_CharacterControl_Move = m_CharacterControl.FindAction("Move", throwIfNotFound: true);
+            m_CharacterControl_Look = m_CharacterControl.FindAction("Look", throwIfNotFound: true);
+            m_CharacterControl_Jump = m_CharacterControl.FindAction("Jump", throwIfNotFound: true);
+            m_CharacterControl_Focus = m_CharacterControl.FindAction("Focus", throwIfNotFound: true);
+            m_CharacterControl_Crouch = m_CharacterControl.FindAction("Crouch", throwIfNotFound: true);
+            m_CharacterControl_Sprint = m_CharacterControl.FindAction("Sprint", throwIfNotFound: true);
+        }
 
-    public void Dispose()
-    {
-        UnityEngine.Object.Destroy(asset);
-    }
-
-    public InputBinding? bindingMask
-    {
-        get => asset.bindingMask;
-        set => asset.bindingMask = value;
-    }
-
-    public ReadOnlyArray<InputDevice>? devices
-    {
-        get => asset.devices;
-        set => asset.devices = value;
-    }
-
-    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
-
-    public bool Contains(InputAction action)
-    {
-        return asset.Contains(action);
-    }
-
-    public IEnumerator<InputAction> GetEnumerator()
-    {
-        return asset.GetEnumerator();
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
-
-    public void Enable()
-    {
-        asset.Enable();
-    }
-
-    public void Disable()
-    {
-        asset.Disable();
-    }
-    public IEnumerable<InputBinding> bindings => asset.bindings;
-
-    public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
-    {
-        return asset.FindAction(actionNameOrId, throwIfNotFound);
-    }
-    public int FindBinding(InputBinding bindingMask, out InputAction action)
-    {
-        return asset.FindBinding(bindingMask, out action);
-    }
-
-    // CharacterControl
-    private readonly InputActionMap m_CharacterControl;
-    private ICharacterControlActions m_CharacterControlActionsCallbackInterface;
-    private readonly InputAction m_CharacterControl_Move;
-    private readonly InputAction m_CharacterControl_Look;
-    private readonly InputAction m_CharacterControl_Jump;
-    private readonly InputAction m_CharacterControl_Focus;
-    private readonly InputAction m_CharacterControl_Crouch;
-    private readonly InputAction m_CharacterControl_Sprint;
-    public struct CharacterControlActions
-    {
-        private @InputControls m_Wrapper;
-        public CharacterControlActions(@InputControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_CharacterControl_Move;
-        public InputAction @Look => m_Wrapper.m_CharacterControl_Look;
-        public InputAction @Jump => m_Wrapper.m_CharacterControl_Jump;
-        public InputAction @Focus => m_Wrapper.m_CharacterControl_Focus;
-        public InputAction @Crouch => m_Wrapper.m_CharacterControl_Crouch;
-        public InputAction @Sprint => m_Wrapper.m_CharacterControl_Sprint;
-        public InputActionMap Get() { return m_Wrapper.m_CharacterControl; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(CharacterControlActions set) { return set.Get(); }
-        public void SetCallbacks(ICharacterControlActions instance)
+        public void Dispose()
         {
-            if (m_Wrapper.m_CharacterControlActionsCallbackInterface != null)
+            UnityEngine.Object.Destroy(asset);
+        }
+
+        public InputBinding? bindingMask
+        {
+            get => asset.bindingMask;
+            set => asset.bindingMask = value;
+        }
+
+        public ReadOnlyArray<InputDevice>? devices
+        {
+            get => asset.devices;
+            set => asset.devices = value;
+        }
+
+        public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+
+        public bool Contains(InputAction action)
+        {
+            return asset.Contains(action);
+        }
+
+        public IEnumerator<InputAction> GetEnumerator()
+        {
+            return asset.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public void Enable()
+        {
+            asset.Enable();
+        }
+
+        public void Disable()
+        {
+            asset.Disable();
+        }
+        public IEnumerable<InputBinding> bindings => asset.bindings;
+
+        public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
+        {
+            return asset.FindAction(actionNameOrId, throwIfNotFound);
+        }
+        public int FindBinding(InputBinding bindingMask, out InputAction action)
+        {
+            return asset.FindBinding(bindingMask, out action);
+        }
+
+        // CharacterControl
+        private readonly InputActionMap m_CharacterControl;
+        private ICharacterControlActions m_CharacterControlActionsCallbackInterface;
+        private readonly InputAction m_CharacterControl_Move;
+        private readonly InputAction m_CharacterControl_Look;
+        private readonly InputAction m_CharacterControl_Jump;
+        private readonly InputAction m_CharacterControl_Focus;
+        private readonly InputAction m_CharacterControl_Crouch;
+        private readonly InputAction m_CharacterControl_Sprint;
+        public struct CharacterControlActions
+        {
+            private @InputControls m_Wrapper;
+            public CharacterControlActions(@InputControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Move => m_Wrapper.m_CharacterControl_Move;
+            public InputAction @Look => m_Wrapper.m_CharacterControl_Look;
+            public InputAction @Jump => m_Wrapper.m_CharacterControl_Jump;
+            public InputAction @Focus => m_Wrapper.m_CharacterControl_Focus;
+            public InputAction @Crouch => m_Wrapper.m_CharacterControl_Crouch;
+            public InputAction @Sprint => m_Wrapper.m_CharacterControl_Sprint;
+            public InputActionMap Get() { return m_Wrapper.m_CharacterControl; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(CharacterControlActions set) { return set.Get(); }
+            public void SetCallbacks(ICharacterControlActions instance)
             {
-                @Move.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnMove;
-                @Look.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnLook;
-                @Look.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnLook;
-                @Look.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnLook;
-                @Jump.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnJump;
-                @Focus.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnFocus;
-                @Focus.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnFocus;
-                @Focus.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnFocus;
-                @Crouch.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
-                @Crouch.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
-                @Crouch.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
-                @Sprint.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnSprint;
-                @Sprint.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnSprint;
-                @Sprint.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnSprint;
-            }
-            m_Wrapper.m_CharacterControlActionsCallbackInterface = instance;
-            if (instance != null)
-            {
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
-                @Look.started += instance.OnLook;
-                @Look.performed += instance.OnLook;
-                @Look.canceled += instance.OnLook;
-                @Jump.started += instance.OnJump;
-                @Jump.performed += instance.OnJump;
-                @Jump.canceled += instance.OnJump;
-                @Focus.started += instance.OnFocus;
-                @Focus.performed += instance.OnFocus;
-                @Focus.canceled += instance.OnFocus;
-                @Crouch.started += instance.OnCrouch;
-                @Crouch.performed += instance.OnCrouch;
-                @Crouch.canceled += instance.OnCrouch;
-                @Sprint.started += instance.OnSprint;
-                @Sprint.performed += instance.OnSprint;
-                @Sprint.canceled += instance.OnSprint;
+                if (m_Wrapper.m_CharacterControlActionsCallbackInterface != null)
+                {
+                    @Move.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnMove;
+                    @Move.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnMove;
+                    @Move.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnMove;
+                    @Look.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnLook;
+                    @Look.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnLook;
+                    @Look.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnLook;
+                    @Jump.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnJump;
+                    @Jump.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnJump;
+                    @Jump.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnJump;
+                    @Focus.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnFocus;
+                    @Focus.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnFocus;
+                    @Focus.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnFocus;
+                    @Crouch.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
+                    @Crouch.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
+                    @Crouch.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
+                    @Sprint.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnSprint;
+                    @Sprint.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnSprint;
+                    @Sprint.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnSprint;
+                }
+                m_Wrapper.m_CharacterControlActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Move.started += instance.OnMove;
+                    @Move.performed += instance.OnMove;
+                    @Move.canceled += instance.OnMove;
+                    @Look.started += instance.OnLook;
+                    @Look.performed += instance.OnLook;
+                    @Look.canceled += instance.OnLook;
+                    @Jump.started += instance.OnJump;
+                    @Jump.performed += instance.OnJump;
+                    @Jump.canceled += instance.OnJump;
+                    @Focus.started += instance.OnFocus;
+                    @Focus.performed += instance.OnFocus;
+                    @Focus.canceled += instance.OnFocus;
+                    @Crouch.started += instance.OnCrouch;
+                    @Crouch.performed += instance.OnCrouch;
+                    @Crouch.canceled += instance.OnCrouch;
+                    @Sprint.started += instance.OnSprint;
+                    @Sprint.performed += instance.OnSprint;
+                    @Sprint.canceled += instance.OnSprint;
+                }
             }
         }
-    }
-    public CharacterControlActions @CharacterControl => new CharacterControlActions(this);
-    public interface ICharacterControlActions
-    {
-        void OnMove(InputAction.CallbackContext context);
-        void OnLook(InputAction.CallbackContext context);
-        void OnJump(InputAction.CallbackContext context);
-        void OnFocus(InputAction.CallbackContext context);
-        void OnCrouch(InputAction.CallbackContext context);
-        void OnSprint(InputAction.CallbackContext context);
+        public CharacterControlActions @CharacterControl => new CharacterControlActions(this);
+        public interface ICharacterControlActions
+        {
+            void OnMove(InputAction.CallbackContext context);
+            void OnLook(InputAction.CallbackContext context);
+            void OnJump(InputAction.CallbackContext context);
+            void OnFocus(InputAction.CallbackContext context);
+            void OnCrouch(InputAction.CallbackContext context);
+            void OnSprint(InputAction.CallbackContext context);
+        }
     }
 }
