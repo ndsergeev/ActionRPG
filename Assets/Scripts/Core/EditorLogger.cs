@@ -37,6 +37,14 @@ namespace Main.Core.Console
         public static void LogError(string format, params object[] args)
             => Debug.LogErrorFormat(format, args);
         
+        [Conditional(ConditionalString)]
+        public static void Assert(bool condition, string format)
+            => Debug.Assert(condition, format);
+        
+        [Conditional(ConditionalString)]
+        public static void Assert(bool condition, string format, params object[] args)
+            => Debug.AssertFormat(condition, format, args);
+        
         // add more Debug-related methods if needed
     }
 }
