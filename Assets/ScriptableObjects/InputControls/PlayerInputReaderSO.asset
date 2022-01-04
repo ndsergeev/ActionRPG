@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7749cb97a12ecc4ea6528763f2e098b, type: 3}
-  m_Name: TestPlayerInputReaderSO
+  m_Name: PlayerInputReaderSO
   m_EditorClassIdentifier: 

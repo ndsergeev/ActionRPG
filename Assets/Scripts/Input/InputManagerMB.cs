@@ -1,24 +1,18 @@
-using System.Collections.Generic;
-
-using UnityEngine;
-using UnityEngine.InputSystem;
-
-using Core;
 
 namespace Main.Input
 {
+    using System.Collections.Generic;
+
+    using Core;
+    
     public class InputManagerMB : SingletonMB<InputManagerMB>
     {
-        private List<InputMB> m_inputReaders = new List<InputMB>();
+        private readonly List<InputMB> m_InputReaders = new List<InputMB>();
 
         public void SubscribeInputReader(InputMB inputReader)
-        {
-            m_inputReaders.Add((inputReader));
-        }
+            => m_InputReaders.Add(inputReader);
         
         public void UnsubscribeInputReader(InputMB inputReader)
-        {
-            m_inputReaders.Remove((inputReader));
-        }
+            => m_InputReaders.Remove(inputReader);
     }
 }

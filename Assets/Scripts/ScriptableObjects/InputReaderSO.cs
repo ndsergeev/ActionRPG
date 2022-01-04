@@ -1,14 +1,21 @@
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
-using Main.Input;
-
-namespace ScriptableObjects
+namespace Main.Input
 {
-    [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
+    using UnityEngine;
+    using UnityEngine.Events;
+    using UnityEngine.InputSystem;
+
+    [CreateAssetMenu(fileName = "InputReaderSO", menuName = "Scriptable Objects/New Input Reader", order = 0)]
     public class InputReaderSO : ScriptableObject, InputControls.ICharacterControlActions
     {
+        public event UnityAction onJumpEvent;
+        public event UnityAction onFocusEvent;
+        public event UnityAction crouchEvent;
+        public event UnityAction sprintStartEvent;
+        public event UnityAction sprintEndEvent;
+        public event UnityAction<Vector2> onMoveEvent;
+        public event UnityAction<Vector2> onLookAroundEvent;
+        
         private InputControls m_inputControls;
 
         private void OnEnable()
@@ -23,19 +30,14 @@ namespace ScriptableObjects
             m_inputControls?.CharacterControl.Disable();
         }
 
-        public void OnLook(InputAction.CallbackContext context)
-        {
-            lookAtEvent?.Invoke(context.ReadValue<Vector2>());
-        }
-
         public void OnJump(InputAction.CallbackContext context)
         {
-            if (context.phase.Equals(InputActionPhase.Canceled)) jumpEvent?.Invoke();
+            if (context.phase.Equals(InputActionPhase.Canceled)) onJumpEvent?.Invoke();
         }
 
         public void OnFocus(InputAction.CallbackContext context)
         {
-            if (context.phase.Equals(InputActionPhase.Canceled)) focusEvent?.Invoke();
+            if (context.phase.Equals(InputActionPhase.Canceled)) onFocusEvent?.Invoke();
         }
 
         public void OnCrouch(InputAction.CallbackContext context)
@@ -58,15 +60,12 @@ namespace ScriptableObjects
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            moveEvent?.Invoke(context.ReadValue<Vector2>());
+            onMoveEvent?.Invoke(context.ReadValue<Vector2>());
         }
-
-        public event UnityAction jumpEvent;
-        public event UnityAction focusEvent;
-        public event UnityAction crouchEvent;
-        public event UnityAction sprintStartEvent;
-        public event UnityAction sprintEndEvent;
-        public event UnityAction<Vector2> moveEvent;
-        public event UnityAction<Vector2> lookAtEvent;
+        
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            onLookAroundEvent?.Invoke(context.ReadValue<Vector2>());
+        }
     }
 }

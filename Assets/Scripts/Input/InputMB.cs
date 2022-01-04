@@ -1,34 +1,23 @@
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
-using UnityEngine;
-
-using ScriptableObjects;
 
 namespace Main.Input
 {
-    public class InputMB : MonoBehaviour
+    using UnityEngine;
+    
+    public abstract class InputMB : MonoBehaviour
     {
         [SerializeField]
-        private InputReaderSO  m_InputReaderSO;
+        protected InputReaderSO  InputReaderSO;
         
-        private void OnEnable()
-        {
-            SubscribeToInputManager();
-        }
+        protected virtual void OnEnable()
+            => SubscribeToInputManager();
 
-        public void OnDisable()
-        {
-            UnsubscribeFromInputManager();
-        }
+        protected virtual void OnDisable()
+            => UnsubscribeFromInputManager();
 
-        private void SubscribeToInputManager()
-        {
-            InputManagerMB.instance.SubscribeInputReader((this));
-        }
+        protected void SubscribeToInputManager()
+            => InputManagerMB.instance.SubscribeInputReader(this);
 
-        private void UnsubscribeFromInputManager()
-        {
-            InputManagerMB.instance.UnsubscribeInputReader((this));
-        }
+        protected void UnsubscribeFromInputManager()
+            => InputManagerMB.instance.UnsubscribeInputReader(this);
     }
 }

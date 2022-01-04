@@ -246,10 +246,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 63710366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd50a51cf3587487c86a4e5cccc6bd8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eef8181df0a74809aa63fa2137269f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InputReaderSO: {fileID: 0}
+  InputReaderSO: {fileID: 11400000, guid: d128dd18a84f27948bbb99ba78670167, type: 2}
 --- !u!114 &63710368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +366,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84237112}
-  m_LocalRotation: {x: 0.06939067, y: 0.000000017164908, z: -0.0000000011939624, w: 0.9975896}
+  m_LocalRotation: {x: 0.069390655, y: 0.000000017164906, z: -0.0000000011939619, w: 0.9975896}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -440,14 +440,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198161947}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1640606956}
   - {fileID: 1170900943}
-  m_Father: {fileID: 1533318625}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &198161949
 MonoBehaviour:
@@ -756,7 +756,7 @@ GameObject:
   - component: {fileID: 567867338}
   - component: {fileID: 567867337}
   m_Layer: 0
-  m_Name: Eye.L
+  m_Name: Eye_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1017,6 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf7236416c9784f4cbe5d35a70142a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InputReaderSO: {fileID: 11400000, guid: d128dd18a84f27948bbb99ba78670167, type: 2}
   m_lookSpeed: 1
   m_invertY: 1
 --- !u!1 &1017451082
@@ -1318,7 +1319,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404363070}
-  m_LocalRotation: {x: 0.011965719, y: -0.000000017213546, z: 2.0598719e-10, w: 0.9999284}
+  m_LocalRotation: {x: 0.011965717, y: 0.000000017213546, z: -2.0598716e-10, w: 0.9999284}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1377,6 +1378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1533318625}
+  - component: {fileID: 1533318627}
   - component: {fileID: 1533318626}
   m_Layer: 0
   m_Name: Player
@@ -1397,7 +1399,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 63710372}
-  - {fileID: 198161948}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1410,10 +1411,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1533318624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd50a51cf3587487c86a4e5cccc6bd8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8eef8181df0a74809aa63fa2137269f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InputReaderSO: {fileID: 11400000, guid: d128dd18a84f27948bbb99ba78670167, type: 2}
+  InputReaderSO: {fileID: 11400000, guid: d128dd18a84f27948bbb99ba78670167, type: 2}
+--- !u!114 &1533318627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533318624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49940aaa11a854e9da3227f63aa93c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1640606953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,7 +1505,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640606953}
-  m_LocalRotation: {x: 0.038309984, y: -0.0000000048912634, z: 6.1558796e-12, w: 0.9992659}
+  m_LocalRotation: {x: 0.038309984, y: -0.0000000016032297, z: 6.620049e-11, w: 0.9992659}
   m_LocalPosition: {x: 0, y: 1.5255201, z: -3.4016013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1579,7 +1592,7 @@ GameObject:
   - component: {fileID: 1866027848}
   - component: {fileID: 1866027847}
   m_Layer: 0
-  m_Name: Eye.R
+  m_Name: Eye_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
