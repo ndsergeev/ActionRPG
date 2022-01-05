@@ -1,7 +1,7 @@
 
 namespace Main.Input
 {
-    using Main.SomethingToBeRenamed;
+    using Main.Characters;
     
     public class PlayerInputMB : InputMB
     {
