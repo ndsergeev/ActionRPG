@@ -15,4 +15,4 @@ MonoBehaviour:
   m_snapToGroundDistance: 0
   m_speed: 10
   m_turnSmoothTime: 10
-  m_jumpPower: 1
+  m_jumpPower: 3

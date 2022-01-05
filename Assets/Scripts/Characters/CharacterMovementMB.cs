@@ -31,7 +31,7 @@ namespace Main.Characters
             
             Vector3 botOfColl = charPosition + col.center + Vector3.down * col.height * 0.5f;
 
-            float rayDistance = botOfColl.y - charPosition.y + m_settings.SnapToGroundDistance;
+            float rayDistance = botOfColl.y - charPosition.y + m_settings.SnapToGroundDistance - col.radius * 0.5f;
 
             // Bit shift the index of layer 8 to get a bit mask
             // Layer 8 has been set to the 'Characters' layer
@@ -113,7 +113,15 @@ namespace Main.Characters
 
         public void HandleJumping()
         {
-            
+            if (m_isJumping)
+            {
+                // TODO: Better jumping feel (rise less when not holding jump button)
+
+                if (m_character.RigidBody.velocity.y < 0)
+                {
+                    m_isJumping = false;
+                }
+            }
         }
     }
 }

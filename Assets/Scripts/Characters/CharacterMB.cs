@@ -46,6 +46,7 @@ namespace Main.Characters
         {
             m_movement.HandleGrounding();
             HandleMovementInput();
+            m_movement.HandleJumping();
         }
 
         public void Move(Vector2 moveInput)
@@ -53,7 +54,7 @@ namespace Main.Characters
             m_moveInput = moveInput;
         }
 
-        public void Jump()
+        public void JumpStart()
             => m_movement.Jump();
 
         private void HandleMovementInput()
