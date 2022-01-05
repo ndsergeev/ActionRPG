@@ -1,4 +1,6 @@
 
+using UnityEngine.Serialization;
+
 namespace Main.Input
 {
     using UnityEngine;
@@ -6,7 +8,9 @@ namespace Main.Input
     public abstract class InputMB : MonoBehaviour
     {
         [SerializeField]
-        protected InputReaderSO  InputReaderSO;
+        protected InputReaderSO  inputReaderSO;
+        public InputReaderSO InputReaderSO => inputReaderSO;
+        
         
         protected virtual void OnEnable()
             => SubscribeToInputManager();

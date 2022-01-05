@@ -28,16 +28,16 @@ namespace Main.Input
         {
             base.OnEnable();
             
-            InputReaderSO.onFocusEvent += FocusPressed;
-            InputReaderSO.onLookAroundEvent += LookAround;
+            inputReaderSO.onFocusEvent += FocusPressed;
+            inputReaderSO.onLookAroundEvent += LookAround;
         }
 
         protected override void OnDisable()
         {
             base.OnDisable();
             
-            InputReaderSO.onFocusEvent -= FocusPressed;
-            InputReaderSO.onLookAroundEvent -= LookAround;
+            inputReaderSO.onFocusEvent -= FocusPressed;
+            inputReaderSO.onLookAroundEvent -= LookAround;
         }
 
         protected void FocusPressed()

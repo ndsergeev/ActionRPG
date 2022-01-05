@@ -8,15 +8,28 @@ namespace Main.Input
     [CreateAssetMenu(fileName = "InputReaderSO", menuName = "Scriptable Objects/New Input Reader", order = 0)]
     public class InputReaderSO : ScriptableObject, InputControls.ICharacterControlActions
     {
-        public event UnityAction onJumpEvent;
+        // EVENTS
+        public event UnityAction jumpStartEvent;
+        public event UnityAction jumpEndEvent;
         public event UnityAction onFocusEvent;
         public event UnityAction crouchEvent;
         public event UnityAction sprintStartEvent;
         public event UnityAction sprintEndEvent;
         public event UnityAction<Vector2> onMoveEvent;
         public event UnityAction<Vector2> onLookAroundEvent;
-        
+         
+        // CONTROLS
         private InputControls m_inputControls;
+
+        // STORED LATEST INPUTS
+        private Vector2 m_moveInput;
+        public Vector2 MoveInput => m_moveInput;
+        
+        private Vector2 m_lookInput;
+        public Vector2 LookInput => m_lookInput;
+        
+        private bool m_jumpInput;
+        public bool JumpInput => m_jumpInput;
 
         private void OnEnable()
         {
@@ -32,7 +45,17 @@ namespace Main.Input
 
         public void OnJump(InputAction.CallbackContext context)
         {
-            if (context.phase.Equals(InputActionPhase.Canceled)) onJumpEvent?.Invoke();
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    m_jumpInput = true;
+                    jumpStartEvent?.Invoke();
+                    break;
+                case InputActionPhase.Canceled:
+                    m_jumpInput = false;
+                    jumpEndEvent?.Invoke();
+                    break;
+            }
         }
 
         public void OnFocus(InputAction.CallbackContext context)
@@ -60,12 +83,14 @@ namespace Main.Input
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            onMoveEvent?.Invoke(context.ReadValue<Vector2>());
+            m_moveInput = context.ReadValue<Vector2>();
+            onMoveEvent?.Invoke(m_moveInput);
         }
         
         public void OnLook(InputAction.CallbackContext context)
         {
-            onLookAroundEvent?.Invoke(context.ReadValue<Vector2>());
+            m_lookInput = context.ReadValue<Vector2>();
+            onLookAroundEvent?.Invoke(m_lookInput);
         }
     }
 }

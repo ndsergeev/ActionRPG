@@ -1,11 +1,15 @@
 
 namespace Main.Input
 {
-    using Main.Characters;
+    using Main.SomethingToBeRenamed;
+    using UnityEngine;
     
     public class PlayerInputMB : InputMB
     {
         private CharacterMB m_CharacterMB;
+        
+        public Vector2 MoveInput => inputReaderSO.MoveInput;
+        public bool JumpInput => inputReaderSO.JumpInput;
 
         protected void Awake()
             => m_CharacterMB = GetComponent<CharacterMB>();
@@ -14,16 +18,16 @@ namespace Main.Input
         {
             base.OnEnable();
         
-            InputReaderSO.onMoveEvent += m_CharacterMB.Move;
-            InputReaderSO.onJumpEvent += m_CharacterMB.Jump;
+            inputReaderSO.onMoveEvent += m_CharacterMB.Move;
+            inputReaderSO.jumpStartEvent += m_CharacterMB.JumpStart;
         }
         
         protected override void OnDisable()
         {
             base.OnDisable();
         
-            InputReaderSO.onMoveEvent -= m_CharacterMB.Move;
-            InputReaderSO.onJumpEvent -= m_CharacterMB.Jump;
+            inputReaderSO.onMoveEvent -= m_CharacterMB.Move;
+            inputReaderSO.jumpStartEvent -= m_CharacterMB.JumpStart;
         }
     }
 }
