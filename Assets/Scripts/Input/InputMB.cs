@@ -1,6 +1,3 @@
-
-using UnityEngine.Serialization;
-
 namespace Main.Input
 {
     using UnityEngine;
@@ -13,7 +10,7 @@ namespace Main.Input
         protected InputReaderSO  inputReaderSO;
         public InputReaderSO InputReaderSO => inputReaderSO;
         
-        protected CharacterMB m_CharacterMB;
+        protected CharacterMB character;
         
         
         protected virtual void OnEnable()

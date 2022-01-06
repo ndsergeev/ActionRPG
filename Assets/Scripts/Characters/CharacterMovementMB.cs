@@ -17,16 +17,12 @@ namespace Main.Characters
         protected bool m_isJumping;
         protected bool m_isFalling;
         
-        
-        
-        
-
-        protected void Awake()
+        protected virtual void Awake()
         {
             m_character = GetComponent<CharacterMB>();
         }
 
-        public void HandleGrounding()
+        public virtual void HandleGrounding()
         {
             if (m_isJumping) return;
             
@@ -79,7 +75,7 @@ namespace Main.Characters
             }
         }
         
-        public void HandleMovement(Vector3 moveDirection)
+        public virtual void HandleMovement(Vector3 moveDirection)
         {
             Vector3 newVelocity = moveDirection * m_settings.Speed;
 
@@ -102,7 +98,7 @@ namespace Main.Characters
             m_character.CachedTransform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
         }
 
-        public void Jump()
+        public virtual void Jump()
         {
             if (!m_isGrounded) return;
 
@@ -116,7 +112,7 @@ namespace Main.Characters
             m_character.RigidBody.AddForce(jumpVector);
         }
 
-        public void HandleJumping()
+        public virtual void HandleJumping()
         {
             if (m_isJumping)
             {
