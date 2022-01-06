@@ -15,15 +15,15 @@ namespace Main.Characters
     public class CharacterMB : MonoBehaviour
     {
         // TRANSFORM
-        protected Transform cachedTransform;
-        public Transform CachedTransform => cachedTransform;
+        protected Transform m_cachedTransform;
+        public Transform CachedTransform => m_cachedTransform;
         
         // MOVEMENT
-        protected CharacterMovementMB movement;
+        protected CharacterMovementMB m_movement;
         public CharacterMovementMB MovementMB => m_movement;
         
         // INPUT
-        protected InputMB input;
+        protected PlayerInputMB input;
         
         // PHYSICS
         protected Rigidbody rigidBody;
@@ -36,8 +36,8 @@ namespace Main.Characters
         {
             m_cachedTransform = transform;
             m_movement = GetComponent<CharacterMovementMB>();
-            m_rigidBody = GetComponent<Rigidbody>();
-            m_collider = GetComponent<CapsuleCollider>();
+            rigidBody = GetComponent<Rigidbody>();
+            collider = GetComponent<CapsuleCollider>();
         }
 
         private void Update()
@@ -57,10 +57,10 @@ namespace Main.Characters
             float targetAngle = 0;
             
             // Only calculate move direction if there is movement input
-            if (m_moveInput != Vector2.zero)
+            if (input.MoveInput != Vector2.zero)
             {
                 // Set move direction based on move input
-                moveDirection = new Vector3(m_moveInput.x, 0, m_moveInput.y);
+                moveDirection = new Vector3(input.MoveInput.x, 0, input.MoveInput.y);
                 
                 // Calculate rotation needed for move direction to be based on camera
                 float cameraYEuler = CameraManagerMB.instance.MainCameraTransform.eulerAngles.y;
