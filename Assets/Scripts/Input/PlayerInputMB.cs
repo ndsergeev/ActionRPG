@@ -6,7 +6,7 @@ namespace Main.Input
     
     public class PlayerInputMB : InputMB
     {
-        private CharacterMB m_CharacterMB;
+        
         
         public Vector2 MoveInput => inputReaderSO.MoveInput;
         public bool JumpInput => inputReaderSO.JumpInput;

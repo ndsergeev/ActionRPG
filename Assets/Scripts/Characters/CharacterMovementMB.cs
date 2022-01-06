@@ -15,6 +15,11 @@ namespace Main.Characters
         // Movement states
         protected bool m_isGrounded;
         protected bool m_isJumping;
+        protected bool m_isFalling;
+        
+        
+        
+        
 
         protected void Awake()
         {
@@ -117,6 +122,8 @@ namespace Main.Characters
             {
                 // TODO: Better jumping feel (rise less when not holding jump button)
 
+                
+                // If character is falling
                 if (m_character.RigidBody.velocity.y < 0)
                 {
                     m_isJumping = false;

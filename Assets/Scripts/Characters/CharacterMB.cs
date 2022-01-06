@@ -10,28 +10,26 @@ namespace Main.Characters
     using UnityEditor;
     
     using Main.Core.Console;
+    using Main.Input;
     
     public class CharacterMB : MonoBehaviour
     {
-        // TODO: e.g. speed
-        // [SerializeField]
-        // protected ScriptableObject someSharedSettings;
+        // TRANSFORM
+        protected Transform cachedTransform;
+        public Transform CachedTransform => cachedTransform;
         
-        protected Transform m_cachedTransform;
-        public Transform CachedTransform => m_cachedTransform;
-        
-        protected CharacterMovementMB m_movement;
+        // MOVEMENT
+        protected CharacterMovementMB movement;
         public CharacterMovementMB MovementMB => m_movement;
         
-        // Inputs
-        private Vector2 m_moveInput;
-        private bool m_jumpInput;
+        // INPUT
+        protected InputMB input;
         
-        // Physics
-        protected Rigidbody m_rigidBody;
-        public Rigidbody RigidBody => m_rigidBody;
-        protected CapsuleCollider m_collider;
-        public CapsuleCollider Collider => m_collider;
+        // PHYSICS
+        protected Rigidbody rigidBody;
+        public Rigidbody RigidBody => rigidBody;
+        protected CapsuleCollider collider;
+        public CapsuleCollider Collider => collider;
             
 
         private void Awake()
@@ -47,11 +45,6 @@ namespace Main.Characters
             m_movement.HandleGrounding();
             HandleMovementInput();
             m_movement.HandleJumping();
-        }
-
-        public void Move(Vector2 moveInput)
-        {
-            m_moveInput = moveInput;
         }
 
         public void JumpStart()
