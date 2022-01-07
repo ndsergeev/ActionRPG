@@ -6,9 +6,8 @@ namespace Main.Core.Console
     using Debug = UnityEngine.Debug;
     
     /// <summary>
-    /// Is a wrapper of UnityEngine.Debug.[Log, LogWarning, LogError] to exclude from builds.
-    /// Even thought it is a wrapper and should be excluded from the build, still better to search
-    /// through this class for its usage in the project and remove once is a release version.
+    /// UnityEngine.Debug.[Log, LogWarning, LogError] wrapper to exclude from builds.
+    /// It is still better to remove from 
     /// </summary>
     public static class EditorLogger
     {

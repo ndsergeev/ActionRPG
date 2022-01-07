@@ -1,28 +1,11 @@
 ﻿
 namespace Main.Core.Updates
 {
-    using UnityEngine;
-    
-    public sealed class RefreshEntry : MonoBehaviour
+    public sealed class RefreshEntry : SingletonMB<RefreshEntry>
     {
-        private void Update()
-        {
-            RefreshCore.Run();
-        }
-
-        private void FixedUpdate()
-        {
-            RefreshCore.FixedRun();
-        }
-
-        private void LateUpdate()
-        {
-            RefreshCore.LateRun();
-        }
-        
-        private void OnDestroy()
-        {
-            RefreshCore.Reset();
-        }
+        private void FixedUpdate() => RefreshCore.FixedRun();
+        private void Update() => RefreshCore.Run();
+        private void LateUpdate() => RefreshCore.LateRun();
+        private void OnDestroy() => RefreshCore.Reset();
     }
 }

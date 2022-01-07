@@ -8,12 +8,14 @@ namespace Main.Core.StateMachine
     [RequireComponent(typeof(CharacterMB))]
     public sealed class StateMachineMB : MonoBehaviour
     {
-        private CharacterMB m_Character;
-        
+        [Space]
         [SerializeField]
         private StateTableSO m_StateTable;
+        
         private List<State> m_States;
         private State m_CurrentState; 
+        
+        private CharacterMB m_Character;
 
         private void Awake()
         {

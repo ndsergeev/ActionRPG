@@ -10,9 +10,7 @@ namespace Main.Core.Updates
         private readonly List<IRefreshed> m_Systems = new List<IRefreshed>(8);
 
         protected override void OnFirstEnable()
-        {
-            InstallNewSystems();
-        }
+            => InstallNewSystems();
 
         private void InstallNewSystems()
         {
@@ -48,8 +46,6 @@ namespace Main.Core.Updates
         }
 
         private void OnDestroy()
-        {
-            RemoveSystems();
-        }
+            => RemoveSystems();
     }
 }

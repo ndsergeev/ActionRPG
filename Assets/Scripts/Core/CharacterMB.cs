@@ -1,5 +1,4 @@
 
-
 namespace Main.Core
 {
     using UnityEngine;
