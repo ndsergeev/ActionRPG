@@ -12,7 +12,6 @@ namespace Main.Input
         
         protected CharacterMB character;
         
-        
         protected virtual void OnEnable()
             => SubscribeToInputManager();
 

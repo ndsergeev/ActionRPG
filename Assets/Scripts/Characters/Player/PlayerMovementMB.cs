@@ -5,6 +5,7 @@ namespace Main.Characters
     
     public class PlayerMovementMB : CharacterMovementMB
     {
+        
         protected override void Awake()
         {
             base.Awake();

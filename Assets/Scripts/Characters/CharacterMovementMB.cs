@@ -1,5 +1,6 @@
-
-using UnityEditor;
+using System.IO.IsolatedStorage;
+using Main.Input;
+using UnityEngine.InputSystem;
 
 namespace Main.Characters
 {
@@ -7,32 +8,42 @@ namespace Main.Characters
     
     public class CharacterMovementMB : MonoBehaviour
     {
-        protected CharacterMB m_character;
+        protected CharacterMB character;
         
         [SerializeField]
-        protected CharacterMovementSettingsSO m_settings;
+        protected CharacterMovementSettingsSO settings;
         
         // Movement states
-        protected bool m_isGrounded;
-        protected bool m_isJumping;
-        protected bool m_isFalling;
+        [SerializeField]
+        protected bool isGrounded;
+        [SerializeField]
+        protected bool isStartingJump;
+        [SerializeField]
+        protected bool isJumping;
+        [SerializeField]
+        protected bool isFalling;
+
+        // Grounding
+        protected RaycastHit groundHit;
+        
+        // Jumping
+        protected float timeSinceJumpStarted;
+        protected float timeAfterJumpToNotGroundCheck = 0.2f;
         
         protected virtual void Awake()
         {
-            m_character = GetComponent<CharacterMB>();
+            character = GetComponent<CharacterMB>();
         }
 
-        public virtual void HandleGrounding()
+        protected virtual bool CheckIfTouchingGround()
         {
-            if (m_isJumping) return;
-            
-            Transform charTransform = m_character.CachedTransform;
+            Transform charTransform = character.CachedTransform;
             Vector3 charPosition = charTransform.position;
-            CapsuleCollider col = m_character.Collider;
+            CapsuleCollider col = character.Collider;
             
-            Vector3 botOfColl = charPosition + col.center + Vector3.down * col.height * 0.5f;
+            Vector3 collCentre = charPosition + col.center;
 
-            float rayDistance = botOfColl.y - charPosition.y + m_settings.SnapToGroundDistance - col.radius * 0.5f;
+            float rayDistance = collCentre.y - charPosition.y + settings.SnapToGroundDistance - col.radius;
 
             // Bit shift the index of layer 8 to get a bit mask
             // Layer 8 has been set to the 'Characters' layer
@@ -40,51 +51,79 @@ namespace Main.Characters
             // Invert bitmask to every layer other than 'Characters' layer
             layerMask = ~layerMask;
 
-            Vector3 groundHitPos = Vector3.zero;
-            
             RaycastHit hit;
-            if (Physics.SphereCast(botOfColl, col.radius, Vector3.down, out hit, rayDistance, layerMask))
+            if (Physics.SphereCast(collCentre, col.radius, Vector3.down, out hit, rayDistance, layerMask))
             {
-                // Player is on the ground
-                m_isGrounded = true;
+                groundHit = hit;
+                Debug.DrawLine(collCentre, hit.point);
+                return true;
+            }
 
-                groundHitPos = hit.point;
+            return false;
+        }
+
+        protected void PreventSinking()
+        {
+            
+        }
+        
+        public virtual void HandleGrounding()
+        {
+            if (CheckIfTouchingGround())
+            {
+                if (isStartingJump)
+                {
+                    // Don't handle grounding if character just started a jump
+                    // Prevents character being stuck to ground while trying to jump
+                    return;
+                }
+                else // Set character position to ground point
+                {
+                    // Character is on the ground
+                    isGrounded = true;
+                    
+                    // Turn off gravity for character while character is grounded to prevent sinking
+                    character.RB.useGravity = false;
+
+                    // Calculate position on ground character should be at
+                    Transform characterTransform = character.CachedTransform;
+                    Vector3 targetStandingPos = characterTransform.position;
+                    targetStandingPos.y = groundHit.point.y - settings.SnapToGroundDistance;
+
+                    // Set character position to position on ground
+                    characterTransform.position = targetStandingPos;
+                    
+                    PreventSinking();
+                }
+            }
+            else // Character in the air
+            {
+                // Character is not on the ground
+                isGrounded = false;
                 
-                Debug.DrawLine(botOfColl, groundHitPos);
-            }
-            else
-            {
-                // Player is not on the ground
-                m_isGrounded = false;
-            }
+                // Activate gravity so character falls
+                character.RB.useGravity = true;
 
-            if (m_isGrounded)
-            {
-                // Turn off gravity for character while character is grounded to prevent sinking
-                m_character.RigidBody.useGravity = false;
-
-                // Calculate position on ground character should be at
-                Vector3 targetStandingPos = charPosition;
-                targetStandingPos.y = groundHitPos.y;
-
-                charTransform.position = targetStandingPos;
-            }
-            else
-            {
-                m_character.RigidBody.useGravity = true;
+                // If character falling
+                if (character.RB.velocity.y < 0)
+                {
+                    // Make character fall faster for better jump feel (Stops floaty looking falling)
+                    character.RB.velocity +=
+                        Vector3.up * (Physics.gravity.y * (settings.FallMultiplier) * Time.deltaTime);
+                }
             }
         }
         
         public virtual void HandleMovement(Vector3 moveDirection)
         {
-            Vector3 newVelocity = moveDirection * m_settings.Speed;
+            Vector3 newVelocity = moveDirection * settings.Speed;
 
-            if (!m_isGrounded)
+            if (!isGrounded)
             {
-                newVelocity.y = m_character.RigidBody.velocity.y;
+                newVelocity.y = character.RB.velocity.y;
             }
             
-            m_character.RigidBody.velocity = newVelocity;
+            character.RB.velocity = newVelocity;
         }
 
         public void HandleRotation(float targetAngle)
@@ -92,37 +131,69 @@ namespace Main.Characters
             float currentRotateVelocity = 0;
             
             float smoothedRotationAngle = Mathf.SmoothDampAngle(
-                m_character.CachedTransform.eulerAngles.y, targetAngle,
-                ref currentRotateVelocity, m_settings.TurnSmoothTime * Time.deltaTime);
+                character.CachedTransform.eulerAngles.y, targetAngle,
+                ref currentRotateVelocity, settings.TurnSmoothTime * Time.deltaTime);
 
-            m_character.CachedTransform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
+            character.CachedTransform.rotation = Quaternion.Euler(0f, smoothedRotationAngle, 0f);
         }
 
         public virtual void Jump()
-        {
-            if (!m_isGrounded) return;
+        { 
+            // Don't do jump if character is in the air
+            if (!isGrounded) return;
 
-            m_isJumping = true;
-            m_isGrounded = false;
-
-            m_character.RigidBody.useGravity = true;
-
-            Vector3 jumpVector = new Vector3(0, m_settings.JumpPower, 0);
+            // Update movement states
+            isStartingJump = true;
+            isJumping = true;
+            isGrounded = false;
             
-            m_character.RigidBody.AddForce(jumpVector);
+            // Reset starting jump timer to stop player from sticking to ground
+            timeSinceJumpStarted = 0f;
+
+            // Activate gravity so character falls
+            character.RB.useGravity = true;
+
+            // Calculate jump force vector
+            Vector3 jumpVector = new Vector3(0, settings.JumpPower, 0);
+            
+            // Apply jump force to character
+            character.RB.AddForce(jumpVector);
         }
 
         public virtual void HandleJumping()
         {
-            if (m_isJumping)
+            if (isJumping)
             {
-                // TODO: Better jumping feel (rise less when not holding jump button)
-
-                
-                // If character is falling
-                if (m_character.RigidBody.velocity.y < 0)
+                // Handle started jump timer for preventing character sticking to ground
+                if (isStartingJump)
                 {
-                    m_isJumping = false;
+                    timeSinceJumpStarted += Time.deltaTime;
+
+                    if (timeSinceJumpStarted > timeAfterJumpToNotGroundCheck)
+                    {
+                        isStartingJump = false;
+                    }
+                }
+                
+                // If player is rising upwards AND player isn't holding jump button
+                if (character.RB.velocity.y > 0 && !(character.Input as PlayerInputMB).JumpInput)
+                {
+                    // Make player not rise as much / fall faster
+                    character.RB.velocity += Vector3.up * Physics.gravity.y * (settings.LowJumpMultiplier) * Time.deltaTime;
+                }
+
+                // Check if character is falling
+                if (character.RB.velocity.y < 0)
+                {
+                    // Character is falling instead of jumping
+                    isStartingJump = false;
+                    isJumping = false;
+                }
+
+                if (isGrounded)
+                {
+                    isStartingJump = false;
+                    isJumping = false;
                 }
             }
         }

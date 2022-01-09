@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c807fb9daa4e2749bc28c292393b6d0, type: 3}
   m_Name: PlayerMovementSettingsSO
   m_EditorClassIdentifier: 
-  m_snapToGroundDistance: 0
-  m_speed: 0
-  m_turnSmoothTime: 0
-  m_jumpPower: 0
+  m_snapToGroundDistance: 0.34
+  m_speed: 10
+  m_turnSmoothTime: 10
+  m_jumpPower: 3
+  lowJumpMultiplier: 2
+  fallMultiplier: 2

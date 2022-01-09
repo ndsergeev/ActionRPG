@@ -13,26 +13,27 @@ namespace Main.Characters
         public Transform CachedTransform => cachedTransform;
         
         // INPUT
-        protected InputMB Input;
+        protected InputMB input;
+        public InputMB Input => input;
         
         // MOVEMENT
         protected CharacterMovementMB movement;
         public CharacterMovementMB Movement => movement;
         
         // PHYSICS
-        protected Rigidbody rigidBody;
+        protected Rigidbody rb;
         protected CapsuleCollider collider;
         
-        public Rigidbody RigidBody => rigidBody;
+        public Rigidbody RB => rb;
         public CapsuleCollider Collider => collider;
         
         protected virtual void Awake()
         {
             cachedTransform = transform;
 
-            Input = GetComponent<InputMB>();
+            input = GetComponent<InputMB>();
             movement = GetComponent<CharacterMovementMB>();
-            rigidBody = GetComponent<Rigidbody>();
+            rb = GetComponent<Rigidbody>();
             collider = GetComponent<CapsuleCollider>();
         }
     }

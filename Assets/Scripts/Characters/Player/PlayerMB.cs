@@ -12,7 +12,7 @@ namespace Main.Characters
     
     public class PlayerMB : CharacterMB
     {
-        protected PlayerInputMB PlayerInput => Input as PlayerInputMB;
+        protected PlayerInputMB PlayerInput => input as PlayerInputMB;
         
         protected void Update()
         {
