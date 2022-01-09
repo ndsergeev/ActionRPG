@@ -1,5 +1,5 @@
 
-namespace Main.Input
+namespace Main.Inputs
 {
     using UnityEngine;
     using UnityEngine.Events;
@@ -19,28 +19,28 @@ namespace Main.Input
         public event UnityAction<Vector2> onLookAroundEvent;
          
         // CONTROLS
-        private InputControls m_inputControls;
+        private InputControls m_InputControls;
 
         // STORED LATEST INPUTS
-        private Vector2 m_moveInput;
-        public Vector2 MoveInput => m_moveInput;
+        private Vector2 m_MoveInput;
+        public Vector2 moveInput => m_MoveInput;
         
-        private Vector2 m_lookInput;
-        public Vector2 LookInput => m_lookInput;
+        private Vector2 m_LookInput;
+        public Vector2 lookInput => m_LookInput;
         
-        private bool m_jumpInput;
-        public bool JumpInput => m_jumpInput;
+        private bool m_JumpInput;
+        public bool jumpInput => m_JumpInput;
 
         private void OnEnable()
         {
-            m_inputControls = new InputControls();
-            m_inputControls.CharacterControl.SetCallbacks(this);
-            m_inputControls?.CharacterControl.Enable();
+            m_InputControls = new InputControls();
+            m_InputControls.CharacterControl.SetCallbacks(this);
+            m_InputControls?.CharacterControl.Enable();
         }
 
         private void OnDisable()
         {
-            m_inputControls?.CharacterControl.Disable();
+            m_InputControls?.CharacterControl.Disable();
         }
 
         public void OnJump(InputAction.CallbackContext context)
@@ -48,11 +48,11 @@ namespace Main.Input
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
-                    m_jumpInput = true;
+                    m_JumpInput = true;
                     jumpStartEvent?.Invoke();
                     break;
                 case InputActionPhase.Canceled:
-                    m_jumpInput = false;
+                    m_JumpInput = false;
                     jumpEndEvent?.Invoke();
                     break;
             }
@@ -83,14 +83,14 @@ namespace Main.Input
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            m_moveInput = context.ReadValue<Vector2>();
-            onMoveEvent?.Invoke(m_moveInput);
+            m_MoveInput = context.ReadValue<Vector2>();
+            onMoveEvent?.Invoke(m_MoveInput);
         }
         
         public void OnLook(InputAction.CallbackContext context)
         {
-            m_lookInput = context.ReadValue<Vector2>();
-            onLookAroundEvent?.Invoke(m_lookInput);
+            m_LookInput = context.ReadValue<Vector2>();
+            onLookAroundEvent?.Invoke(m_LookInput);
         }
     }
 }

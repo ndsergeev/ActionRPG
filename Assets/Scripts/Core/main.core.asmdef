@@ -1,7 +1,10 @@
 {
     "name": "Core",
     "rootNamespace": "Main.Core",
-    "references": [],
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:9d7670d6944054f4ca79305f63765e2e"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

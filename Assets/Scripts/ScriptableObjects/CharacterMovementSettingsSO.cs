@@ -38,5 +38,9 @@ namespace Main.Characters
         [SerializeField]
         protected float fallMultiplier;
         public float FallMultiplier => fallMultiplier;
+        
+        #if UNITY_EDITOR
+
+#endif
     }
 }

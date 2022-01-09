@@ -5,7 +5,6 @@ namespace Main.Core.StateMachine
 {
     using UnityEngine;
 
-    [RequireComponent(typeof(CharacterMB))]
     public sealed class StateMachineMB : MonoBehaviour
     {
         [Space]

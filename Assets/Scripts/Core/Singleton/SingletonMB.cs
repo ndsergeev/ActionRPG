@@ -3,7 +3,6 @@ using System;
 
 namespace Main.Core
 {
-    using System;
     using UnityEngine;
 
     using Main.Core.Console;

@@ -1,55 +1,54 @@
-using System;
-using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 namespace Main.Characters
 {
     using UnityEngine;
     
-    using Main.Core.Console;
-    using Main.Input;
     using Main.Cameras;
+    using Main.Core;
+    using Main.Inputs;
     
     public class PlayerMB : CharacterMB
     {
         protected PlayerInputMB PlayerInput => input as PlayerInputMB;
         
-        protected void Update()
-        {
-            movement.HandleGrounding();
-            HandleMovementInput();
-            movement.HandleJumping();
-        }
-        
         protected void HandleMovementInput()
         {
-            Vector3 moveDirection = Vector3.zero;
+            var moveDirection = Vector3.zero;
 
             float targetAngle = 0;
             
             // Only calculate move direction if there is movement input
-            if (PlayerInput.MoveInput != Vector2.zero)
+            if (PlayerInput.moveInput != Vector2.zero)
             {
                 // Set move direction based on move input
-                moveDirection = new Vector3(PlayerInput.MoveInput.x, 0, PlayerInput.MoveInput.y);
+                moveDirection = new Vector3(PlayerInput.moveInput.x, 0, PlayerInput.moveInput.y);
                 
                 // Calculate rotation needed for move direction to be based on camera
-                float cameraYEuler = CameraManagerMB.instance.MainCameraTransform.eulerAngles.y;
+                var cameraYEuler = CameraManagerMB.instance.MainCameraTransform.eulerAngles.y;
                 targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + cameraYEuler;
                 
                 // Set move direction based on camera
                 moveDirection = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
             }
             
-            movement.HandleMovement(moveDirection);
+            ((PlayerMovementMB)Movement).HandleMovement(moveDirection);
 
             if (targetAngle != 0)
             {
-                movement.HandleRotation(targetAngle);
+                ((PlayerMovementMB)Movement).HandleRotation(targetAngle);
             }
         }
         
         public void JumpStart()
-            => movement.Jump();
+            => ((PlayerMovementMB)Movement).Jump();
+
+        public override void Run()
+        {
+            base.Run();
+            
+            ((PlayerMovementMB)Movement).HandleGrounding();
+            HandleMovementInput();
+            ((PlayerMovementMB)Movement).HandleJumping();
+        }
     }
 }
