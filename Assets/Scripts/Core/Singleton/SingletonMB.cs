@@ -1,9 +1,12 @@
+
+using System;
+
 namespace Main.Core
 {
     using System;
     using UnityEngine;
 
-    using Console;
+    using Main.Core.Console;
     
     public abstract class SingletonMB<T> : MonoBehaviour where T : SingletonMB<T>
     {
