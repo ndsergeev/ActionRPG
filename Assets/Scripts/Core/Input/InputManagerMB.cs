@@ -1,8 +1,8 @@
 
-namespace Main.Inputs
-{
-    using System.Collections.Generic;
+using System.Collections.Generic;
 
+namespace Main.Core.Input
+{
     using Main.Core;
     
     public class InputManagerMB : SingletonMB<InputManagerMB>

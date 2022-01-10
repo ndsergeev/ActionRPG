@@ -1,5 +1,7 @@
 
-namespace Main.Inputs
+using Main.Inputs;
+
+namespace Main.Core.Input
 {
     using UnityEngine;
     using UnityEngine.Events;

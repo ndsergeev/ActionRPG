@@ -4,7 +4,7 @@ namespace Main.Characters
     using UnityEngine;
     
     using Main.Core;
-    using Main.Inputs;
+    using Main.Core.Input;
     
     public class CharacterMovementMB : MovementMB
     {
