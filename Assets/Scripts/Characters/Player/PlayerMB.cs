@@ -10,6 +10,7 @@ namespace Main.Characters
     public class PlayerMB : CharacterMB
     {
         protected PlayerInputMB PlayerInput => input as PlayerInputMB;
+        protected PlayerMovementMB PlayerMovement => movement as PlayerMovementMB;
         
         protected void HandleMovementInput()
         {
@@ -31,24 +32,24 @@ namespace Main.Characters
                 moveDirection = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
             }
             
-            ((PlayerMovementMB)Movement).HandleMovement(moveDirection);
+            PlayerMovement.HandleMovement(moveDirection);
 
             if (targetAngle != 0)
             {
-                ((PlayerMovementMB)Movement).HandleRotation(targetAngle);
+                PlayerMovement.HandleRotation(targetAngle);
             }
         }
         
         public void JumpStart()
-            => ((PlayerMovementMB)Movement).Jump();
+            => PlayerMovement.Jump();
 
         public override void Run()
         {
             base.Run();
             
-            ((PlayerMovementMB)Movement).HandleGrounding();
+            PlayerMovement.HandleGrounding();
             HandleMovementInput();
-            ((PlayerMovementMB)Movement).HandleJumping();
+            PlayerMovement.HandleJumping();
         }
     }
 }

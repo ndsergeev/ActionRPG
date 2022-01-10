@@ -11,7 +11,7 @@ namespace Main.Characters
         [SerializeField]
         protected CharacterMovementSettingsSO settings;
         
-        // Movement states
+        // MOVEMENT STATES
         [SerializeField]
         protected bool isGrounded;
         [SerializeField]
@@ -21,10 +21,10 @@ namespace Main.Characters
         [SerializeField]
         protected bool isFalling;
 
-        // Grounding
+        // GROUNDING
         protected RaycastHit GroundHit;
         
-        // Jumping
+        // JUMPING
         protected float TimeSinceJumpStarted;
         protected float TimeAfterJumpToNotGroundCheck = 0.2f;
         
@@ -41,8 +41,21 @@ namespace Main.Characters
             
             var collCentre = charPosition + col.center;
 
-            var rayDistance = collCentre.y - charPosition.y + settings.SnapToGroundDistance - col.radius;
-
+            var rayDistance = 0f;
+            
+            if (isGrounded)
+            {
+                // The grounding SphereCastRay distance will be longer while the character is on the ground so that
+                // grounding is handled better while the character moves up and down slopes (or any variable terrain)
+                rayDistance = collCentre.y - charPosition.y + settings.SnapToGroundDistance - col.radius;
+            }
+            else
+            {
+                // The grounding SphereCastRay distance is shorter while character is in the air so that the character
+                // snapping to the ground happens as the characters feet touch the ground
+                rayDistance = collCentre.y - charPosition.y - col.radius;
+            }
+            
             // Bit shift the index of layer 8 to get a bit mask
             // Layer 8 has been set to the 'Characters' layer
             var layerMask = 1 << 8;
@@ -58,7 +71,36 @@ namespace Main.Characters
         }
 
         protected void PreventSinking()
-        { }
+        {
+            var charTransform = Character.cachedTransform;
+            var charPosition = charTransform.position;
+            var col = (CapsuleCollider)Character.col;
+            
+            var collCentre = charPosition + col.center;
+
+            var rayDistance = collCentre.y - charPosition.y;
+            
+            // Bit shift the index of layer 8 to get a bit mask
+            // Layer 8 has been set to the 'Characters' layer
+            var layerMask = 1 << 8;
+            // Invert bitmask to every layer other than 'Characters' layer
+            layerMask = ~layerMask;
+
+            // Check if sunken
+            RaycastHit sinkRayHit;
+            bool isSunken = Physics.Raycast(collCentre, Vector3.down, out var hit, rayDistance, layerMask);
+            
+            // Don't do anything if not sunken
+            if (!isSunken)
+                return;
+            
+            sinkRayHit = hit;
+
+            // Set character's position to the ground (Unsink character)
+            var characterPos = charTransform.position;
+            characterPos.y = hit.point.y;
+            charTransform.position = characterPos;
+        }
         
         public virtual void HandleGrounding()
         {
@@ -111,11 +153,14 @@ namespace Main.Characters
         {
             var newVelocity = moveDirection * settings.Speed;
 
+            // If in the air
             if (!isGrounded)
             {
+                // Keep vertical velocity from jump/fall
                 newVelocity.y = Character.rb.velocity.y;
             }
             
+            // Apply adjusted velocity to character
             Character.rb.velocity = newVelocity;
         }
 
@@ -159,7 +204,7 @@ namespace Main.Characters
             if (!isJumping)
                 return;
             
-            // Handle started jump timer for preventing character sticking to ground
+            // Handle started jump timer to prevent character sticking to ground
             if (isStartingJump)
             {
                 TimeSinceJumpStarted += Time.deltaTime;
@@ -170,23 +215,25 @@ namespace Main.Characters
                 }
             }
                 
-            // If player is rising upwards AND player isn't holding jump button
+            // If character is rising upwards AND player isn't holding jump button
             if (Character.rb.velocity.y > 0 && !((PlayerInputMB) Character.Input).jumpInput)
             {
-                // Make player not rise as much / fall faster
+                // Make character not rise as much
                 Character.rb.velocity += Vector3.up * (Physics.gravity.y * settings.LowJumpMultiplier * Time.deltaTime);
             }
 
-            // Check if character is falling
+            // IF character is falling
             if (Character.rb.velocity.y < 0)
             {
-                // Character is falling instead of jumping
+                // Character is no longer jumping
                 isStartingJump = false;
                 isJumping = false;
             }
-
+            
+            // If character landed on 'ground' while jumping upwards (before falling back down)
             if (isGrounded)
             {
+                // Character is no longer jumping
                 isStartingJump = false;
                 isJumping = false;
             }
