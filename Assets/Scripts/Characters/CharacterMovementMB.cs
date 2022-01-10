@@ -41,8 +41,17 @@ namespace Main.Characters
             
             var collCentre = charPosition + col.center;
 
-            var rayDistance = collCentre.y - charPosition.y + settings.SnapToGroundDistance - col.radius;
-
+            var rayDistance = 0f;
+            
+            if (isGrounded)
+            {
+                rayDistance = collCentre.y - charPosition.y + settings.SnapToGroundDistance - col.radius;
+            }
+            else
+            {
+                rayDistance = collCentre.y - charPosition.y - col.radius;
+            }
+            
             // Bit shift the index of layer 8 to get a bit mask
             // Layer 8 has been set to the 'Characters' layer
             var layerMask = 1 << 8;
@@ -58,7 +67,31 @@ namespace Main.Characters
         }
 
         protected void PreventSinking()
-        { }
+        {
+            var charTransform = Character.cachedTransform;
+            var charPosition = charTransform.position;
+            var col = (CapsuleCollider)Character.col;
+            
+            var collCentre = charPosition + col.center;
+
+            var rayDistance = collCentre.y - charPosition.y;
+            
+            // Bit shift the index of layer 8 to get a bit mask
+            // Layer 8 has been set to the 'Characters' layer
+            var layerMask = 1 << 8;
+            // Invert bitmask to every layer other than 'Characters' layer
+            layerMask = ~layerMask;
+
+            RaycastHit sinkRayHit;
+            if (Physics.Raycast(collCentre, Vector3.down, out var hit, rayDistance, layerMask))
+            {
+                sinkRayHit = hit;
+
+                var characterPos = charTransform.position;
+                characterPos.y = hit.point.y;
+                charTransform.position = characterPos;
+            }
+        }
         
         public virtual void HandleGrounding()
         {
