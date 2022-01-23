@@ -11,7 +11,7 @@ namespace Main.Characters
         [SerializeField]
         protected CharacterMovementSettingsSO settings;
         
-        // Movement states
+        // MOVEMENT STATES
         [SerializeField]
         protected bool isGrounded;
         [SerializeField]
@@ -21,10 +21,10 @@ namespace Main.Characters
         [SerializeField]
         protected bool isFalling;
 
-        // Grounding
+        // GROUNDING
         protected RaycastHit GroundHit;
         
-        // Jumping
+        // JUMPING
         protected float TimeSinceJumpStarted;
         protected float TimeAfterJumpToNotGroundCheck = 0.2f;
         
@@ -144,11 +144,14 @@ namespace Main.Characters
         {
             var newVelocity = moveDirection * settings.Speed;
 
+            // If in the air
             if (!isGrounded)
             {
+                // Keep vertical velocity from jump/fall
                 newVelocity.y = Character.rb.velocity.y;
             }
             
+            // Apply adjusted velocity to character
             Character.rb.velocity = newVelocity;
         }
 
@@ -192,7 +195,7 @@ namespace Main.Characters
             if (!isJumping)
                 return;
             
-            // Handle started jump timer for preventing character sticking to ground
+            // Handle started jump timer to prevent character sticking to ground
             if (isStartingJump)
             {
                 TimeSinceJumpStarted += Time.deltaTime;
@@ -203,23 +206,25 @@ namespace Main.Characters
                 }
             }
                 
-            // If player is rising upwards AND player isn't holding jump button
+            // If character is rising upwards AND player isn't holding jump button
             if (Character.rb.velocity.y > 0 && !((PlayerInputMB) Character.Input).jumpInput)
             {
-                // Make player not rise as much / fall faster
+                // Make character not rise as much
                 Character.rb.velocity += Vector3.up * (Physics.gravity.y * settings.LowJumpMultiplier * Time.deltaTime);
             }
 
-            // Check if character is falling
+            // IF character is falling
             if (Character.rb.velocity.y < 0)
             {
-                // Character is falling instead of jumping
+                // Character is no longer jumping
                 isStartingJump = false;
                 isJumping = false;
             }
-
+            
+            // If character landed on 'ground' while jumping upwards (before falling back down)
             if (isGrounded)
             {
+                // Character is no longer jumping
                 isStartingJump = false;
                 isJumping = false;
             }
