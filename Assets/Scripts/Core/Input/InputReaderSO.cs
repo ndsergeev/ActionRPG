@@ -19,17 +19,20 @@ namespace Main.Inputs
         public event UnityAction<Vector2> onLookAroundEvent;
          
         // CONTROLS
-        private InputControls m_InputControls;
+        protected InputControls m_InputControls;
 
         // STORED LATEST INPUTS
-        private Vector2 m_MoveInput;
+        protected Vector2 m_MoveInput;
         public Vector2 moveInput => m_MoveInput;
         
-        private Vector2 m_LookInput;
+        protected Vector2 m_LookInput;
         public Vector2 lookInput => m_LookInput;
         
-        private bool m_JumpInput;
+        protected bool m_JumpInput;
         public bool jumpInput => m_JumpInput;
+
+        protected bool m_RunInput;
+        public bool runInput => m_RunInput;
 
         private void OnEnable()
         {
@@ -68,15 +71,15 @@ namespace Main.Inputs
             if (context.phase.Equals(InputActionPhase.Performed)) crouchEvent?.Invoke();
         }
 
-        public void OnSprint(InputAction.CallbackContext context)
+        public void OnRun(InputAction.CallbackContext context)
         {
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
-                    sprintStartEvent?.Invoke();
+                    m_RunInput = true;
                     break;
                 case InputActionPhase.Canceled:
-                    sprintEndEvent?.Invoke();
+                    m_RunInput = false;
                     break;
             }
         }

@@ -8,6 +8,8 @@ namespace Main.Core.StateMachine
     [CreateAssetMenu(fileName = "StateSO", menuName = "Scriptable Objects/State Machine/New StateSO", order = 15)]
     public class StateSO : ScriptableObject
     {
+        [HideInInspector]
+        public bool isFoldout;
         [Space]
         public List<TransitionSO> transitions;
         [Space]

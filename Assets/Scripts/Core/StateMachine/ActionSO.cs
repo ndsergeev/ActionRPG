@@ -10,6 +10,9 @@ namespace Main.Core.StateMachine
     /// </summary>
     public abstract class ActionSO : ScriptableObject
     {
+        [HideInInspector]
+        public bool isFoldout;
+        
         public abstract void OnEnter(CharacterMB character);
         public abstract void OnUpdate(CharacterMB character);
         public abstract void OnExit(CharacterMB character);

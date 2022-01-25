@@ -373,9 +373,9 @@ namespace Main.Inputs
                     @Crouch.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
                     @Crouch.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
                     @Crouch.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
-                    @Sprint.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnSprint;
-                    @Sprint.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnSprint;
-                    @Sprint.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnSprint;
+                    @Sprint.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
+                    @Sprint.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
+                    @Sprint.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
                 }
                 m_Wrapper.m_CharacterControlActionsCallbackInterface = instance;
                 if (instance != null)
@@ -395,9 +395,9 @@ namespace Main.Inputs
                     @Crouch.started += instance.OnCrouch;
                     @Crouch.performed += instance.OnCrouch;
                     @Crouch.canceled += instance.OnCrouch;
-                    @Sprint.started += instance.OnSprint;
-                    @Sprint.performed += instance.OnSprint;
-                    @Sprint.canceled += instance.OnSprint;
+                    @Sprint.started += instance.OnRun;
+                    @Sprint.performed += instance.OnRun;
+                    @Sprint.canceled += instance.OnRun;
                 }
             }
         }
@@ -409,7 +409,7 @@ namespace Main.Inputs
             void OnJump(InputAction.CallbackContext context);
             void OnFocus(InputAction.CallbackContext context);
             void OnCrouch(InputAction.CallbackContext context);
-            void OnSprint(InputAction.CallbackContext context);
+            void OnRun(InputAction.CallbackContext context);
         }
     }
 }

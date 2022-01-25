@@ -8,7 +8,6 @@ namespace Main.Core.StateMachine
     [CreateAssetMenu(fileName = "StateTableSO", menuName = "Scriptable Objects/State Machine/New StateTableSO", order = 0)]
     public class StateTableSO : ScriptableObject
     {
-        [Space]
         public List<StateSO> states;
 
 #if UNITY_EDITOR
