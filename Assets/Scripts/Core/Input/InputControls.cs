@@ -75,7 +75,7 @@ namespace Main.Core.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Sprint"",
+                    ""name"": ""Run"",
                     ""type"": ""Button"",
                     ""id"": ""56e86745-49cc-4d07-822a-9cc94ab94c67"",
                     ""expectedControlType"": ""Button"",
@@ -246,7 +246,7 @@ namespace Main.Core.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC;Gamepad"",
-                    ""action"": ""Sprint"",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -257,7 +257,7 @@ namespace Main.Core.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
-                    ""action"": ""Sprint"",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -273,7 +273,7 @@ namespace Main.Core.Input
             m_CharacterControl_Jump = m_CharacterControl.FindAction("Jump", throwIfNotFound: true);
             m_CharacterControl_Focus = m_CharacterControl.FindAction("Focus", throwIfNotFound: true);
             m_CharacterControl_Crouch = m_CharacterControl.FindAction("Crouch", throwIfNotFound: true);
-            m_CharacterControl_Sprint = m_CharacterControl.FindAction("Sprint", throwIfNotFound: true);
+            m_CharacterControl_Run = m_CharacterControl.FindAction("Run", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -338,7 +338,7 @@ namespace Main.Core.Input
         private readonly InputAction m_CharacterControl_Jump;
         private readonly InputAction m_CharacterControl_Focus;
         private readonly InputAction m_CharacterControl_Crouch;
-        private readonly InputAction m_CharacterControl_Sprint;
+        private readonly InputAction m_CharacterControl_Run;
         public struct CharacterControlActions
         {
             private @InputControls m_Wrapper;
@@ -348,7 +348,7 @@ namespace Main.Core.Input
             public InputAction @Jump => m_Wrapper.m_CharacterControl_Jump;
             public InputAction @Focus => m_Wrapper.m_CharacterControl_Focus;
             public InputAction @Crouch => m_Wrapper.m_CharacterControl_Crouch;
-            public InputAction @Sprint => m_Wrapper.m_CharacterControl_Sprint;
+            public InputAction @Run => m_Wrapper.m_CharacterControl_Run;
             public InputActionMap Get() { return m_Wrapper.m_CharacterControl; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -373,9 +373,9 @@ namespace Main.Core.Input
                     @Crouch.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
                     @Crouch.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
                     @Crouch.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
-                    @Sprint.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
-                    @Sprint.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
-                    @Sprint.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
+                    @Run.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
+                    @Run.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
+                    @Run.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
                 }
                 m_Wrapper.m_CharacterControlActionsCallbackInterface = instance;
                 if (instance != null)
@@ -395,9 +395,9 @@ namespace Main.Core.Input
                     @Crouch.started += instance.OnCrouch;
                     @Crouch.performed += instance.OnCrouch;
                     @Crouch.canceled += instance.OnCrouch;
-                    @Sprint.started += instance.OnRun;
-                    @Sprint.performed += instance.OnRun;
-                    @Sprint.canceled += instance.OnRun;
+                    @Run.started += instance.OnRun;
+                    @Run.performed += instance.OnRun;
+                    @Run.canceled += instance.OnRun;
                 }
             }
         }

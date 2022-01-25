@@ -8,9 +8,12 @@ namespace Main.Characters
     {
         [Header("GROUNDING")]
         [SerializeField]
-        protected float m_snapToGroundDistance;
+        protected float m_SnapToGroundDistance;
+        [SerializeField]
+        private float m_SnapToGroundRadius;
         
-        public float SnapToGroundDistance => m_snapToGroundDistance;
+        public float snapToGroundDistance => m_SnapToGroundDistance;
+        public float snapToGroundRadius => m_SnapToGroundRadius;
         
         [Header(("MOVEMENT"))]
         [SerializeField]

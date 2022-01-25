@@ -7,7 +7,7 @@ namespace Main.Characters
     using System.Runtime.CompilerServices;
 
     using Main.Core;
-    using Main.Inputs;
+    using Main.Core.Input;
     
     public class CharacterMovementMB : MovementMB
     {
@@ -58,6 +58,9 @@ namespace Main.Characters
         protected float TimeSinceJumpStarted;
         protected float TimeAfterJumpToNotGroundCheck = 0.05f;
         
+        // GUI
+        private Color groundSphereColour = new Color(1f, 0.92f, 0.016f, 0.5f);
+        
         protected virtual void Awake()
         {
             Character = GetComponent<CharacterMB>();
@@ -65,7 +68,7 @@ namespace Main.Characters
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = groundSphereColour;
             Gizmos.DrawSphere(spherePos, sphereRad);
         }
 
@@ -77,7 +80,7 @@ namespace Main.Characters
 
             var rayOrigin = charPosition + col.center;
             rayOrigin.y -= col.radius;
-            sphereRad = col.radius;
+            sphereRad = settings.snapToGroundRadius;
             
             var rayDistance = 0f;
             
@@ -85,7 +88,7 @@ namespace Main.Characters
             {
                 // The grounding SphereCastRay distance will be longer while the character is on the ground so that
                 // grounding is handled better while the character moves up and down slopes (or any variable terrain)
-                rayDistance = rayOrigin.y - charPosition.y - col.radius + settings.SnapToGroundDistance;
+                rayDistance = rayOrigin.y - charPosition.y - col.radius + settings.snapToGroundDistance;
             }
             else
             {
@@ -104,28 +107,18 @@ namespace Main.Characters
 
             bool isTouchingGround = Physics.SphereCast(
                 rayOrigin,
-                col.radius,
+                sphereRad,
                 Vector3.down,
                 out var hit,
                 rayDistance, layerMask
                 );
 
             if (!isTouchingGround)
-            {
                 return false;
-            }
             
-            /*
-            float checkPoint = (rayOrigin + Vector3.down * rayDistance).y;
-            bool isTouchPointAboveCheckPoint = hit.point.y >= checkPoint;
-            if (isTouchPointAboveCheckPoint)
-            {
-                print(5);
-                return false;
-            }
-            */
             GroundHit = hit;
             Debug.DrawLine(rayOrigin, hit.point);
+            
             return true;
         }
 
@@ -158,11 +151,7 @@ namespace Main.Characters
                 Debug.DrawLine(collCentre, hit.point, Color.green);
             }
             else
-            {
                 return;
-                charPosition.y = GroundHit.point.y;
-                charTransform.position = charPosition;
-            }
         }
         
         public virtual void HandleGrounding()
@@ -186,7 +175,6 @@ namespace Main.Characters
                     // Calculate position on ground character should be at
                     var characterTransform = Character.cachedTransform;
                     var targetStandingPos = characterTransform.position;
-                    var diff = GroundHit.point.y - targetStandingPos.y;
                     targetStandingPos.y = GroundHit.point.y;
                     
                     // Set character position to position on ground
@@ -240,6 +228,8 @@ namespace Main.Characters
         
         protected virtual void HandleObstaclesAndSlopes()
         {
+            // TODO: Replace this obstacle handling with something better
+            
             var charTransform = Character.cachedTransform;
             var charPosition = charTransform.position;
             var col = (CapsuleCollider)Character.col;

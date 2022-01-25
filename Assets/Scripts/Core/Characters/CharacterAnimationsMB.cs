@@ -1,10 +1,8 @@
-using UnityEngine.Rendering.VirtualTexturing;
-
 namespace Main.Core
 {
     using UnityEngine;
     using Main.Core.Updates;
-    using Main.Inputs;
+    using Main.Core.Input;
     
     public class CharacterAnimationsMB : Refresh
     {

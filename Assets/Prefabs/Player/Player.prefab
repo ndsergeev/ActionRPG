@@ -215,6 +215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 28a2c8e0c909e8f4a941dedf040d77ec, type: 2}
   IsGrounded: 0
+  IsWalking: 0
+  IsRunning: 0
   IsStartingJump: 0
   IsJumping: 0
   IsFalling: 0
