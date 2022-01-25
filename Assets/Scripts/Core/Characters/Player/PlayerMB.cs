@@ -5,7 +5,7 @@ namespace Main.Characters
     
     using Main.Cameras;
     using Main.Core;
-    using Main.Inputs;
+    using Main.Core.Input;
     
     public class PlayerMB : CharacterMB
     {

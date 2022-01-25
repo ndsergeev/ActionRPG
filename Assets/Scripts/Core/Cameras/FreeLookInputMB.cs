@@ -5,7 +5,7 @@ namespace Main.Input
     
     using Cinemachine;
     
-    using Main.Inputs;
+    using Main.Core.Input;
     
     [RequireComponent(typeof(CinemachineFreeLook))]
     public class FreeLookInputMB : InputMB

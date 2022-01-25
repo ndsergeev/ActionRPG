@@ -1,6 +1,4 @@
 ﻿
-using System;
-
 namespace Main.Core.Updates
 {
     public sealed class RefreshEntry : SingletonMB<RefreshEntry>

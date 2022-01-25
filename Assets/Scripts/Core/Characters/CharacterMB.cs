@@ -6,8 +6,7 @@ namespace Main.Core
 
     using Main.Core.StateMachine;
     using Main.Core.Updates;
-    using Main.Inputs;
-
+    using Main.Core.Input;
     
     [RequireComponent(typeof(StateMachineMB))]
     public abstract class CharacterMB : Refresh, IRefresh
