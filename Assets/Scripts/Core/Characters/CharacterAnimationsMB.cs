@@ -17,8 +17,13 @@ namespace Main.Core
         protected static readonly int walkRunBlendAnimProperty = Animator.StringToHash("walkRunBlend");
 
         protected bool isBlendingToRun;
-        protected const float blendWalkToRunTime = 5f;
+        protected const float blendWalkToRunTime = 0.15f;
         protected float blendWalkToRunTimer = 0;
+
+        protected bool isBlendingToWalk;
+        protected const float blendRunToWalkTime = 0.15f;
+        protected float blendRunToWalkTimer = 0;
+        
         
         protected virtual void Awake()
         {
@@ -28,6 +33,7 @@ namespace Main.Core
         protected virtual void Update()
         {
             HandleBlendWalkToRun();
+            HandleBlendRunToWalk();
         }
         
         // == WALKING == //
@@ -47,10 +53,36 @@ namespace Main.Core
             Anim.SetBool(walkingAnimProperty, state);
         }
 
+        protected virtual void HandleBlendRunToWalk()
+        {
+            if (!isBlendingToWalk) return;
+
+            blendRunToWalkTimer += Time.deltaTime;
+
+            if (blendRunToWalkTimer >= blendRunToWalkTime)
+            {
+                // Finished blending
+                isBlendingToWalk = false;
+                
+                SetRunBlend(0f);
+            }
+            else
+            {
+                float blendPercent = 1 - (blendRunToWalkTimer / blendRunToWalkTime);
+                
+                SetRunBlend(blendPercent);
+            }
+        }
+        
         // == RUNNING == //
 
         public virtual void StartRunning()
         {
+            StartWalking();
+            isBlendingToRun = true;
+            blendWalkToRunTimer = 0f;
+
+            /*
             // TODO: Check if previous state was walk state to decide whether to blend walk anim to run anim
             
             if (Anim.GetBool(walkingAnimProperty))
@@ -62,8 +94,25 @@ namespace Main.Core
                 StartWalking();
                 SetRunBlend(1f);
             }
+            */
         }
 
+        public virtual void StopRunning()
+        {
+            StopWalking();
+            
+            isBlendingToRun = false;
+            isBlendingToWalk = true;
+            blendRunToWalkTimer = 0f;
+        }
+        
+        protected virtual void SetRunBlend(float blendPercent)
+        {
+            Mathf.Clamp(blendPercent, 0, 1);
+            
+            Anim.SetFloat(walkRunBlendAnimProperty, blendPercent);
+        }
+        
         protected virtual void HandleBlendWalkToRun()
         {
             if (!isBlendingToRun) return;
@@ -74,7 +123,6 @@ namespace Main.Core
             {
                 // Finished blending
                 isBlendingToRun = false;
-                blendWalkToRunTimer = 0f;
                 
                 SetRunBlend(1f);
             }
@@ -84,19 +132,6 @@ namespace Main.Core
                 
                 SetRunBlend(blendPercent);
             }
-        }
-
-        public virtual void StopRunning()
-        {
-            StopWalking();
-            SetRunBlend(0f);
-        }
-        
-        protected virtual void SetRunBlend(float blendPercent)
-        {
-            Mathf.Clamp(blendPercent, 0, 1);
-            
-            Anim.SetFloat(walkRunBlendAnimProperty, blendPercent);
         }
         
         // == JUMPING == //
