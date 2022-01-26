@@ -190,10 +190,19 @@ namespace Main.Characters
                 
                 // Activate gravity so character falls
                 Character.rb.useGravity = true;
-
+                
                 // If character falling
                 if (Character.rb.velocity.y < 0)
                 {
+                    if (Character.rb.velocity.y < -settings.MaxFallSpeed)
+                    {
+                        Vector3 newFallVelocity = Character.rb.velocity;
+                        newFallVelocity.y = -settings.MaxFallSpeed;
+
+                        Character.rb.velocity = newFallVelocity;
+                        return;
+                    }
+                    
                     // Make character fall faster for better jump feel (Stops floaty looking falling)
                     Character.rb.velocity +=
                         Vector3.up * (Physics.gravity.y * (settings.FallMultiplier) * Time.deltaTime);

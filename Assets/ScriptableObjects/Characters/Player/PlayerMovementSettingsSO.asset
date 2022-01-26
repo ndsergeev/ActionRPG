@@ -17,10 +17,11 @@ MonoBehaviour:
   m_WalkSpeed: 2.5
   m_RunSpeed: 4
   m_AirSpeed: 2
-  m_turnSmoothTime: 7.5
+  m_turnSmoothTime: 20
   stepHeight: 0.1
   obstacleCheckSize: 0.5
   m_jumpPower: 3
   lowJumpMultiplier: 4
   fallMultiplier: 2
+  m_MaxFallSpeed: 100
   m_MaxSlopeAngle: 70

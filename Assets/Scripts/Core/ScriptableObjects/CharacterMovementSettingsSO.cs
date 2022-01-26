@@ -57,7 +57,11 @@ namespace Main.Characters
         [Header("FALLING")]
         [SerializeField]
         protected float fallMultiplier;
+        [SerializeField]
+        protected float m_MaxFallSpeed;
+        
         public float FallMultiplier => fallMultiplier;
+        public float MaxFallSpeed => m_MaxFallSpeed;
 
         [Header("SLOPES")]
         [SerializeField]
