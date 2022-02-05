@@ -1,6 +1,4 @@
 
-using System.Collections.Generic;
-
 namespace Main.Core.Editor
 {
     using UnityEditor;

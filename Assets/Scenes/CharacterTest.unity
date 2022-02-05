@@ -715,7 +715,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d44493399868e478d163178c27dee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_mainCamera: {fileID: 1640606955}
+  m_MainCamera: {fileID: 1640606955}
   m_CinemachineFreeLook: {fileID: 603286597}
 --- !u!4 &313022606 stripped
 Transform:
@@ -1475,7 +1475,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171629969}
-  m_LocalRotation: {x: 0.051339574, y: 0.000000001651306, z: -8.4889276e-11, w: 0.99868125}
+  m_LocalRotation: {x: 0.051339574, y: 0.0000000042959223, z: -2.2084208e-10, w: 0.99868125}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1584,7 +1584,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404363070}
-  m_LocalRotation: {x: 0.022715248, y: -0.0000000028042173, z: 6.3714936e-11, w: 0.999742}
+  m_LocalRotation: {x: 0.022715246, y: -0.000000002150243, z: 4.8855912e-11, w: 0.999742}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1745,7 +1745,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640606953}
-  m_LocalRotation: {x: 0.049050882, y: 0.000000027257931, z: 0.0000000011926544, w: 0.99879634}
+  m_LocalRotation: {x: 0.049050882, y: 0.000000027544038, z: 9.541785e-10, w: 0.99879634}
   m_LocalPosition: {x: 0, y: 1.709733, z: -2.8416274}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

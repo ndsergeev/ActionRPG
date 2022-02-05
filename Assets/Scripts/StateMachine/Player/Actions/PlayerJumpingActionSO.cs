@@ -1,3 +1,4 @@
+
 namespace Main
 {
     using UnityEngine;
@@ -6,29 +7,30 @@ namespace Main
     using Main.Core.StateMachine;
     using Main.Characters;
     
-    [CreateAssetMenu(fileName = "Player_Jumping_ActionSO", menuName = "Scriptable Objects/State Machine/Player Actions/New Player_Jumping_ActionSO", order = 60)]
+    [CreateAssetMenu(fileName = "Player_Jumping_ActionSO",
+        menuName = "Scriptable Objects/State Machine/Player Actions/New Player_Jumping_ActionSO", order = 60)]
     public class PlayerJumpingActionSO : ActionSO
     {
-        protected PlayerMB player;
+        private PlayerMB m_Player;
         
         public override void OnEnter(CharacterMB character)
         {
-            player = character as PlayerMB;
+            m_Player = character as PlayerMB;
             
-            player.movement.Jump();
-            player.animations.StartJumping();
+            m_Player.movement.Jump();
+            m_Player.animations.StartJumping();
         }
 
         public override void OnUpdate(CharacterMB character)
         {
-            PlayerMB player = character as PlayerMB;
+            m_Player = character as PlayerMB;
             
-            player.movement.HandleJumping();
+            m_Player.movement.HandleJumping();
         }
 
         public override void OnExit(CharacterMB character)
         {
-            player.animations.StopJumping();
+            m_Player.animations.StopJumping();
         }
     }
 }

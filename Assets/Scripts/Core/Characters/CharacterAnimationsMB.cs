@@ -1,36 +1,31 @@
 namespace Main.Core
 {
     using UnityEngine;
+    using Main.Core.HashedProperties;
     using Main.Core.Updates;
-    using Main.Core.Input;
     
     public class CharacterAnimationsMB : Refresh
     {
         [SerializeField]
         protected Animator Anim;
 
-        protected CharacterMB character;
+        protected CharacterMB Character;
 
-        protected static readonly int walkingAnimProperty = Animator.StringToHash("isWalking");
-        protected static readonly int jumpinggAnimProperty = Animator.StringToHash("isJumping");
-        protected static readonly int fallingAnimProperty = Animator.StringToHash("isFalling");
-        protected static readonly int walkRunBlendAnimProperty = Animator.StringToHash("walkRunBlend");
+        protected bool IsBlendingToRun;
+        protected const float BlendWalkToRunTime = 0.15f; // TODO: use SO
+        protected float BlendWalkToRunTimer = 0;
 
-        protected bool isBlendingToRun;
-        protected const float blendWalkToRunTime = 0.15f;
-        protected float blendWalkToRunTimer = 0;
-
-        protected bool isBlendingToWalk;
-        protected const float blendRunToWalkTime = 0.15f;
-        protected float blendRunToWalkTimer = 0;
+        protected bool IsBlendingToWalk;
+        protected const float BlendRunToWalkTime = 0.15f; // TODO: use SO
+        protected float BlendRunToWalkTimer = 0;
         
         
         protected virtual void Awake()
         {
-            character = GetComponent<CharacterMB>();
+            Character = GetComponent<CharacterMB>();
         }
 
-        protected virtual void Update()
+        protected virtual void Refresh()
         {
             HandleBlendWalkToRun();
             HandleBlendRunToWalk();
@@ -39,37 +34,30 @@ namespace Main.Core
         // == WALKING == //
         
         public virtual void StartWalking()
-        {
-            SetWalking(true);
-        }
+            => SetWalking(true);
 
         public virtual void StopWalking()
-        {
-            SetWalking(false);
-        }
+            => SetWalking(false);
 
         protected virtual void SetWalking(bool state)
-        {
-            Anim.SetBool(walkingAnimProperty, state);
-        }
+            => Anim.SetBool(AnimatorHashes.WalkingAnimProperty, state);
 
         protected virtual void HandleBlendRunToWalk()
         {
-            if (!isBlendingToWalk) return;
+            if (!IsBlendingToWalk)
+                return;
 
-            blendRunToWalkTimer += Time.deltaTime;
+            BlendRunToWalkTimer += Time.deltaTime;
 
-            if (blendRunToWalkTimer >= blendRunToWalkTime)
+            if (BlendRunToWalkTimer >= BlendRunToWalkTime)
             {
                 // Finished blending
-                isBlendingToWalk = false;
-                
+                IsBlendingToWalk = false;
                 SetRunBlend(0f);
             }
             else
             {
-                float blendPercent = 1 - (blendRunToWalkTimer / blendRunToWalkTime);
-                
+                var blendPercent = 1 - (BlendRunToWalkTimer / BlendRunToWalkTime);
                 SetRunBlend(blendPercent);
             }
         }
@@ -79,8 +67,8 @@ namespace Main.Core
         public virtual void StartRunning()
         {
             StartWalking();
-            isBlendingToRun = true;
-            blendWalkToRunTimer = 0f;
+            IsBlendingToRun = true;
+            BlendWalkToRunTimer = 0f;
 
             /*
             // TODO: Check if previous state was walk state to decide whether to blend walk anim to run anim
@@ -101,35 +89,33 @@ namespace Main.Core
         {
             StopWalking();
             
-            isBlendingToRun = false;
-            isBlendingToWalk = true;
-            blendRunToWalkTimer = 0f;
+            IsBlendingToRun = false;
+            IsBlendingToWalk = true;
+            BlendRunToWalkTimer = 0f;
         }
         
         protected virtual void SetRunBlend(float blendPercent)
         {
             Mathf.Clamp(blendPercent, 0, 1);
-            
-            Anim.SetFloat(walkRunBlendAnimProperty, blendPercent);
+            Anim.SetFloat(AnimatorHashes.WalkRunBlendAnimProperty, blendPercent);
         }
         
         protected virtual void HandleBlendWalkToRun()
         {
-            if (!isBlendingToRun) return;
+            if (!IsBlendingToRun)
+                return;
 
-            blendWalkToRunTimer += Time.deltaTime;
+            BlendWalkToRunTimer += Time.deltaTime;
 
-            if (blendWalkToRunTimer >= blendWalkToRunTime)
+            if (BlendWalkToRunTimer >= BlendWalkToRunTime)
             {
                 // Finished blending
-                isBlendingToRun = false;
-                
+                IsBlendingToRun = false;
                 SetRunBlend(1f);
             }
             else
             {
-                float blendPercent = blendWalkToRunTimer / blendWalkToRunTime;
-                
+                var blendPercent = BlendWalkToRunTimer / BlendWalkToRunTime;
                 SetRunBlend(blendPercent);
             }
         }
@@ -137,38 +123,23 @@ namespace Main.Core
         // == JUMPING == //
         
         public virtual void StartJumping()
-        {
-            SetJumping(true);
-        }
+            => SetJumping(true);
 
         public virtual void StopJumping()
-        {
-            SetJumping(false);
-        }
+            => SetJumping(false);
 
         protected virtual void SetJumping(bool state)
-        {
-            Anim.SetBool(jumpinggAnimProperty, state);
-        }
+            => Anim.SetBool(AnimatorHashes.JumpingAnimProperty, state);
         
         // == FALLING == //
         
         public virtual void StartFalling()
-        {
-            SetFalling(true);
-        }
+            => SetFalling(true);
 
         public virtual void StopFalling()
-        {
-            SetFalling(false);
-        }
+            => SetFalling(false);
 
         protected virtual void SetFalling(bool state)
-        {
-            Anim.SetBool(fallingAnimProperty, state);
-        }
-
-        
-        
+            => Anim.SetBool(AnimatorHashes.FallingAnimProperty, state);
     }
 }

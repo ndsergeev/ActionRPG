@@ -27,7 +27,7 @@ namespace Main.Characters
                 moveDirection = new Vector3(PlayerInput.moveInput.x, 0, PlayerInput.moveInput.y);
                 
                 // Calculate rotation needed for move direction to be based on camera
-                var cameraYEuler = CameraManagerMB.instance.MainCameraTransform.eulerAngles.y;
+                var cameraYEuler = CameraManagerMB.Instance.MainCameraTransform.eulerAngles.y;
                 targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + cameraYEuler;
                 
                 // Set move direction based on camera

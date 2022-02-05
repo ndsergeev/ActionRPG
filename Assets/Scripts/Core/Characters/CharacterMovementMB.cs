@@ -3,9 +3,6 @@ namespace Main.Characters
 {
     using UnityEngine;
     
-    using System;
-    using System.Runtime.CompilerServices;
-
     using Main.Core;
     using Main.Core.Input;
     
@@ -45,8 +42,8 @@ namespace Main.Characters
 
         // GROUNDING
         protected RaycastHit GroundHit;
-        private Vector3 spherePos;
-        private float sphereRad;
+        private Vector3 m_SpherePos;
+        private float m_SphereRad;
         
         // MOVEMENT
         protected Vector3 MoveDirection;
@@ -66,10 +63,11 @@ namespace Main.Characters
             Character = GetComponent<CharacterMB>();
         }
 
+        
         private void OnDrawGizmos()
         {
             Gizmos.color = groundSphereColour;
-            Gizmos.DrawSphere(spherePos, sphereRad);
+            Gizmos.DrawSphere(m_SpherePos, m_SphereRad);
         }
 
         protected virtual bool CheckIfTouchingGround()
@@ -80,7 +78,7 @@ namespace Main.Characters
 
             var rayOrigin = charPosition + col.center;
             rayOrigin.y -= col.radius;
-            sphereRad = settings.snapToGroundRadius;
+            m_SphereRad = settings.snapToGroundRadius;
             
             var rayDistance = 0f;
             
@@ -97,7 +95,7 @@ namespace Main.Characters
                 rayDistance = rayOrigin.y - charPosition.y - col.radius;
             }
 
-            spherePos = rayOrigin + Vector3.down * rayDistance;
+            m_SpherePos = rayOrigin + Vector3.down * rayDistance;
             
             // Bit shift the index of layer 8 to get a bit mask
             // Layer 8 has been set to the 'Characters' layer
@@ -105,13 +103,8 @@ namespace Main.Characters
             // Invert bitmask to every layer other than 'Characters' layer
             layerMask = ~layerMask;
 
-            bool isTouchingGround = Physics.SphereCast(
-                rayOrigin,
-                sphereRad,
-                Vector3.down,
-                out var hit,
-                rayDistance, layerMask
-                );
+            var isTouchingGround = Physics.SphereCast(rayOrigin, m_SphereRad, Vector3.down, out var hit,
+                rayDistance, layerMask);
 
             if (!isTouchingGround)
                 return false;
@@ -139,7 +132,7 @@ namespace Main.Characters
             layerMask = ~layerMask;
 
             // Check if sunken
-            bool isSunken = Physics.Raycast(collCentre, Vector3.down, out var hit, rayDistance, layerMask);
+            var isSunken = Physics.Raycast(collCentre, Vector3.down, out var hit, rayDistance, layerMask);
             
             if (isSunken)
             {
@@ -150,8 +143,6 @@ namespace Main.Characters
                 
                 Debug.DrawLine(collCentre, hit.point, Color.green);
             }
-            else
-                return;
         }
         
         public virtual void HandleGrounding()
@@ -256,73 +247,43 @@ namespace Main.Characters
             
             // Front
             var forward = MoveDirection;
-            if (Physics.Raycast(rayOrigin, forward, out RaycastHit frontHit, settings.ObstacleCheckSize, layerMask))
-            {
-                Debug.DrawLine(rayOrigin, frontHit.point, Color.red);
-
-                if (!CheckIfSlopeIsTraversable(frontHit.normal))
-                {
-                    Character.rb.velocity -= Vector3.Project(Character.rb.velocity, MoveDirection);
-                }
-            }
+            DoRaycast(rayOrigin, forward, layerMask);
             
             // Right
             var right = Vector3.Cross(forward, Vector3.up);
-            if (Physics.Raycast(rayOrigin, right, out RaycastHit rightHit, settings.ObstacleCheckSize, layerMask))
-            {
-                Debug.DrawLine(rayOrigin, rightHit.point, Color.red);
-
-                if (!CheckIfSlopeIsTraversable(rightHit.normal))
-                {
-                    Character.rb.velocity -= Vector3.Project(Character.rb.velocity, rightHit.point - rayOrigin);
-                }
-            }
+            DoRaycast(rayOrigin, right, layerMask);
             
             // Left
             var left = -right;
-            if (Physics.Raycast(rayOrigin, left, out RaycastHit leftHit, settings.ObstacleCheckSize, layerMask))
-            {
-                Debug.DrawLine(rayOrigin, leftHit.point, Color.red);
-
-                if (!CheckIfSlopeIsTraversable(leftHit.normal))
-                {
-                    Character.rb.velocity -= Vector3.Project(Character.rb.velocity, leftHit.point - rayOrigin);
-                }
-            }
+            DoRaycast(rayOrigin, left, layerMask);
             
             // Front-Right
             var frontRight = (forward + right).normalized;
-            if (Physics.Raycast(rayOrigin, frontRight, out RaycastHit frontRightHit, settings.ObstacleCheckSize, layerMask))
-            {
-                Debug.DrawLine(rayOrigin, frontRightHit.point, Color.red);
-
-                if (!CheckIfSlopeIsTraversable(frontRightHit.normal))
-                {
-                    Character.rb.velocity -= Vector3.Project(Character.rb.velocity, frontRightHit.point - rayOrigin);
-                }
-            }
+            DoRaycast(rayOrigin, frontRight, layerMask);
             
             // Front-Left
             var frontLeft = (forward + left).normalized;
-            if (Physics.Raycast(rayOrigin, frontLeft, out RaycastHit frontLeftHit, settings.ObstacleCheckSize, layerMask))
-            {
-                Debug.DrawLine(rayOrigin, frontLeftHit.point, Color.red);
+            DoRaycast(rayOrigin, frontLeft, layerMask);
+        }
 
-                if (!CheckIfSlopeIsTraversable(frontLeftHit.normal))
-                {
-                    Character.rb.velocity -= Vector3.Project(Character.rb.velocity, frontLeftHit.point - rayOrigin);
-                }
+        protected void DoRaycast(Vector3 rayOrigin, Vector3 direction, int layerMask)
+        {
+            if (!Physics.Raycast(rayOrigin, direction, out var frontLeftHit, settings.ObstacleCheckSize, layerMask))
+                return;
+            
+#if UNITY_EDITOR
+            Debug.DrawLine(rayOrigin, frontLeftHit.point, Color.red);
+#endif
+            if (!CheckIfSlopeIsTraversable(frontLeftHit.normal))
+            {
+                Character.rb.velocity -= Vector3.Project(Character.rb.velocity, frontLeftHit.point - rayOrigin);
             }
         }
 
         protected bool CheckIfSlopeIsTraversable(Vector3 slopeNormal)
         {
-            float slopeAngle = Vector3.Angle(slopeNormal, Vector3.up);
-
-            if (slopeAngle < settings.maxSlopeAngle)
-                return true;
-
-            return false;
+            var slopeAngle = Vector3.Angle(slopeNormal, Vector3.up);
+            return slopeAngle < settings.maxSlopeAngle;
         }
 
         public virtual void HandleRotation(float targetAngle)
