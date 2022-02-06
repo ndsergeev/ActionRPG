@@ -24,7 +24,7 @@ namespace Main.Core
         
         // PHYSICS
         protected Rigidbody Rb;
-        protected CapsuleCollider Col;
+        protected Collider Col;
         
         public Rigidbody rb => Rb;
         public Collider col => Col;
@@ -39,7 +39,7 @@ namespace Main.Core
             Input = GetComponent<InputMB>();
             Movement = GetComponent<CharacterMovementMB>();
             Rb = GetComponent<Rigidbody>();
-            Col = GetComponent<CapsuleCollider>();
+            Col = GetComponent<Collider>();
             Animations = GetComponent<CharacterAnimationsMB>();
         }
         

@@ -1,4 +1,6 @@
 
+using NotImplementedException = System.NotImplementedException;
+
 namespace Main.Core.Input
 {
     using UnityEngine;
@@ -12,6 +14,7 @@ namespace Main.Core.Input
         public event UnityAction jumpStartEvent;
         public event UnityAction jumpEndEvent;
         public event UnityAction onFocusEvent;
+        public event UnityAction runEvent;
         public event UnityAction crouchEvent;
         public event UnityAction sprintStartEvent;
         public event UnityAction sprintEndEvent;
@@ -19,20 +22,24 @@ namespace Main.Core.Input
         public event UnityAction<Vector2> onLookAroundEvent;
          
         // CONTROLS
+<<<<<<< HEAD
         protected InputControls m_InputControls;
         public InputControls inputControls => m_InputControls;
+=======
+        private InputControls m_InputControls;
+>>>>>>> f163fe4b3b40b2817fc6c370d27b8b4be22f6c5e
 
         // STORED LATEST INPUTS
-        protected Vector2 m_MoveInput;
+        private Vector2 m_MoveInput;
         public Vector2 moveInput => m_MoveInput;
         
-        protected Vector2 m_LookInput;
+        private Vector2 m_LookInput;
         public Vector2 lookInput => m_LookInput;
         
-        protected bool m_JumpInput;
+        private bool m_JumpInput;
         public bool jumpInput => m_JumpInput;
 
-        protected bool m_RunInput;
+        private bool m_RunInput;
         public bool runInput => m_RunInput;
         
         protected bool m_CrouchInput;
@@ -88,15 +95,31 @@ namespace Main.Core.Input
             }
         }
 
+        // TODO: there is a sprint, see OnSprint, delete it or OnRun and relative variables
         public void OnRun(InputAction.CallbackContext context)
         {
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
                     m_RunInput = true;
+                    runEvent?.Invoke();
                     break;
                 case InputActionPhase.Canceled:
                     m_RunInput = false;
+                    runEvent?.Invoke();
+                    break;
+            }
+        }
+
+        public void OnSprint(InputAction.CallbackContext context)
+        {
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    sprintStartEvent?.Invoke();
+                    break;
+                case InputActionPhase.Canceled:
+                    sprintEndEvent?.Invoke();
                     break;
             }
         }

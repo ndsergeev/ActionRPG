@@ -6,29 +6,28 @@ namespace Main
     using Main.Core.StateMachine;
     using Main.Characters;
     
-    [CreateAssetMenu(fileName = "Player_Run_ActionSO", menuName = "Scriptable Objects/State Machine/Player Actions/New Player_Run_ActionSO", order = 60)]
+    [CreateAssetMenu(fileName = "Player_Run_ActionSO", 
+        menuName = "Scriptable Objects/State Machine/Player Actions/New Player_Run_ActionSO", order = 60)]
     public class PlayerRunActionSO : ActionSO
     {
-        private PlayerMB player;
+        private PlayerMB m_Player;
         
         public override void OnEnter(CharacterMB character)
         {
-            player = character as PlayerMB;
+            m_Player = character as PlayerMB;
 
-            player.movement.isRunning = true;
-            
-            player.animations.StartRunning();
+            m_Player.movement.isRunning = true;
+            m_Player.animations.StartRunning();
         }
 
         public override void OnUpdate(CharacterMB character)
-        {
-        }
+        { }
 
         public override void OnExit(CharacterMB character)
         {
-            player.movement.isRunning = false;
+            m_Player.movement.isRunning = false;
             
-            player.animations.StopRunning();
+            m_Player.animations.StopRunning();
         }
     }
 }

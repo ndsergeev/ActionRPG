@@ -1,36 +1,33 @@
+
 namespace Main.Cameras
 {
-    using System;
-    
     using UnityEngine;
     
     using Cinemachine;
     
-    using Core;
-    
     public class CameraManagerMB : MonoBehaviour
     {
-        public static CameraManagerMB instance;
+        public static CameraManagerMB Instance;
         
         //=== Main Camera ===//
         [SerializeField]
-        private Camera m_mainCamera;
-        public Camera MainCamera => m_mainCamera;
+        private Camera m_MainCamera;
+        public Camera mainCamera => m_MainCamera;
         
-        private Transform m_mainCameraTransform;
-        public Transform MainCameraTransform => m_mainCameraTransform;
+        private Transform m_MainCameraTransform;
+        public Transform MainCameraTransform => m_MainCameraTransform;
         
         //=== Cinemachine FreeLook Camera ===//
         
         [SerializeField]
         private CinemachineFreeLook m_CinemachineFreeLook;
-        public CinemachineFreeLook CinemachineFreeLook => m_CinemachineFreeLook;
+        public CinemachineFreeLook cinemachineFreeLook => m_CinemachineFreeLook;
 
         private void Awake()
         {
-            instance = this;
+            Instance = this;
 
-            m_mainCameraTransform = m_mainCamera.transform;
+            m_MainCameraTransform = m_MainCamera.transform;
         }
     }
 }

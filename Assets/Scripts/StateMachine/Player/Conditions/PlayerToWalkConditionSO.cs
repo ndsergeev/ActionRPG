@@ -15,7 +15,7 @@ namespace Main
             PlayerMB player = character as PlayerMB;
 
             bool isGrounded = player.movement.isGrounded;
-            bool isMoveInput = player.PlayerInput.moveInput != Vector2.zero;
+            bool isMoveInput = player.playerInput.moveInput != Vector2.zero;
             
             if (isGrounded && isMoveInput)
                 return true;

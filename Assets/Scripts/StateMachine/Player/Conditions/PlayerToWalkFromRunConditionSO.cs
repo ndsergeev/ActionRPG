@@ -14,8 +14,8 @@ namespace Main
         {
             PlayerMB player = character as PlayerMB;
 
-            bool isMoveInput = player.PlayerInput.moveInput != Vector2.zero;
-            bool isRunInput = player.PlayerInput.runInput;
+            bool isMoveInput = player.playerInput.moveInput != Vector2.zero;
+            bool isRunInput = player.playerInput.runInput;
 
             if (isMoveInput && !isRunInput)
                 return true;

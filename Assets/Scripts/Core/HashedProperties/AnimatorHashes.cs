@@ -11,8 +11,12 @@ namespace Main.Core.HashedProperties
         // Animation Names
         public static readonly int DefaultAnimation = Animator.StringToHash("Default");
         
-        // Parameter Names
-        public static readonly int DefaultParameter = Animator.StringToHash("Default");
+        // Property Names:
+        /// <summary> <see cref="CharacterAnimationsMB"/>> </summary>
+        public static readonly int WalkingAnimProperty = Animator.StringToHash("isWalking");
+        public static readonly int JumpingAnimProperty = Animator.StringToHash("isJumping");
+        public static readonly int FallingAnimProperty = Animator.StringToHash("isFalling");
+        public static readonly int WalkRunBlendAnimProperty = Animator.StringToHash("walkRunBlend");
         
         // else
         // TODO: make a function to automatically check that there are no unused parameters
