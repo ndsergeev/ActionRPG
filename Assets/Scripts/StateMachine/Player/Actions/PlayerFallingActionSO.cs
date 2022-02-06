@@ -1,3 +1,4 @@
+
 namespace Main
 {
     using UnityEngine;
@@ -15,19 +16,19 @@ namespace Main
         public override void OnEnter(CharacterMB character)
         {
             m_Player = character as PlayerMB;
-            
-            m_Player.animations.StartFalling();
+            m_Player.Animations.StartFalling();
         }
 
         public override void OnUpdate(CharacterMB character)
         {
             m_Player = character as PlayerMB;
-            m_Player.movement.HandleJumping();
+            m_Player.Movement.HandleJumping();
         }
 
         public override void OnExit(CharacterMB character)
         {
-            m_Player.animations.StopFalling();
+            m_Player = character as PlayerMB;
+            m_Player.Animations.StopFalling();
         }
     }
 }

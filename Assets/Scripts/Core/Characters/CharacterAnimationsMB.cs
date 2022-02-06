@@ -1,49 +1,46 @@
+
 namespace Main.Core
 {
     using UnityEngine;
+   
+    using Main.Core.Console;
+    using Main.Core.HashedProperties;
     using Main.Core.Updates;
-    using Main.Core.Input;
     
     public class CharacterAnimationsMB : Refresh
     {
         [SerializeField]
-        protected Animator m_Anim;
+        protected Animator m_Animator;
 
         protected CharacterMB m_Character;
 
-        protected static readonly int m_WalkingAnimProperty = Animator.StringToHash("isWalking");
-        protected static readonly int m_JumpinggAnimProperty = Animator.StringToHash("isJumping");
-        protected static readonly int m_FallingAnimProperty = Animator.StringToHash("isFalling");
-        protected static readonly int m_WalkXBlenddAnimProperty = Animator.StringToHash("WalkXBlend");
-        protected static readonly int m_WalkYBlenddAnimProperty = Animator.StringToHash("WalkYBlend");
-        protected static readonly int m_CrouchBlendAnimProperty = Animator.StringToHash("CrouchBlend");
+        // TODO: make SO settings
+        protected readonly Vector2 m_WalkWalkBlendPos = new Vector2(0, 0.433f);
+        protected readonly Vector2 m_RunWalkBlendPos = new Vector2(0.5f, -0.433f);
+        protected readonly Vector2 m_CrouchWalkBlendPos = new Vector2(-0.5f, -0.433f);
 
-        protected readonly Vector2 WALK_WALKBLEND_POS = new Vector2(0, 0.433f);
-        protected readonly Vector2 RUN_WALKBLEND_POS = new Vector2(0.5f, -0.433f);
-        protected readonly Vector2 CROUCH_WALKBLEND_POS = new Vector2(-0.5f, -0.433f);
-
-        protected enum m_WalkTypes
+        protected enum WalkTypes
         {
             Walk,
             Run,
             Crouch
         }
 
-        protected m_WalkTypes m_CurrentWalkType; // Walk type that we are blending to
-        protected m_WalkTypes m_TargetWalkType; // Walk type that we are blending from
+        protected WalkTypes m_CurrentWalkType; // Walk type that we are blending to
+        protected WalkTypes m_TargetWalkType; // Walk type that we are blending from
 
         protected bool m_IsWalkBlending;
         
         protected Vector2 m_CurrentWalkBlendPos;
-        protected Vector2 m_WalkBlendOrigin = new Vector2();
-        protected Vector2 m_WalkBlendTarget = new Vector2();
+        protected Vector2 m_WalkBlendOrigin;
+        protected Vector2 m_WalkBlendTarget;
 
-        protected float m_WalkBlendTimer = 0;
-        protected float m_CrouchBlendTimer = 0;
+        protected float m_WalkBlendTimer;
+        protected float m_CrouchBlendTimer;
         
-        protected const float m_BlendToWalkTime = 0.15f;
-        protected const float m_BlendToRunTime = 0.15f;
-        protected const float m_BlendToCrouchTime = 0.15f;
+        protected const float BLEND_TO_WALK_TIME = 0.15f;
+        protected const float BLEND_TO_RUN_TIME = 0.15f;
+        protected const float BLEND_TO_CROUCH_TIME = 0.15f;
 
         protected bool m_IsBlendingToCrouch;
         protected bool m_IsBlendingFromCrouch;
@@ -60,12 +57,11 @@ namespace Main.Core
         }
         
         // == WALKING == //
-        
         public virtual void StartWalking()
         {
             SetWalking(true);
             
-            BlendToWalkType(m_WalkTypes.Walk);
+            BlendToWalkType(WalkTypes.Walk);
         }
 
         public virtual void StopWalking()
@@ -75,7 +71,7 @@ namespace Main.Core
 
         protected virtual void SetWalking(bool state)
         {
-            m_Anim.SetBool(m_WalkingAnimProperty, state);
+            m_Animator.SetBool(AnimatorHashes.WalkingAnimProperty, state);
         }
 
         /// <summary>
@@ -83,29 +79,29 @@ namespace Main.Core
         /// </summary>
         protected virtual void SetWalkBlend(Vector2 walkBlend)
         {
-            m_Anim.SetFloat(m_WalkXBlenddAnimProperty, walkBlend.x);
-            m_Anim.SetFloat(m_WalkYBlenddAnimProperty, walkBlend.y);
+            m_Animator.SetFloat(AnimatorHashes.WalkXBlendAnimProperty, walkBlend.x);
+            m_Animator.SetFloat(AnimatorHashes.WalkYBlendAnimProperty, walkBlend.y);
         }
 
-        protected virtual void BlendToWalkType(m_WalkTypes walkType)
+        protected virtual void BlendToWalkType(WalkTypes walkType)
         {
             m_TargetWalkType = walkType;
 
             m_WalkBlendTimer = 0;
             
-            m_WalkBlendOrigin.x = m_Anim.GetFloat(m_WalkXBlenddAnimProperty);
-            m_WalkBlendOrigin.y = m_Anim.GetFloat(m_WalkYBlenddAnimProperty);
+            m_WalkBlendOrigin.x = m_Animator.GetFloat(AnimatorHashes.WalkXBlendAnimProperty);
+            m_WalkBlendOrigin.y = m_Animator.GetFloat(AnimatorHashes.WalkYBlendAnimProperty);
             
             switch (m_TargetWalkType)
             {
-                case m_WalkTypes.Walk:
-                    m_WalkBlendTarget = WALK_WALKBLEND_POS;
+                case WalkTypes.Walk:
+                    m_WalkBlendTarget = m_WalkWalkBlendPos;
                     break;
-                case m_WalkTypes.Run:
-                    m_WalkBlendTarget = RUN_WALKBLEND_POS;
+                case WalkTypes.Run:
+                    m_WalkBlendTarget = m_RunWalkBlendPos;
                     break;
-                case m_WalkTypes.Crouch:
-                    m_WalkBlendTarget = CROUCH_WALKBLEND_POS;
+                case WalkTypes.Crouch:
+                    m_WalkBlendTarget = m_CrouchWalkBlendPos;
                     break;
             }
 
@@ -117,20 +113,21 @@ namespace Main.Core
         /// </summary>
         protected virtual void HandleWalkBlending()
         {
-            if (!m_IsWalkBlending) return;
+            if (!m_IsWalkBlending)
+                return;
 
             float walkBlendTime = 0;
             
             switch (m_TargetWalkType)
             {
-                case m_WalkTypes.Walk:
-                    walkBlendTime = m_BlendToWalkTime;
+                case WalkTypes.Walk:
+                    walkBlendTime = BLEND_TO_WALK_TIME;
                     break;
-                case m_WalkTypes.Run:
-                    walkBlendTime = m_BlendToRunTime;
+                case WalkTypes.Run:
+                    walkBlendTime = BLEND_TO_RUN_TIME;
                     break;
-                case m_WalkTypes.Crouch:
-                    walkBlendTime = m_BlendToCrouchTime;
+                case WalkTypes.Crouch:
+                    walkBlendTime = BLEND_TO_CROUCH_TIME;
                     break;
             }
 
@@ -145,7 +142,7 @@ namespace Main.Core
                 return;
             }
 
-            float blendPercent = m_WalkBlendTimer / walkBlendTime;
+            var blendPercent = m_WalkBlendTimer / walkBlendTime;
             
             m_CurrentWalkBlendPos = m_WalkBlendOrigin + (m_WalkBlendTarget - m_WalkBlendOrigin) * blendPercent;
             
@@ -153,11 +150,10 @@ namespace Main.Core
         }
         
         // == RUNNING == //
-
         public virtual void StartRunning()
         {
             StartWalking();
-            BlendToWalkType(m_WalkTypes.Run);
+            BlendToWalkType(WalkTypes.Run);
         }
 
         public virtual void StopRunning()
@@ -166,21 +162,18 @@ namespace Main.Core
         }
         
         // == CROUCHING == //
-
         public virtual void StartCrouching()
         {
-            print("Start crouching");
             m_IsBlendingToCrouch = true;
             m_IsBlendingFromCrouch = false;
 
             m_CrouchBlendTimer = 0;
             
-            BlendToWalkType(m_WalkTypes.Crouch);
+            BlendToWalkType(WalkTypes.Crouch);
         }
 
         public virtual void StopCrouching()
         {
-            print("Stop crouching");
             m_IsBlendingFromCrouch = true;
             m_IsBlendingToCrouch = false;
             
@@ -193,11 +186,11 @@ namespace Main.Core
             
             if (m_IsBlendingToCrouch)
             {
-                crouchBlend = m_CrouchBlendTimer / m_BlendToCrouchTime;
+                crouchBlend = m_CrouchBlendTimer / BLEND_TO_CROUCH_TIME;
             }
             else if (m_IsBlendingFromCrouch)
             {
-                crouchBlend = 1 - (m_CrouchBlendTimer / m_BlendToCrouchTime);
+                crouchBlend = 1 - (m_CrouchBlendTimer / BLEND_TO_CROUCH_TIME);
             }
             
             SetCrouchBlend(crouchBlend);
@@ -205,11 +198,10 @@ namespace Main.Core
 
         protected virtual void SetCrouchBlend(float blendPercent)
         {
-            m_Anim.SetFloat(m_CrouchBlendAnimProperty, blendPercent);
+            m_Animator.SetFloat(AnimatorHashes.CrouchBlendAnimProperty, blendPercent);
         }
         
         // == JUMPING == //
-        
         public virtual void StartJumping()
         {
             SetJumping(true);
@@ -222,11 +214,10 @@ namespace Main.Core
 
         protected virtual void SetJumping(bool state)
         {
-            m_Anim.SetBool(m_JumpinggAnimProperty, state);
+            m_Animator.SetBool(AnimatorHashes.JumpingAnimProperty, state);
         }
         
         // == FALLING == //
-        
         public virtual void StartFalling()
         {
             SetFalling(true);
@@ -239,7 +230,7 @@ namespace Main.Core
 
         protected virtual void SetFalling(bool state)
         {
-            m_Anim.SetBool(m_FallingAnimProperty, state);
+            m_Animator.SetBool(AnimatorHashes.FallingAnimProperty, state);
         }
     }
 }

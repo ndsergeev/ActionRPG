@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Player_Crouch_StateSO
   m_EditorClassIdentifier: 
   isFoldout: 0
-  transitions: []
-  actions: []
+  transitions:
+  - {fileID: 11400000, guid: ed9247bfa80f9db47a44b9ad0187950e, type: 2}
+  actions:
+  - {fileID: 11400000, guid: 37c0b9eea6fafb648ae9a831772a9760, type: 2}
+  - {fileID: 11400000, guid: ffbce9d7bcbbe354dafcacbc28b9c7ad, type: 2}

@@ -16,21 +16,20 @@ namespace Main
         public override void OnEnter(CharacterMB character)
         {
             m_Player = character as PlayerMB;
-            
-            m_Player.movement.Jump();
-            m_Player.animations.StartJumping();
+            m_Player.Movement.Jump();
+            m_Player.Animations.StartJumping();
         }
 
         public override void OnUpdate(CharacterMB character)
         {
             m_Player = character as PlayerMB;
-            
-            m_Player.movement.HandleJumping();
+            m_Player.Movement.HandleJumping();
         }
 
         public override void OnExit(CharacterMB character)
         {
-            m_Player.animations.StopJumping();
+            m_Player = character as PlayerMB;
+            m_Player.Animations.StopJumping();
         }
     }
 }

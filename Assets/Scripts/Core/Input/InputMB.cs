@@ -1,5 +1,4 @@
 
-
 namespace Main.Core.Input
 {
     using UnityEngine;
@@ -9,10 +8,10 @@ namespace Main.Core.Input
     public abstract class InputMB : MonoBehaviour
     {
         [SerializeField]
-        protected InputReaderSO InputReader;
-        public InputReaderSO inputReader => InputReader;
+        protected InputReaderSO m_InputReader;
+        public InputReaderSO InputReader => m_InputReader;
         
-        protected CharacterMB Character;
+        protected CharacterMB m_Character;
         
         protected virtual void OnEnable()
             => SubscribeToInputManager();

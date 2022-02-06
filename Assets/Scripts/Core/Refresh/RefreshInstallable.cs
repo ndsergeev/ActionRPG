@@ -3,15 +3,15 @@ namespace Main.Core.Updates
 {
     public abstract class RefreshInstallable : Refresh
     {
-        private bool m_InstalledOnEnable;
+        private bool m_installedOnEnable;
         
         private void OnEnable()
         {
             OnPreEnable();
-            if (!m_InstalledOnEnable)
+            if (!m_installedOnEnable)
             {
                 OnFirstEnable();
-                m_InstalledOnEnable = true;
+                m_installedOnEnable = true;
             }
             OnLateEnable();
         }

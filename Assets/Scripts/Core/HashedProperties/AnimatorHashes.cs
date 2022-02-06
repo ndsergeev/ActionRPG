@@ -16,7 +16,9 @@ namespace Main.Core.HashedProperties
         public static readonly int WalkingAnimProperty = Animator.StringToHash("isWalking");
         public static readonly int JumpingAnimProperty = Animator.StringToHash("isJumping");
         public static readonly int FallingAnimProperty = Animator.StringToHash("isFalling");
-        public static readonly int WalkRunBlendAnimProperty = Animator.StringToHash("walkRunBlend");
+        public static readonly int WalkXBlendAnimProperty = Animator.StringToHash("WalkXBlend");
+        public static readonly int WalkYBlendAnimProperty = Animator.StringToHash("WalkYBlend");
+        public static readonly int CrouchBlendAnimProperty = Animator.StringToHash("CrouchBlend");
         
         // else
         // TODO: make a function to automatically check that there are no unused parameters

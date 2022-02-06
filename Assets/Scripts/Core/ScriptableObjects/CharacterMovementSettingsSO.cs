@@ -1,4 +1,6 @@
 
+using UnityEngine.Serialization;
+
 namespace Main.Characters
 {
     using UnityEngine;
@@ -12,8 +14,8 @@ namespace Main.Characters
         [SerializeField]
         private float m_SnapToGroundRadius;
         
-        public float snapToGroundDistance => m_SnapToGroundDistance;
-        public float snapToGroundRadius => m_SnapToGroundRadius;
+        public float SnapToGroundDistance => m_SnapToGroundDistance;
+        public float SnapToGroundRadius => m_SnapToGroundRadius;
         
         [Header(("MOVEMENT"))]
         [SerializeField]
@@ -30,54 +32,53 @@ namespace Main.Characters
         [SerializeField]
         protected AnimationCurve m_MoveAgainstFacingDirectionCurve;
 
-        public AnimationCurve moveAgainstFacingDirectionCurve => m_MoveAgainstFacingDirectionCurve;
+        public AnimationCurve MoveAgainstFacingDirectionCurve => m_MoveAgainstFacingDirectionCurve;
         
         
         [Header("ROTATION")]
         [SerializeField]
-        protected float m_turnSmoothTime;
+        protected float m_TurnSmoothTime;
 
         [SerializeField]
-        protected float m_turnSmoothTimeRunningMultiplier;
+        protected float m_TurnSmoothTimeRunningMultiplier;
         
-        public float TurnSmoothTime => m_turnSmoothTime;
-        public float turnSmoothTimeRunningMultiplier => m_turnSmoothTimeRunningMultiplier;
+        public float TurnSmoothTime => m_TurnSmoothTime;
+        public float TurnSmoothTimeRunningMultiplier => m_TurnSmoothTimeRunningMultiplier;
 
         [Header("OBSTACLES")]
         [SerializeField]
-        protected float stepHeight;
+        protected float m_StepHeight;
 
         [SerializeField]
-        protected float obstacleCheckSize;
+        protected float m_ObstacleCheckSize;
         
-        public float StepHeight => stepHeight;
-        public float ObstacleCheckSize => obstacleCheckSize;
-        
+        public float StepHeight => m_StepHeight;
+        public float ObstacleCheckSize => m_ObstacleCheckSize;
         
         [Header("JUMPING")]
         [SerializeField]
-        protected float m_jumpPower;
+        protected float m_JumpPower;
         
         [SerializeField]
-        protected float lowJumpMultiplier;
+        protected float m_LowJumpMultiplier;
         
-        public float JumpPower => m_jumpPower * 100;
-        public float LowJumpMultiplier => lowJumpMultiplier;
+        public float JumpPower => m_JumpPower * 100; // TODO: no random numbers pls
+        public float LowJumpMultiplier => m_LowJumpMultiplier;
         
         [Header("FALLING")]
         [SerializeField]
-        protected float fallMultiplier;
+        protected float m_FallMultiplier;
         [SerializeField]
         protected float m_MaxFallSpeed;
         
-        public float FallMultiplier => fallMultiplier;
+        public float FallMultiplier => m_FallMultiplier;
         public float MaxFallSpeed => m_MaxFallSpeed;
 
         [Header("SLOPES")]
         [SerializeField]
         protected float m_MaxSlopeAngle;
 
-        public float maxSlopeAngle
+        public float MaxSlopeAngle
         {
             get => m_MaxSlopeAngle;
             set => m_MaxSlopeAngle = value;

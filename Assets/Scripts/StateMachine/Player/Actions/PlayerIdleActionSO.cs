@@ -11,7 +11,7 @@ namespace Main
     {
         public override void OnEnter(CharacterMB character)
         { 
-            character.rb.velocity = Vector3.zero;
+            character.Rb.velocity = Vector3.zero;
         }
 
         public override void OnUpdate(CharacterMB character)

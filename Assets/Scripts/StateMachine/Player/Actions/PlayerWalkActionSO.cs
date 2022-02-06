@@ -11,8 +11,8 @@ namespace Main
     {
         public override void OnEnter(CharacterMB character)
         {
-            character.movement.isWalking = true;
-            character.animations.StartWalking();
+            character.Movement.IsWalking = true;
+            character.Animations.StartWalking();
         }
 
         public override void OnUpdate(CharacterMB character)
@@ -20,8 +20,8 @@ namespace Main
 
         public override void OnExit(CharacterMB character)
         {
-            character.movement.isWalking = false;
-            character.animations.StopWalking();
+            character.Movement.IsWalking = false;
+            character.Animations.StopWalking();
         }
     }
 }

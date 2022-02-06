@@ -12,14 +12,10 @@ namespace Main
     {
         public override bool CanTransit(CharacterMB character)
         {
-            PlayerMB player = character as PlayerMB;
-
-            bool isGrounded = player.movement.isGrounded;
+            var player = character as PlayerMB;
+            var isGrounded = player.Movement.IsGrounded;
             
-            if (isGrounded)
-                return true;
-
-            return false;
+            return isGrounded;
         }
     }
 }

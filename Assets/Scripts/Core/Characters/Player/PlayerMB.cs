@@ -1,6 +1,4 @@
 
-using System;
-
 namespace Main.Characters
 {
     using UnityEngine;
@@ -11,8 +9,8 @@ namespace Main.Characters
     
     public class PlayerMB : CharacterMB
     {
-        public PlayerInputMB playerInput => Input as PlayerInputMB;
-        protected PlayerMovementMB PlayerMovement => movement as PlayerMovementMB;
+        public PlayerInputMB PlayerInput => m_Input as PlayerInputMB;
+        protected PlayerMovementMB PlayerMovement => Movement as PlayerMovementMB;
         
         public void HandleMovementInput()
         {
@@ -21,13 +19,13 @@ namespace Main.Characters
             float targetAngle = 0;
             
             // Only calculate move direction if there is movement input
-            if (playerInput.moveInput != Vector2.zero)
+            if (PlayerInput.moveInput != Vector2.zero)
             {
                 // Set move direction based on move input
-                moveDirection = new Vector3(playerInput.moveInput.x, 0, playerInput.moveInput.y);
+                moveDirection = new Vector3(PlayerInput.moveInput.x, 0, PlayerInput.moveInput.y);
                 
                 // Calculate rotation needed for move direction to be based on camera
-                var cameraYEuler = CameraManagerMB.Instance.MainCameraTransform.eulerAngles.y;
+                var cameraYEuler = CameraManagerMB.instance.MainCameraTransform.eulerAngles.y;
                 targetAngle = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg + cameraYEuler;
                 
                 // Set move direction based on camera
@@ -42,13 +40,9 @@ namespace Main.Characters
             }
         }
 
-        public override void Run()
+        public bool CanCrouch()
         {
-            base.Run();
-            
-            //PlayerMovement.HandleGrounding();
-            //HandleMovementInput();
-            //PlayerMovement.HandleJumping();
+            return PlayerInput.InputReader.inputControls.CharacterControl.Crouch.WasPressedThisFrame();
         }
     }
 }

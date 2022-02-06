@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd205d41c985d47f2a6673733c41e4eb, type: 3}
   m_Name: Player_ToIdleFromCrouch_TransitionSO
   m_EditorClassIdentifier: 
-  condition: {fileID: 0}
-  targetState: {fileID: 0}
+  condition: {fileID: 11400000, guid: cf4624baf1eb34f4983698bc475e2b93, type: 2}
+  targetState: {fileID: 11400000, guid: 9d4cefe6828cfc348953208e6c846552, type: 2}

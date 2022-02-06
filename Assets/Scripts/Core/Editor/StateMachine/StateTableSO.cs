@@ -9,12 +9,12 @@ namespace Main.Core.Editor
     [CustomEditor(typeof(StateTableSO))]
     public class StateTableSOEditor : Editor
     {
-        private SerializedProperty m_States = default;
-        private CustomReorderableList m_StatesReorderableList = default;
+        private SerializedProperty m_states = default;
+        private CustomReorderableList m_statesReorderableList = default;
 
-        private Editor m_StateEditor = null;
+        private Editor m_stateEditor = null;
 
-        private DrawingEditor m_CurrentDrawingEditor = DrawingEditor.StateTable;
+        private DrawingEditor m_currentDrawingEditor = DrawingEditor.StateTable;
         
         private void OnEnable()
         {
@@ -23,7 +23,7 @@ namespace Main.Core.Editor
 
         private void OnDisable()
         {
-            if (m_StateEditor != null)
+            if (m_stateEditor != null)
             {
                 ToDrawingStateTable();
             }
@@ -31,9 +31,9 @@ namespace Main.Core.Editor
         
         private void Init()
         {
-            m_States = serializedObject.FindProperty(nameof(StateTableSO.states));
+            m_states = serializedObject.FindProperty(nameof(StateTableSO.states));
 
-            m_StatesReorderableList = new CustomReorderableList(serializedObject, m_States,
+            m_statesReorderableList = new CustomReorderableList(serializedObject, m_states,
                 true, true, true, true, EditorGUIUtility.singleLineHeight)
             {
                 drawElementCallback = DrawStates,
@@ -45,15 +45,15 @@ namespace Main.Core.Editor
         {
             serializedObject.Update();
 
-            switch (m_CurrentDrawingEditor)
+            switch (m_currentDrawingEditor)
             {
                 case DrawingEditor.StateTable:
                     DrawScriptProperty();
-                    m_StatesReorderableList.DoLayoutList();
+                    m_statesReorderableList.DoLayoutList();
                     break;
                 case DrawingEditor.State:
                     DrawSelectedStateHeader();
-                    m_StateEditor.OnInspectorGUI();
+                    m_stateEditor.OnInspectorGUI();
                     break;
             }
 
@@ -91,7 +91,7 @@ namespace Main.Core.Editor
 
         protected internal void DrawStates(Rect rect, int index, bool isActive, bool isFocused)
         {
-            var state = m_StatesReorderableList.serializedProperty.GetArrayElementAtIndex(index);
+            var state = m_statesReorderableList.serializedProperty.GetArrayElementAtIndex(index);
             if (state == null)
                 return;
             
@@ -149,14 +149,14 @@ namespace Main.Core.Editor
 
         private void ToDrawingStateTable()
         {
-            DestroyImmediate(m_StateEditor);
-            m_CurrentDrawingEditor = DrawingEditor.StateTable;
+            DestroyImmediate(m_stateEditor);
+            m_currentDrawingEditor = DrawingEditor.StateTable;
         }
 
         private void ToDrawingState(Object stateObject)
         {
-            m_StateEditor = Editor.CreateEditor(stateObject);
-            m_CurrentDrawingEditor = DrawingEditor.State;
+            m_stateEditor = Editor.CreateEditor(stateObject);
+            m_currentDrawingEditor = DrawingEditor.State;
         }
 
         internal enum DrawingEditor

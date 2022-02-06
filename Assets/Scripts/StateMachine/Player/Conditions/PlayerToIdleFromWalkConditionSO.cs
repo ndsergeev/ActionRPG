@@ -12,15 +12,11 @@ namespace Main
     {
         public override bool CanTransit(CharacterMB character)
         {
-            PlayerMB player = character as PlayerMB;
-
-            bool isGrounded = player.movement.isGrounded;
-            bool isMoveInput = player.playerInput.moveInput != Vector2.zero;
-
-            if (isGrounded && !isMoveInput)
-                return true;
-
-            return false;
+            var player = character as PlayerMB;
+            var isGrounded = player.Movement.IsGrounded;
+            var isMoveInput = player.PlayerInput.moveInput != Vector2.zero;
+            
+            return isGrounded && !isMoveInput;
         }
     }
 }

@@ -1,8 +1,10 @@
+
 namespace Main
 {
     using UnityEngine;
     
     using Main.Core;
+    using Main.Core.Console;
     using Main.Core.StateMachine;
     using Main.Characters;
     
@@ -16,22 +18,19 @@ namespace Main
         {
             m_Player = character as PlayerMB;
             
-            m_Player.animations.StartCrouching();
-            
-            Debug.Log("Entered State: Crouch");
+            m_Player.Animations.StartCrouching();
+            EditorLogger.Log("<color=yellow>Entered</color> State: Crouch");
         }
 
         public override void OnUpdate(CharacterMB character)
-        {
-            
-        }
+        { }
 
         public override void OnExit(CharacterMB character)
         {
-            m_Player.animations.StopCrouching();
+            m_Player = character as PlayerMB;
             
-            
-            Debug.Log("Exit State: Crouch");
+            m_Player.Animations.StopCrouching();
+            EditorLogger.Log("<color=cyan>Exit</color> State: Crouch");
         }
     }
 }

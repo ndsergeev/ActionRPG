@@ -7,13 +7,13 @@ namespace Main.Core.Input
     
     public class InputManagerMB : SingletonMB<InputManagerMB>
     {
-        private readonly List<InputMB> m_InputReaders = new List<InputMB>();
+        private readonly List<InputMB> m_inputReaders = new List<InputMB>();
 
         public void SubscribeInputReader(InputMB inputReader)
-            => m_InputReaders.Add(inputReader);
+            => m_inputReaders.Add(inputReader);
         
         public void UnsubscribeInputReader(InputMB inputReader)
-            => m_InputReaders.Remove(inputReader);
+            => m_inputReaders.Remove(inputReader);
         
         // TODO: Timer for button combos
     }

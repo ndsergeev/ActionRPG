@@ -1,6 +1,4 @@
 
-using NotImplementedException = System.NotImplementedException;
-
 namespace Main.Core.Input
 {
     using UnityEngine;
@@ -11,13 +9,11 @@ namespace Main.Core.Input
     public class InputReaderSO : ScriptableObject, InputControls.ICharacterControlActions
     {
         // EVENTS
-        public event UnityAction jumpStartEvent;
-        public event UnityAction jumpEndEvent;
+        public event UnityAction onJumpStartEvent;
+        public event UnityAction onJumpEndEvent;
         public event UnityAction onFocusEvent;
-        public event UnityAction runEvent;
-        public event UnityAction crouchEvent;
-        public event UnityAction sprintStartEvent;
-        public event UnityAction sprintEndEvent;
+        public event UnityAction onRunEvent;
+        public event UnityAction onCrouchEvent;
         public event UnityAction<Vector2> onMoveEvent;
         public event UnityAction<Vector2> onLookAroundEvent;
          
@@ -26,17 +22,17 @@ namespace Main.Core.Input
         public InputControls inputControls => m_InputControls;
 
         // STORED LATEST INPUTS
-        private Vector2 m_MoveInput;
-        public Vector2 moveInput => m_MoveInput;
+        private Vector2 m_moveInput;
+        public Vector2 MoveInput => m_moveInput;
         
-        private Vector2 m_LookInput;
-        public Vector2 lookInput => m_LookInput;
+        private Vector2 m_lookInput;
+        public Vector2 LookInput => m_lookInput;
         
-        private bool m_JumpInput;
-        public bool jumpInput => m_JumpInput;
+        private bool m_jumpInput;
+        public bool JumpInput => m_jumpInput;
 
-        private bool m_RunInput;
-        public bool runInput => m_RunInput;
+        private bool m_runInput;
+        public bool RunInput => m_runInput;
         
         protected bool m_CrouchInput;
         protected bool m_CrouchReleased;
@@ -54,36 +50,36 @@ namespace Main.Core.Input
         private void OnDisable()
         {
             m_InputControls?.CharacterControl.Disable();
-            m_InputControls.CharacterControl.Crouch.Disable();
+            m_InputControls?.CharacterControl.Crouch.Disable();
         }
 
-        public void OnJump(InputAction.CallbackContext context)
+        public void DoJump(InputAction.CallbackContext context)
         {
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
-                    m_JumpInput = true;
-                    jumpStartEvent?.Invoke();
+                    m_jumpInput = true;
+                    onJumpStartEvent?.Invoke();
                     break;
                 case InputActionPhase.Canceled:
-                    m_JumpInput = false;
-                    jumpEndEvent?.Invoke();
+                    m_jumpInput = false;
+                    onJumpEndEvent?.Invoke();
                     break;
             }
         }
 
-        public void OnFocus(InputAction.CallbackContext context)
+        public void DoFocus(InputAction.CallbackContext context)
         {
             if (context.phase.Equals(InputActionPhase.Canceled)) onFocusEvent?.Invoke();
         }
 
-        public void OnCrouch(InputAction.CallbackContext context)
+        public void DoCrouch(InputAction.CallbackContext context)
         {
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
                     m_CrouchInput = true;
-                    crouchEvent?.Invoke();
+                    onCrouchEvent?.Invoke();
                     break;
                 case InputActionPhase.Canceled:
                     m_CrouchInput = false;
@@ -92,44 +88,31 @@ namespace Main.Core.Input
         }
 
         // TODO: there is a sprint, see OnSprint, delete it or OnRun and relative variables
-        public void OnRun(InputAction.CallbackContext context)
+        public void DoRun(InputAction.CallbackContext context)
         {
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
-                    m_RunInput = true;
-                    runEvent?.Invoke();
+                    m_runInput = true;
+                    onRunEvent?.Invoke();
                     break;
                 case InputActionPhase.Canceled:
-                    m_RunInput = false;
-                    runEvent?.Invoke();
+                    m_runInput = false;
+                    onRunEvent?.Invoke();
                     break;
             }
         }
 
-        public void OnSprint(InputAction.CallbackContext context)
+        public void DoMove(InputAction.CallbackContext context)
         {
-            switch (context.phase)
-            {
-                case InputActionPhase.Performed:
-                    sprintStartEvent?.Invoke();
-                    break;
-                case InputActionPhase.Canceled:
-                    sprintEndEvent?.Invoke();
-                    break;
-            }
-        }
-
-        public void OnMove(InputAction.CallbackContext context)
-        {
-            m_MoveInput = context.ReadValue<Vector2>();
-            onMoveEvent?.Invoke(m_MoveInput);
+            m_moveInput = context.ReadValue<Vector2>();
+            onMoveEvent?.Invoke(m_moveInput);
         }
         
-        public void OnLook(InputAction.CallbackContext context)
+        public void DoLook(InputAction.CallbackContext context)
         {
-            m_LookInput = context.ReadValue<Vector2>();
-            onLookAroundEvent?.Invoke(m_LookInput);
+            m_lookInput = context.ReadValue<Vector2>();
+            onLookAroundEvent?.Invoke(m_lookInput);
         }
     }
 }

@@ -17,17 +17,17 @@ namespace Main
         {
             m_Player = character as PlayerMB;
             
-            m_Player.animations.StartCrouching();
+            m_Player.Animations.StartCrouching();
         }
 
         public override void OnUpdate(CharacterMB character)
-        {
-            
-        }
+        { }
 
         public override void OnExit(CharacterMB character)
         {
-            m_Player.animations.StopCrouching();
+            m_Player = character as PlayerMB;
+            
+            m_Player.Animations.StopCrouching();
         }
     }
 }

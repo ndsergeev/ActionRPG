@@ -358,58 +358,58 @@ namespace Main.Core.Input
             {
                 if (m_Wrapper.m_CharacterControlActionsCallbackInterface != null)
                 {
-                    @Move.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnMove;
-                    @Move.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnMove;
-                    @Move.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnMove;
-                    @Look.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnLook;
-                    @Look.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnLook;
-                    @Look.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnLook;
-                    @Jump.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnJump;
-                    @Jump.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnJump;
-                    @Jump.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnJump;
-                    @Focus.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnFocus;
-                    @Focus.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnFocus;
-                    @Focus.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnFocus;
-                    @Crouch.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
-                    @Crouch.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
-                    @Crouch.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnCrouch;
-                    @Run.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
-                    @Run.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
-                    @Run.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.OnRun;
+                    @Move.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoMove;
+                    @Move.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoMove;
+                    @Move.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoMove;
+                    @Look.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoLook;
+                    @Look.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoLook;
+                    @Look.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoLook;
+                    @Jump.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoJump;
+                    @Jump.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoJump;
+                    @Jump.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoJump;
+                    @Focus.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoFocus;
+                    @Focus.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoFocus;
+                    @Focus.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoFocus;
+                    @Crouch.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoCrouch;
+                    @Crouch.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoCrouch;
+                    @Crouch.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoCrouch;
+                    @Run.started -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoRun;
+                    @Run.performed -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoRun;
+                    @Run.canceled -= m_Wrapper.m_CharacterControlActionsCallbackInterface.DoRun;
                 }
                 m_Wrapper.m_CharacterControlActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    @Move.started += instance.OnMove;
-                    @Move.performed += instance.OnMove;
-                    @Move.canceled += instance.OnMove;
-                    @Look.started += instance.OnLook;
-                    @Look.performed += instance.OnLook;
-                    @Look.canceled += instance.OnLook;
-                    @Jump.started += instance.OnJump;
-                    @Jump.performed += instance.OnJump;
-                    @Jump.canceled += instance.OnJump;
-                    @Focus.started += instance.OnFocus;
-                    @Focus.performed += instance.OnFocus;
-                    @Focus.canceled += instance.OnFocus;
-                    @Crouch.started += instance.OnCrouch;
-                    @Crouch.performed += instance.OnCrouch;
-                    @Crouch.canceled += instance.OnCrouch;
-                    @Run.started += instance.OnRun;
-                    @Run.performed += instance.OnRun;
-                    @Run.canceled += instance.OnRun;
+                    @Move.started += instance.DoMove;
+                    @Move.performed += instance.DoMove;
+                    @Move.canceled += instance.DoMove;
+                    @Look.started += instance.DoLook;
+                    @Look.performed += instance.DoLook;
+                    @Look.canceled += instance.DoLook;
+                    @Jump.started += instance.DoJump;
+                    @Jump.performed += instance.DoJump;
+                    @Jump.canceled += instance.DoJump;
+                    @Focus.started += instance.DoFocus;
+                    @Focus.performed += instance.DoFocus;
+                    @Focus.canceled += instance.DoFocus;
+                    @Crouch.started += instance.DoCrouch;
+                    @Crouch.performed += instance.DoCrouch;
+                    @Crouch.canceled += instance.DoCrouch;
+                    @Run.started += instance.DoRun;
+                    @Run.performed += instance.DoRun;
+                    @Run.canceled += instance.DoRun;
                 }
             }
         }
         public CharacterControlActions @CharacterControl => new CharacterControlActions(this);
         public interface ICharacterControlActions
         {
-            void OnMove(InputAction.CallbackContext context);
-            void OnLook(InputAction.CallbackContext context);
-            void OnJump(InputAction.CallbackContext context);
-            void OnFocus(InputAction.CallbackContext context);
-            void OnCrouch(InputAction.CallbackContext context);
-            void OnRun(InputAction.CallbackContext context);
+            void DoMove(InputAction.CallbackContext context);
+            void DoLook(InputAction.CallbackContext context);
+            void DoJump(InputAction.CallbackContext context);
+            void DoFocus(InputAction.CallbackContext context);
+            void DoCrouch(InputAction.CallbackContext context);
+            void DoRun(InputAction.CallbackContext context);
         }
     }
 }

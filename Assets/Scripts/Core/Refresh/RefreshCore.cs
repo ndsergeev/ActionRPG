@@ -12,13 +12,13 @@ namespace Main.Core.Updates
         private static readonly List<IFixedRefresh> FixedRunSystems = new List<IFixedRefresh>(64);
         private static readonly List<ILateRefresh> LateRunSystems = new List<ILateRefresh>(64);
 
-        private static int _runCount;
-        private static int _fixedRunCount;
-        private static int _lateRunCount;
+        private static int s_runCount;
+        private static int s_fixedRunCount;
+        private static int s_lateRunCount;
         
-        public static Action OnRun;
-        public static Action OnFixedRun;
-        public static Action OnLateRun;
+        public static Action onRunCallback;
+        public static Action onFixedRunCallback;
+        public static Action onLateRunCallback;
 
         public static void AddSystem(IRefreshed refreshed)
         {
@@ -58,29 +58,29 @@ namespace Main.Core.Updates
         
         public static void Run()
         {
-            for (var i = 0; i < _runCount; i++)
+            for (var i = 0; i < s_runCount; i++)
                 if (RunSystems[i].IsActive())
                     RunSystems[i].Run();
             
-            OnRun?.Invoke();
+            onRunCallback?.Invoke();
         }
 
         public static void FixedRun()
         {
-            for (var i = 0; i < _fixedRunCount; i++)
+            for (var i = 0; i < s_fixedRunCount; i++)
                 if (FixedRunSystems[i].IsActive())
                     FixedRunSystems[i].FixedRun();
             
-            OnFixedRun?.Invoke();
+            onFixedRunCallback?.Invoke();
         }
 
         public static void LateRun()
         {
-            for (var i = 0; i < _lateRunCount; i++)
+            for (var i = 0; i < s_lateRunCount; i++)
                 if (LateRunSystems[i].IsActive())
                     LateRunSystems[i].LateRun();
             
-            OnLateRun?.Invoke();
+            onLateRunCallback?.Invoke();
         }
 
         public static void Reset()
@@ -99,16 +99,16 @@ namespace Main.Core.Updates
 
         private static void ResetActions()
         {
-            OnRun?.SetNull();
-            OnFixedRun?.SetNull();
-            OnLateRun?.SetNull();
+            onRunCallback?.SetNull();
+            onFixedRunCallback?.SetNull();
+            onLateRunCallback?.SetNull();
         }
         
         private static void UpdateCounts()
         {
-            _runCount = RunSystems.Count;
-            _fixedRunCount = FixedRunSystems.Count;
-            _lateRunCount = LateRunSystems.Count;
+            s_runCount = RunSystems.Count;
+            s_fixedRunCount = FixedRunSystems.Count;
+            s_lateRunCount = LateRunSystems.Count;
         }
     }
 }

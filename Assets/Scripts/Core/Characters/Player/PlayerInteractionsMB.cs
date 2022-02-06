@@ -6,15 +6,15 @@ namespace Main
     
     public class PlayerInteractionsMB : Refresh
     {
-        protected Interactions availableInteraction;
+        protected Interactions m_AvailableInteraction;
         
-        public void OnCollisionEnter(Collision col)
+        public void OnCollisionEnter(Collision collision)
         {
-            InteractableMB interactable = col.gameObject.GetComponent<InteractableMB>();
+            var interactable = collision.gameObject.GetComponent<InteractableMB>();
 
-            availableInteraction = interactable.interaction;
+            m_AvailableInteraction = interactable.Interaction;
 
-            switch (availableInteraction)
+            switch (m_AvailableInteraction)
             {
                 case Interactions.Talk:
                     OfferTalkInteraction();
@@ -23,8 +23,6 @@ namespace Main
         }
 
         protected void OfferTalkInteraction()
-        {
-              
-        }
+        { }
     }
 }

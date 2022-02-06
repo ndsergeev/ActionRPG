@@ -846,7 +846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d44493399868e478d163178c27dee3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_mainCamera: {fileID: 1640606955}
+  m_MainCamera: {fileID: 1640606955}
   m_CinemachineFreeLook: {fileID: 603286597}
 --- !u!1 &293872544
 GameObject:
@@ -1736,7 +1736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: -1
-  XYAxis: {fileID: 7812848141272671072, guid: b136d0216915441869b2504f73c631c1, type: 3}
+  XYAxis: {fileID: 7812848141272671072, guid: a9c1e2e9acbb94a8c880538e5122b861, type: 3}
   ZAxis: {fileID: 7812848141272671072, guid: a9c1e2e9acbb94a8c880538e5122b861, type: 3}
 --- !u!1 &634387493
 GameObject:
@@ -2915,6 +2915,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 293872545, guid: 401ac3dd9e95bc340ac08f30239ea4a8, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1870342494, guid: 401ac3dd9e95bc340ac08f30239ea4a8, type: 3}
       propertyPath: m_Anim
       value: 

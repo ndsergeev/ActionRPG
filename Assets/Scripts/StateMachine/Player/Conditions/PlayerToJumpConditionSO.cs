@@ -12,14 +12,10 @@ namespace Main
     {
         public override bool CanTransit(CharacterMB character)
         {
-            PlayerMB player = character as PlayerMB;
-
-            bool isJumpInput = player.playerInput.jumpInput;
+            var player = character as PlayerMB;
+            var isJumpInput = player.PlayerInput.jumpInput;
             
-            if (isJumpInput)
-                return true;
-
-            return false;
+            return isJumpInput;
         }
     }
 }

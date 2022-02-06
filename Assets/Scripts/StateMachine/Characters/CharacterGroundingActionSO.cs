@@ -15,7 +15,7 @@ namespace Main
 
         public override void OnUpdate(CharacterMB character)
         {
-            character.movement.HandleGrounding();
+            character.Movement.HandleGrounding();
         }
 
         public override void OnExit(CharacterMB character)

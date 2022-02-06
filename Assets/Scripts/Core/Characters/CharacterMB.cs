@@ -1,49 +1,50 @@
-using Main.Characters;
 
 namespace Main.Core
 {
     using UnityEngine;
 
+    using Main.Characters;
+    using Main.Core.Input;
     using Main.Core.StateMachine;
     using Main.Core.Updates;
-    using Main.Core.Input;
     
+    [RequireComponent(typeof(CharacterMovementMB))]
     [RequireComponent(typeof(StateMachineMB))]
     public abstract class CharacterMB : Refresh, IRefresh
     {
         // STATE MACHINE
-        protected StateMachineMB StateMachine;
+        protected StateMachineMB m_StateMachine;
         
         // INPUT
-        protected InputMB Input;
-        public InputMB input => Input;
+        protected InputMB m_Input;
+        public InputMB Input => m_Input;
         
         // MOVEMENT
-        protected CharacterMovementMB Movement;
-        public CharacterMovementMB movement => Movement;
+        protected CharacterMovementMB m_Movement;
+        public CharacterMovementMB Movement => m_Movement;
         
         // PHYSICS
-        protected Rigidbody Rb;
-        protected Collider Col;
+        protected Rigidbody m_Rb;
+        protected Collider m_Col;
         
-        public Rigidbody rb => Rb;
-        public Collider col => Col;
+        public Rigidbody Rb => m_Rb;
+        public Collider Col => m_Col;
         
         // ANIMATION
-        protected CharacterAnimationsMB Animations;
-        public CharacterAnimationsMB animations => Animations;
+        protected CharacterAnimationsMB m_Animations;
+        public CharacterAnimationsMB Animations => m_Animations;
         
         protected virtual void Awake()
         {
-            StateMachine = GetComponent<StateMachineMB>();
-            Input = GetComponent<InputMB>();
-            Movement = GetComponent<CharacterMovementMB>();
-            Rb = GetComponent<Rigidbody>();
-            Col = GetComponent<Collider>();
-            Animations = GetComponent<CharacterAnimationsMB>();
+            m_StateMachine = GetComponent<StateMachineMB>();
+            m_Input = GetComponent<InputMB>();
+            m_Movement = GetComponent<CharacterMovementMB>();
+            m_Rb = GetComponent<Rigidbody>();
+            m_Col = GetComponent<Collider>();
+            m_Animations = GetComponent<CharacterAnimationsMB>();
         }
         
         public virtual void Run()
-            => StateMachine.UpdateMachine();
+            => m_StateMachine.UpdateMachine();
     }
 }

@@ -6,7 +6,7 @@ namespace Main
 
     using Main.Core.Updates;
     
-    public enum Interactions
+    public enum Interactions // TODO: these things better to be implemented with interfaces or polymorphism
     {
         Talk,
         Read,
@@ -23,7 +23,7 @@ namespace Main
         [SerializeField]
         protected Interactions m_Interaction;
 
-        public Interactions interaction => m_Interaction;
+        public Interactions Interaction => m_Interaction;
 
         
         [Space]

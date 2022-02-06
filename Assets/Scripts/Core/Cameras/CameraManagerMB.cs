@@ -7,27 +7,25 @@ namespace Main.Cameras
     
     public class CameraManagerMB : MonoBehaviour
     {
-        public static CameraManagerMB Instance;
+        public static CameraManagerMB instance;
         
         //=== Main Camera ===//
         [SerializeField]
-        private Camera m_MainCamera;
-        public Camera mainCamera => m_MainCamera;
+        private Camera m_mainCamera;
+        public Camera MainCamera => m_mainCamera;
         
-        private Transform m_MainCameraTransform;
-        public Transform MainCameraTransform => m_MainCameraTransform;
+        private Transform m_mainCameraTransform;
+        public Transform MainCameraTransform => m_mainCameraTransform;
         
         //=== Cinemachine FreeLook Camera ===//
-        
         [SerializeField]
-        private CinemachineFreeLook m_CinemachineFreeLook;
-        public CinemachineFreeLook cinemachineFreeLook => m_CinemachineFreeLook;
+        private CinemachineFreeLook m_cinemachineFreeLook;
+        public CinemachineFreeLook CinemachineFreeLook => m_cinemachineFreeLook;
 
         private void Awake()
         {
-            Instance = this;
-
-            m_MainCameraTransform = m_MainCamera.transform;
+            instance = this;
+            m_mainCameraTransform = m_mainCamera.transform;
         }
     }
 }

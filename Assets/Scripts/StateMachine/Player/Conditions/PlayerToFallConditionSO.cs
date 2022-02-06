@@ -12,14 +12,9 @@ namespace Main
     {
         public override bool CanTransit(CharacterMB character)
         {
-            PlayerMB player = character as PlayerMB;
-
-            bool isFalling = player.rb.velocity.y < 0;
-            
-            if (isFalling)
-                return true;
-
-            return false;
+            var player = character as PlayerMB;
+            var isFalling = player.Rb.velocity.y < 0;
+            return isFalling;
         }
     }
 }

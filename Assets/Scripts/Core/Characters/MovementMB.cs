@@ -5,6 +5,6 @@ namespace Main.Core
     
     public class MovementMB : Refresh
     {
-        protected CharacterMB Character;
+        protected CharacterMB m_Character;
     }
 }

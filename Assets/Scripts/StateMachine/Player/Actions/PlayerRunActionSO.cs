@@ -15,9 +15,8 @@ namespace Main
         public override void OnEnter(CharacterMB character)
         {
             m_Player = character as PlayerMB;
-
-            m_Player.movement.isRunning = true;
-            m_Player.animations.StartRunning();
+            m_Player.Movement.IsRunning = true;
+            m_Player.Animations.StartRunning();
         }
 
         public override void OnUpdate(CharacterMB character)
@@ -25,9 +24,9 @@ namespace Main
 
         public override void OnExit(CharacterMB character)
         {
-            m_Player.movement.isRunning = false;
-            
-            m_Player.animations.StopRunning();
+            m_Player = character as PlayerMB;
+            m_Player.Movement.IsRunning = false;
+            m_Player.Animations.StopRunning();
         }
     }
 }

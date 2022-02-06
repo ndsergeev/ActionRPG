@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74139ae52c77b4718881b3563c0fc948, type: 3}
   m_Name: Player_StateTableSO
   m_EditorClassIdentifier: 
-  stateMachineName: Player
   states:
   - {fileID: 11400000, guid: 9d4cefe6828cfc348953208e6c846552, type: 2}
   - {fileID: 11400000, guid: 2991d44150a69174a983abd5916575fb, type: 2}
   - {fileID: 11400000, guid: 9cb42c416598ac14cbc29e843f29bfc2, type: 2}
   - {fileID: 11400000, guid: fa23bb24f440643cd994b6633e2bf48c, type: 2}
   - {fileID: 11400000, guid: 132aaa379b48b6f42ace464cb143c879, type: 2}
+  - {fileID: 11400000, guid: 4f6d60d23316d8941976644a62eaba34, type: 2}

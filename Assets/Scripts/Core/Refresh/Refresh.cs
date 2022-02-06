@@ -6,18 +6,18 @@ namespace Main.Core.Updates
     [RequireComponent(typeof(RefreshInstallMachine))]
     public abstract class Refresh : MonoBehaviour, IRefreshed
     {
-        private GameObject m_CachedGameObject;
-        private Transform m_CachedTransform;
+        private GameObject m_cachedGameObject;
+        private Transform m_cachedTransform;
         
-        private bool m_SystemIsActiveInScene;
+        private bool m_systemIsActiveInScene;
 
-        public GameObject cachedGameObject => m_CachedGameObject ??= gameObject;
-        public Transform cachedTransform => m_CachedTransform ??= transform;
+        public GameObject CachedGameObject => m_cachedGameObject ??= gameObject;
+        public Transform CachedTransform => m_cachedTransform ??= transform;
 
         public bool IsActive()
-            => m_SystemIsActiveInScene;
+            => m_systemIsActiveInScene;
 
         public void SetNightCacheSystemActive(bool status)
-            => m_SystemIsActiveInScene = status;
+            => m_systemIsActiveInScene = status;
     }
 }
