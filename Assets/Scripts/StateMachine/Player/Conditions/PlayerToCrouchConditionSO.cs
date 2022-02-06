@@ -18,7 +18,7 @@ namespace Main
         {
             PlayerMB player = character as PlayerMB;
 
-            bool isCrouchInput = player.PlayerInput.inputReader.inputControls.CharacterControl.Crouch.WasPressedThisFrame();
+            bool isCrouchInput = player.playerInput.inputReader.inputControls.CharacterControl.Crouch.WasPressedThisFrame();
             
             if (isCrouchInput)
                 return true;
