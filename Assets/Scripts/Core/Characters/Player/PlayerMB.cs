@@ -11,7 +11,7 @@ namespace Main.Characters
     
     public class PlayerMB : CharacterMB
     {
-        public PlayerInputMB PlayerInput => Input as PlayerInputMB;
+        public PlayerInputMB playerInput => Input as PlayerInputMB;
         protected PlayerMovementMB PlayerMovement => movement as PlayerMovementMB;
         
         public void HandleMovementInput()
@@ -21,10 +21,10 @@ namespace Main.Characters
             float targetAngle = 0;
             
             // Only calculate move direction if there is movement input
-            if (PlayerInput.moveInput != Vector2.zero)
+            if (playerInput.moveInput != Vector2.zero)
             {
                 // Set move direction based on move input
-                moveDirection = new Vector3(PlayerInput.moveInput.x, 0, PlayerInput.moveInput.y);
+                moveDirection = new Vector3(playerInput.moveInput.x, 0, playerInput.moveInput.y);
                 
                 // Calculate rotation needed for move direction to be based on camera
                 var cameraYEuler = CameraManagerMB.Instance.MainCameraTransform.eulerAngles.y;

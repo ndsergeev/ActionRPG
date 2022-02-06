@@ -1,10 +1,11 @@
+
 namespace Main.Core
 {
     using UnityEngine;
     using Main.Core.HashedProperties;
     using Main.Core.Updates;
     
-    public class CharacterAnimationsMB : Refresh
+    public class CharacterAnimationsMB : Refresh, IRefresh
     {
         [SerializeField]
         protected Animator Anim;
@@ -25,14 +26,13 @@ namespace Main.Core
             Character = GetComponent<CharacterMB>();
         }
 
-        protected virtual void Refresh()
+        public void Run()
         {
             HandleBlendWalkToRun();
             HandleBlendRunToWalk();
         }
-        
+
         // == WALKING == //
-        
         public virtual void StartWalking()
             => SetWalking(true);
 

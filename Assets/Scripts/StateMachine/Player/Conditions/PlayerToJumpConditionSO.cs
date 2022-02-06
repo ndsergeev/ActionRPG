@@ -14,7 +14,7 @@ namespace Main
         {
             PlayerMB player = character as PlayerMB;
 
-            bool isJumpInput = player.PlayerInput.jumpInput;
+            bool isJumpInput = player.playerInput.jumpInput;
             
             if (isJumpInput)
                 return true;
