@@ -22,12 +22,8 @@ namespace Main.Core.Input
         public event UnityAction<Vector2> onLookAroundEvent;
          
         // CONTROLS
-<<<<<<< HEAD
         protected InputControls m_InputControls;
         public InputControls inputControls => m_InputControls;
-=======
-        private InputControls m_InputControls;
->>>>>>> f163fe4b3b40b2817fc6c370d27b8b4be22f6c5e
 
         // STORED LATEST INPUTS
         private Vector2 m_MoveInput;
