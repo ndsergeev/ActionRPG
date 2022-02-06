@@ -20,6 +20,7 @@ namespace Main.Core.Input
          
         // CONTROLS
         protected InputControls m_InputControls;
+        public InputControls inputControls => m_InputControls;
 
         // STORED LATEST INPUTS
         protected Vector2 m_MoveInput;
@@ -33,17 +34,24 @@ namespace Main.Core.Input
 
         protected bool m_RunInput;
         public bool runInput => m_RunInput;
+        
+        protected bool m_CrouchInput;
+        protected bool m_CrouchReleased;
+        public bool crouchInput => m_CrouchInput;
+        public bool crouchReleased => m_CrouchReleased;
 
         private void OnEnable()
         {
             m_InputControls = new InputControls();
             m_InputControls.CharacterControl.SetCallbacks(this);
             m_InputControls?.CharacterControl.Enable();
+            m_InputControls.CharacterControl.Crouch.Enable();
         }
 
         private void OnDisable()
         {
             m_InputControls?.CharacterControl.Disable();
+            m_InputControls.CharacterControl.Crouch.Disable();
         }
 
         public void OnJump(InputAction.CallbackContext context)
@@ -68,7 +76,16 @@ namespace Main.Core.Input
 
         public void OnCrouch(InputAction.CallbackContext context)
         {
-            if (context.phase.Equals(InputActionPhase.Performed)) crouchEvent?.Invoke();
+            switch (context.phase)
+            {
+                case InputActionPhase.Performed:
+                    m_CrouchInput = true;
+                    crouchEvent?.Invoke();
+                    break;
+                case InputActionPhase.Canceled:
+                    m_CrouchInput = false;
+                    break;
+            }
         }
 
         public void OnRun(InputAction.CallbackContext context)

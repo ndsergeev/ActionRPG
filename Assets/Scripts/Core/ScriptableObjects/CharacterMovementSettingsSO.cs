@@ -27,11 +27,21 @@ namespace Main.Characters
         public float RunSpeed => m_RunSpeed;
         public float AirSpeed => m_AirSpeed;
 
+        [SerializeField]
+        protected AnimationCurve m_MoveAgainstFacingDirectionCurve;
+
+        public AnimationCurve moveAgainstFacingDirectionCurve => m_MoveAgainstFacingDirectionCurve;
+        
+        
         [Header("ROTATION")]
         [SerializeField]
         protected float m_turnSmoothTime;
+
+        [SerializeField]
+        protected float m_turnSmoothTimeRunningMultiplier;
         
         public float TurnSmoothTime => m_turnSmoothTime;
+        public float turnSmoothTimeRunningMultiplier => m_turnSmoothTimeRunningMultiplier;
 
         [Header("OBSTACLES")]
         [SerializeField]

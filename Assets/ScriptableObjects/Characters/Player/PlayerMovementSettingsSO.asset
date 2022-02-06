@@ -13,11 +13,45 @@ MonoBehaviour:
   m_Name: PlayerMovementSettingsSO
   m_EditorClassIdentifier: 
   m_SnapToGroundDistance: 0.2
-  m_SnapToGroundRadius: 0.3
+  m_SnapToGroundRadius: 0.25
   m_WalkSpeed: 2.5
   m_RunSpeed: 4
   m_AirSpeed: 2
-  m_turnSmoothTime: 20
+  m_MoveAgainstFacingDirectionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.40311912
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_turnSmoothTime: 15
+  m_turnSmoothTimeRunningMultiplier: 0.7
   stepHeight: 0.1
   obstacleCheckSize: 0.5
   m_jumpPower: 3
