@@ -53,7 +53,19 @@ namespace Main.Core.Input
             m_InputControls?.CharacterControl.Crouch.Disable();
         }
 
-        public void DoJump(InputAction.CallbackContext context)
+        public void OnMove(InputAction.CallbackContext context)
+        {
+            m_moveInput = context.ReadValue<Vector2>();
+            onMoveEvent?.Invoke(m_moveInput);
+        }
+
+        public void OnLook(InputAction.CallbackContext context)
+        {
+            m_lookInput = context.ReadValue<Vector2>();
+            onLookAroundEvent?.Invoke(m_lookInput);
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
         {
             switch (context.phase)
             {
@@ -68,12 +80,13 @@ namespace Main.Core.Input
             }
         }
 
-        public void DoFocus(InputAction.CallbackContext context)
+        public void OnFocus(InputAction.CallbackContext context)
         {
-            if (context.phase.Equals(InputActionPhase.Canceled)) onFocusEvent?.Invoke();
+            if (context.phase.Equals(InputActionPhase.Canceled))
+                onFocusEvent?.Invoke();
         }
 
-        public void DoCrouch(InputAction.CallbackContext context)
+        public void OnCrouch(InputAction.CallbackContext context)
         {
             switch (context.phase)
             {
@@ -87,8 +100,7 @@ namespace Main.Core.Input
             }
         }
 
-        // TODO: there is a sprint, see OnSprint, delete it or OnRun and relative variables
-        public void DoRun(InputAction.CallbackContext context)
+        public void OnRun(InputAction.CallbackContext context)
         {
             switch (context.phase)
             {
@@ -101,18 +113,6 @@ namespace Main.Core.Input
                     onRunEvent?.Invoke();
                     break;
             }
-        }
-
-        public void DoMove(InputAction.CallbackContext context)
-        {
-            m_moveInput = context.ReadValue<Vector2>();
-            onMoveEvent?.Invoke(m_moveInput);
-        }
-        
-        public void DoLook(InputAction.CallbackContext context)
-        {
-            m_lookInput = context.ReadValue<Vector2>();
-            onLookAroundEvent?.Invoke(m_lookInput);
         }
     }
 }
