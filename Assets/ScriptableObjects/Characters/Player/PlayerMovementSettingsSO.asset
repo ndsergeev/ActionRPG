@@ -50,12 +50,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_turnSmoothTime: 15
-  m_turnSmoothTimeRunningMultiplier: 0.7
-  stepHeight: 0.1
-  obstacleCheckSize: 0.5
-  m_jumpPower: 3
-  lowJumpMultiplier: 4
-  fallMultiplier: 2
+  m_TurnSmoothTime: 5
+  m_TurnSmoothTimeRunningMultiplier: 0
+  m_StepHeight: 0
+  m_ObstacleCheckSize: 0.5
+  m_JumpPower: 3
+  m_LowJumpMultiplier: 2
+  m_FallMultiplier: 2
   m_MaxFallSpeed: 100
   m_MaxSlopeAngle: 70
