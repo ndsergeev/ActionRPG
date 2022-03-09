@@ -1,7 +1,7 @@
+using System.Diagnostics;
 
 namespace Main.Core.Console
 {
-    using System.Diagnostics;
     using Debug = UnityEngine.Debug;
     
     /// <summary>
