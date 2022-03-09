@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f2ec67ddfe744d22ac7cc4d830e98b9, type: 3}
+  m_Name: Player_Idle_StateSO
+  m_EditorClassIdentifier: 
+  isFoldout: 0
+  transitions:
+  - {fileID: 11400000, guid: fa765c87cc751dc4ba3ce2c16f8dae65, type: 2}
+  - {fileID: 11400000, guid: 9f3300a97fc200d469bf38411000a6e0, type: 2}
+  - {fileID: 11400000, guid: 432070d3ac316a74587035b0df2a0de4, type: 2}
+  - {fileID: 11400000, guid: 44453d4f65cfc75429f625d8d7ae2a44, type: 2}
+  actions:
+  - {fileID: 11400000, guid: ffbce9d7bcbbe354dafcacbc28b9c7ad, type: 2}
+  - {fileID: 11400000, guid: 4b15e8552692eb045942052eea0ddca3, type: 2}

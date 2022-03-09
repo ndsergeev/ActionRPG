@@ -1,9 +1,9 @@
 
-namespace NAMESPACE
+namespace Main
 {
-    using UnityEngine;
+    using Main.Core.Updates;
     
-    public class #SCRIPTNAME# : MonoBehaviour
+    public class #SCRIPTNAME# : Refresh
     {
     }
 }

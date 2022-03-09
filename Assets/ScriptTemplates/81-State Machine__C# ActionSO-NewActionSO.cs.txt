@@ -1,0 +1,26 @@
+namespace Main
+{
+    using UnityEngine;
+    
+    using Main.Core;
+    using Main.Core.StateMachine;
+    
+    [CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "Scriptable Objects/State Machine/New #SCRIPTNAME#", order = 60)]
+    public class #SCRIPTNAME# : ActionSO
+    {
+        public override void OnEnter(CharacterMB character)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void OnUpdate(CharacterMB character)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void OnExit(CharacterMB character)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+}

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts/Core/Characters/CharacterAnimationsMB.cs.meta
+guid: b34ad36ad050ae74da40907862c70daf
+=======
+guid: 6c52201978cb64c15a5432b32c69b7fd
+>>>>>>> 1d869471ffca75400cc9b84d880411a89dfd3203:Assets/Scripts/Core/Editor/ReordableList.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

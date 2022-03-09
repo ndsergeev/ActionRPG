@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f2ec67ddfe744d22ac7cc4d830e98b9, type: 3}
+  m_Name: Player_Fall_StateSO
+  m_EditorClassIdentifier: 
+  isFoldout: 0
+  transitions:
+  - {fileID: 11400000, guid: 9650905c8131dfe43b1cd00b0d1a04a5, type: 2}
+  - {fileID: 11400000, guid: 83a83740eb7cab345bc58faeb0f0bfec, type: 2}
+  actions:
+  - {fileID: 11400000, guid: ffbce9d7bcbbe354dafcacbc28b9c7ad, type: 2}
+  - {fileID: 11400000, guid: a26b40ce8176c0f499539d71485f9235, type: 2}
+  - {fileID: 11400000, guid: cad153e24b6364591899a09f3cac83db, type: 2}

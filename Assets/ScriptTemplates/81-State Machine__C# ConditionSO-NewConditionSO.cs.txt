@@ -1,0 +1,16 @@
+namespace Main
+{
+    using UnityEngine;
+    
+    using Main.Core;
+    using Main.Core.StateMachine;
+    
+    [CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "Scriptable Objects/State Machine/New #SCRIPTNAME#", order = 45)]
+    public class #SCRIPTNAME# : ConditionSO
+    {
+        public override bool CanTransit(CharacterMB character)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+}
