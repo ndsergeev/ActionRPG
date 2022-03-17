@@ -34,10 +34,12 @@ namespace Main.Core.Input
         private bool m_runInput;
         public bool RunInput => m_runInput;
         
-        protected bool m_CrouchInput;
-        protected bool m_CrouchReleased;
-        public bool crouchInput => m_CrouchInput;
-        public bool crouchReleased => m_CrouchReleased;
+        protected bool m_canCrouch;
+        public bool CanCrouch
+        {
+            get => m_canCrouch;
+            set => m_canCrouch = value;
+        }
 
         private void OnEnable()
         {
@@ -82,7 +84,7 @@ namespace Main.Core.Input
 
         public void OnFocus(InputAction.CallbackContext context)
         {
-            if (context.phase.Equals(InputActionPhase.Canceled))
+            if (context.phase.Equals(InputActionPhase.Performed))
                 onFocusEvent?.Invoke();
         }
 
@@ -91,11 +93,10 @@ namespace Main.Core.Input
             switch (context.phase)
             {
                 case InputActionPhase.Performed:
-                    m_CrouchInput = true;
-                    onCrouchEvent?.Invoke();
+                    m_canCrouch = true;
                     break;
                 case InputActionPhase.Canceled:
-                    m_CrouchInput = false;
+                    m_canCrouch = false;
                     break;
             }
         }

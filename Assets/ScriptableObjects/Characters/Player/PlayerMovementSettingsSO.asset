@@ -17,6 +17,7 @@ MonoBehaviour:
   m_WalkSpeed: 2.5
   m_RunSpeed: 4
   m_AirSpeed: 2
+  m_CrouchWalkSpeed: 1.5
   m_MoveAgainstFacingDirectionCurve:
     serializedVersion: 2
     m_Curve:
@@ -50,12 +51,46 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_TurnSmoothTime: 5
-  m_TurnSmoothTimeRunningMultiplier: 0
-  m_StepHeight: 0
+  m_MoveAgainstFacingDirectionWhileTargetingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.35
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.9
+      inSlope: 0.40000013
+      outSlope: 0.40000013
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_TurnSmoothTime: 6
+  m_TurnSmoothTimeRunningMultiplier: 0.9
+  m_StepHeight: 0.05
   m_ObstacleCheckSize: 0.5
   m_JumpPower: 3
   m_LowJumpMultiplier: 2
+  jumpDelay: 0
   m_FallMultiplier: 2
   m_MaxFallSpeed: 100
-  m_MaxSlopeAngle: 70
+  m_MaxSlopeAngle: 50

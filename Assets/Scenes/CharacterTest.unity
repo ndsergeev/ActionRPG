@@ -562,7 +562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84237112}
   m_LocalRotation: {x: 0.112697124, y: 0.000000029612467, z: -0.0000000033586365, w: 0.9936294}
-  m_LocalPosition: {x: -0.039049923, y: 1.4375402, z: -5.017351}
+  m_LocalPosition: {x: -0.039049923, y: 1.437539, z: -5.01735}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1017451083}
@@ -812,7 +812,7 @@ GameObject:
   - component: {fileID: 198161948}
   - component: {fileID: 198161949}
   m_Layer: 0
-  m_Name: ===CAMERAS===
+  m_Name: CAMERAS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1116,7 +1116,7 @@ GameObject:
   - component: {fileID: 427644510}
   - component: {fileID: 427644509}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: MANAGER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1649,8 +1649,8 @@ MonoBehaviour:
     m_Bias: 0
   m_RecenterToTargetHeading:
     m_enabled: 0
-    m_WaitTime: 0
-    m_RecenteringTime: 0.2
+    m_WaitTime: 1
+    m_RecenteringTime: 1
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_BindingMode: 4
@@ -2173,7 +2173,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404363070}
-  m_LocalRotation: {x: 0.001980089, y: 0.9738788, z: 0.22690074, w: -0.008498725}
+  m_LocalRotation: {x: 0.0019800803, y: 0.9738788, z: 0.22690074, w: -0.008498686}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2233,7 +2233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1615985375}
   m_Layer: 0
-  m_Name: ===ENVIRONMENT===
+  m_Name: ENVIRONMENT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2336,7 +2336,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640606953}
-  m_LocalRotation: {x: 0.0018923426, y: 0.97616684, z: 0.21684603, w: -0.008518678}
+  m_LocalRotation: {x: 0.0018923365, y: 0.97616684, z: 0.21684603, w: -0.008518653}
   m_LocalPosition: {x: 0.039049923, y: 0.45132077, z: 2.237223}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2594,7 +2594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1863021451}
   m_Layer: 0
-  m_Name: ===UI===
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2627,7 +2627,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1911384007}
   m_Layer: 0
-  m_Name: ===LIGHTS===
+  m_Name: LIGHTS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2850,6 +2850,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1870342494, guid: 401ac3dd9e95bc340ac08f30239ea4a8, type: 3}
+      propertyPath: m_WalkWhileTargetingBlendSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2054657362760465902, guid: 401ac3dd9e95bc340ac08f30239ea4a8, type: 3}
       propertyPath: m_Name
       value: Player

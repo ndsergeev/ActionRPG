@@ -18,6 +18,8 @@ namespace Main
             m_Player = character as PlayerMB;
             
             m_Player.Animations.StartCrouching();
+            m_Player.Animations.StartWalking();
+            m_Player.Movement.IsCrouchWalking = true;
         }
 
         public override void OnUpdate(CharacterMB character)
@@ -28,6 +30,8 @@ namespace Main
             m_Player = character as PlayerMB;
             
             m_Player.Animations.StopCrouching();
+            m_Player.Animations.StopWalking();
+            m_Player.Movement.IsCrouchWalking = false;
         }
     }
 }

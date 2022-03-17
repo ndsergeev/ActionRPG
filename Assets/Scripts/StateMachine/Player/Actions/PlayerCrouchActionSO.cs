@@ -19,6 +19,7 @@ namespace Main
             m_Player = character as PlayerMB;
             
             m_Player.Animations.StartCrouching();
+            m_Player.Rb.velocity = Vector3.zero;
             EditorLogger.Log("<color=yellow>Entered</color> State: Crouch");
         }
 

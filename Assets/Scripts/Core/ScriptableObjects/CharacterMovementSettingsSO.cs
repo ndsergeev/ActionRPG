@@ -24,16 +24,23 @@ namespace Main.Characters
         protected float m_RunSpeed;
         [SerializeField]
         protected float m_AirSpeed;
+        [SerializeField]
+        protected float m_CrouchWalkSpeed;
         
         public float WalkSpeed => m_WalkSpeed;
         public float RunSpeed => m_RunSpeed;
         public float AirSpeed => m_AirSpeed;
+        public float CrouchWalkSpeed => m_CrouchWalkSpeed;
 
         [SerializeField]
         protected AnimationCurve m_MoveAgainstFacingDirectionCurve;
 
         public AnimationCurve MoveAgainstFacingDirectionCurve => m_MoveAgainstFacingDirectionCurve;
         
+        [SerializeField]
+        protected AnimationCurve m_MoveAgainstFacingDirectionWhileTargetingCurve;
+
+        public AnimationCurve MoveAgainstFacingDirectionWhileTargetingCurve => m_MoveAgainstFacingDirectionWhileTargetingCurve;
         
         [Header("ROTATION")]
         [SerializeField]
@@ -64,6 +71,8 @@ namespace Main.Characters
         
         public float JumpPower => m_JumpPower * 100; // TODO: no random numbers pls
         public float LowJumpMultiplier => m_LowJumpMultiplier;
+
+        public float jumpDelay;
         
         [Header("FALLING")]
         [SerializeField]

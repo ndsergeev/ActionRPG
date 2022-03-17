@@ -22,6 +22,9 @@ namespace Main.Characters
         protected bool m_IsRunning;
 
         [SerializeField]
+        protected bool m_IsCrouchWalking;
+
+        [SerializeField]
         protected bool m_IsStartingJump;
 
         [SerializeField]
@@ -43,6 +46,12 @@ namespace Main.Characters
             get => m_IsRunning;
             set => m_IsRunning = value;
         }
+        
+        public bool IsCrouchWalking
+        {
+            get => m_IsCrouchWalking;
+            set => m_IsCrouchWalking = value;
+        }
 
         public bool IsStartingJump => m_IsStartingJump;
         public bool IsJumping => m_IsJumping;
@@ -56,6 +65,8 @@ namespace Main.Characters
 
         // MOVEMENT
         protected Vector3 m_MoveDirection;
+
+        public Vector3 MoveDirection => m_MoveDirection;
 
         // OBSTACLES
 
@@ -217,12 +228,20 @@ namespace Main.Characters
             if (IsWalking) speed = Settings.WalkSpeed;
             else if (IsRunning) speed = Settings.RunSpeed;
             else if (!IsGrounded) speed = Settings.AirSpeed;
+            else if (m_IsCrouchWalking) speed = Settings.CrouchWalkSpeed;
 
-            // Adjust speed based on direction character is facing
-            var angleDifferenceBetweenMoveAndFacingDirections = Vector3.Angle(CachedTransform.forward, moveDirection);
-            var anglePercent = angleDifferenceBetweenMoveAndFacingDirections / piInDeg;
-            speed *= Settings.MoveAgainstFacingDirectionCurve.Evaluate(1 - anglePercent);
-
+            var angleeBetweenMoveAndFacingDirections = Vector3.Angle(CachedTransform.forward, moveDirection);
+            var anglePercent = angleeBetweenMoveAndFacingDirections / piInDeg;
+            
+            if (m_Character.isTargeting)
+            {
+                speed *= Settings.MoveAgainstFacingDirectionWhileTargetingCurve.Evaluate(1 - anglePercent);
+            }
+            else
+            {
+                speed *= Settings.MoveAgainstFacingDirectionCurve.Evaluate(1 - anglePercent);
+            }
+            
             var newVelocity = moveDirection * speed;
 
             // If in the air
@@ -252,26 +271,26 @@ namespace Main.Characters
 
             // Front
             var forward = m_MoveDirection;
-            RayCast(rayOrigin, forward, layerMask);
+            ObstacleRayCast(rayOrigin, forward, layerMask);
 
             // Right
             var right = Vector3.Cross(forward, Vector3.up);
-            RayCast(rayOrigin, right, layerMask);
+            ObstacleRayCast(rayOrigin, right, layerMask);
 
             // Left
             var left = -right;
-            RayCast(rayOrigin, left, layerMask);
+            ObstacleRayCast(rayOrigin, left, layerMask);
             
             // Front-Right
             var frontRight = (forward + right).normalized;
-            RayCast(rayOrigin, frontRight, layerMask);
+            ObstacleRayCast(rayOrigin, frontRight, layerMask);
 
             // Front-Left
             var frontLeft = (forward + left).normalized;
-            RayCast(rayOrigin, frontLeft, layerMask);
+            ObstacleRayCast(rayOrigin, frontLeft, layerMask);
         }
 
-        private void RayCast(Vector3 rayOrigin, Vector3 direction, int layerMask)
+        private void ObstacleRayCast(Vector3 rayOrigin, Vector3 direction, int layerMask)
         {
             if (!Physics.Raycast(rayOrigin, direction, out var frontLeftHit, Settings.ObstacleCheckSize, layerMask))
                 return;
@@ -292,6 +311,9 @@ namespace Main.Characters
 
         public virtual void HandleRotation(float targetAngle)
         {
+            if (m_Character.isTargeting)
+                return;
+            
             var currentRotateVelocity = 0f;
             var smoothTime = Settings.TurnSmoothTime * Time.deltaTime;
 

@@ -11,7 +11,14 @@ namespace Main.Characters
     {
         public PlayerInputMB PlayerInput => m_Input as PlayerInputMB;
         protected PlayerMovementMB PlayerMovement => Movement as PlayerMovementMB;
-        
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            
+        }
+
         public void HandleMovementInput()
         {
             var moveDirection = Vector3.zero;
@@ -39,10 +46,21 @@ namespace Main.Characters
                 PlayerMovement.HandleRotation(targetAngle);
             }
         }
-
+        
         public bool CanCrouch()
         {
-            return PlayerInput.InputReader.inputControls.CharacterControl.Crouch.WasPressedThisFrame();
+            bool canCrouch = false;
+
+            canCrouch = PlayerInput.InputReader.CanCrouch;
+            
+            if (PlayerInput.InputReader.CanCrouch)
+            {
+                canCrouch = true;
+                PlayerInput.InputReader.CanCrouch = false;
+            }
+
+            return canCrouch;
         }
+
     }
 }

@@ -1,4 +1,6 @@
 
+using System.Dynamic;
+
 namespace Main
 {
     using UnityEngine;
@@ -16,6 +18,7 @@ namespace Main
         public override void OnEnter(CharacterMB character)
         {
             m_Player = character as PlayerMB;
+            
             m_Player.Movement.Jump();
             m_Player.Animations.StartJumping();
         }

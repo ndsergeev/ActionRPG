@@ -34,6 +34,13 @@ namespace Main.Core
         protected CharacterAnimationsMB m_Animations;
         public CharacterAnimationsMB Animations => m_Animations;
         
+        // STATES
+        public bool isMoving;
+        public bool isWalking;
+        public bool isRunning;
+        public bool isCrouching;
+        public bool isTargeting;
+        
         protected virtual void Awake()
         {
             m_StateMachine = GetComponent<StateMachineMB>();
@@ -42,9 +49,18 @@ namespace Main.Core
             m_Rb = GetComponent<Rigidbody>();
             m_Col = GetComponent<Collider>();
             m_Animations = GetComponent<CharacterAnimationsMB>();
+
+            Input.InputReader.onFocusEvent += ToggleTargeting;
         }
         
         public virtual void Run()
             => m_StateMachine.UpdateMachine();
+        
+        
+        // TODO: Make a separate targeting script
+        public void ToggleTargeting()
+        {
+            isTargeting = !isTargeting;
+        }
     }
 }

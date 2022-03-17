@@ -17,10 +17,17 @@ namespace Main.Core.Input
 
         public bool runInput => m_InputReader.RunInput;
 
-        public bool crouchInput => m_InputReader.crouchInput;
-        public bool crouchReleased => m_InputReader.crouchReleased;
 
         protected void Awake()
-            => m_Character = GetComponent<CharacterMB>();
+        {
+            m_Character = GetComponent<CharacterMB>();
+
+            SetupInputEvents();
+        }
+
+        protected void SetupInputEvents()
+        {
+            //m_InputReader.onFocusEvent +
+        }
     }
 }
