@@ -1,4 +1,6 @@
 
+using UnityEditor;
+
 namespace Main.Characters
 {
     using UnityEngine;
@@ -74,6 +76,12 @@ namespace Main.Characters
         // JUMPING
         protected float m_TimeSinceJumpStarted;
         protected float m_TimeAfterJumpToNotGroundCheck = 0.05f;
+        
+        // AIR VELOCITY
+        protected Vector3 m_PreAirVelocity;
+        protected Vector3 m_CurrentAirVelocity;
+
+        private bool m_HasAirVelocity;
 
         // GUI
         protected Color m_GroundSphereColour = new Color(1f, 0.92f, 0.016f, 0.5f);
@@ -88,7 +96,7 @@ namespace Main.Characters
             Gizmos.color = m_GroundSphereColour;
             Gizmos.DrawSphere(m_GroundingSphereCastPos, m_GroundingSphereCastRad);
         }
-
+        
         protected virtual bool CheckIfTouchingGround()
         {
             const int layerMask = ~(1 << 8);
@@ -174,6 +182,11 @@ namespace Main.Characters
                 }
                 else // Set character position to ground point
                 {
+                    if (!IsGrounded)
+                    {
+                        m_Character.Input.InputReader.JumpInput = false;
+                    }
+                    
                     // Character is on the ground
                     m_IsGrounded = true;
 
@@ -294,6 +307,13 @@ namespace Main.Characters
         {
             if (!Physics.Raycast(rayOrigin, direction, out var frontLeftHit, Settings.ObstacleCheckSize, layerMask))
                 return;
+
+            if (m_HasAirVelocity)
+            {
+                m_CurrentAirVelocity = Vector3.zero;
+                m_HasAirVelocity = false;
+            }
+            
 #if UNITY_EDITOR
             Debug.DrawLine(rayOrigin, frontLeftHit.point, Color.red);
 #endif
@@ -315,10 +335,16 @@ namespace Main.Characters
                 return;
             
             var currentRotateVelocity = 0f;
-            var smoothTime = Settings.TurnSmoothTime * Time.deltaTime;
+            var smoothTime = 0f;
 
             if (IsRunning)
-                smoothTime *= Settings.TurnSmoothTimeRunningMultiplier;
+                smoothTime = Settings.TurnSmoothTimeWhileRunning * Time.deltaTime;
+            else if (!IsGrounded)
+                smoothTime = Settings.TurnSmoothTimeWhileInAir * Time.deltaTime;
+            else
+            {
+                smoothTime = Settings.TurnSmoothTime * Time.deltaTime;
+            }
 
             var smoothedRotationAngle = Mathf.SmoothDampAngle(
                 m_Character.CachedTransform.eulerAngles.y, targetAngle,
@@ -345,7 +371,17 @@ namespace Main.Characters
             m_Character.Rb.useGravity = true;
 
             // Calculate jump force vector
-            var jumpVector = new Vector3(0, Settings.JumpPower, 0);
+            var jumpVector = new Vector3(0, Settings.VerticalJumpPower, 0);
+            
+            // Add horizontal force (air velocity)
+            if (MoveDirection == Vector3.zero)
+            {
+                m_CurrentAirVelocity = Vector3.zero;
+            }
+            else
+            {
+                SetAirVelocity(m_MoveDirection * Settings.HorizontalJumpPower);
+            }
 
             // Remove any downward velocity on player before adding jump force to make jump work
             var currVelocity = m_Character.Rb.velocity;
@@ -395,6 +431,31 @@ namespace Main.Characters
                 // Character is no longer jumping
                 m_IsStartingJump = false;
                 m_IsJumping = false;
+            }
+        }
+
+        protected virtual void SetAirVelocity(Vector3 velocity)
+        {
+            m_CurrentAirVelocity = velocity;
+            
+            m_HasAirVelocity = true;
+        }
+        
+        public virtual void HandleAirVelocity()
+        {
+            if (!m_HasAirVelocity)
+                return;
+            
+            m_Character.Rb.velocity += m_CurrentAirVelocity;
+            
+            m_CurrentAirVelocity =
+                Vector3.MoveTowards(m_CurrentAirVelocity, Vector3.zero, Settings.SpeedAirVelocityIsReducedAt);
+
+            if (Vector3.Distance(Vector3.zero, m_CurrentAirVelocity) < 0.01)
+            {
+                m_CurrentAirVelocity = Vector3.zero;
+
+                m_HasAirVelocity = false;
             }
         }
     }

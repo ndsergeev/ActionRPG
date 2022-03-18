@@ -84,13 +84,16 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_TurnSmoothTime: 6
-  m_TurnSmoothTimeRunningMultiplier: 0.9
-  m_StepHeight: 0.05
+  m_TurnSmoothTime: 7
+  m_TurnSmoothTimeWhileRunning: 6
+  m_TurnSmoothTimeWhileInAir: 20
+  m_StepHeight: 0.1
   m_ObstacleCheckSize: 0.5
-  m_JumpPower: 3
+  m_VerticalJumpPower: 300
+  m_HorizontalJumpPower: 3
   m_LowJumpMultiplier: 2
   jumpDelay: 0
   m_FallMultiplier: 2
   m_MaxFallSpeed: 100
+  m_SpeedAirVelocityIsReducedAt: 0
   m_MaxSlopeAngle: 50

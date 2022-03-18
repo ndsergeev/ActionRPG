@@ -27,6 +27,7 @@ namespace Main
         {
             m_Player = character as PlayerMB;
             m_Player.Movement.HandleJumping();
+            m_Player.Movement.HandleAirVelocity();
         }
 
         public override void OnExit(CharacterMB character)

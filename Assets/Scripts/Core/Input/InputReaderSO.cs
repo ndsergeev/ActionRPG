@@ -29,7 +29,11 @@ namespace Main.Core.Input
         public Vector2 LookInput => m_lookInput;
         
         private bool m_jumpInput;
-        public bool JumpInput => m_jumpInput;
+        public bool JumpInput
+        {
+            get => m_jumpInput;
+            set => m_jumpInput = value;
+        }
 
         private bool m_runInput;
         public bool RunInput => m_runInput;
