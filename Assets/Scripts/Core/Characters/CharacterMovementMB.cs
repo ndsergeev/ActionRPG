@@ -11,7 +11,7 @@ namespace Main.Characters
     public class CharacterMovementMB : MovementMB
     {
         [SerializeField]
-        protected CharacterMovementSettingsSO Settings;
+        protected CharacterMovementSettingsSO m_Settings;
 
         // MOVEMENT STATES
         [SerializeField]
@@ -107,14 +107,14 @@ namespace Main.Characters
 
             var rayOrigin = charPosition + col.center;
             rayOrigin.y -= col.radius;
-            m_GroundingSphereCastRad = Settings.SnapToGroundRadius;
+            m_GroundingSphereCastRad = m_Settings.SnapToGroundRadius;
             
             float rayDistance;
             if (m_IsGrounded)
             {
                 // The grounding SphereCastRay distance will be longer while the character is on the ground so that
                 // grounding is handled better while the character moves up and down slopes (or any variable terrain)
-                rayDistance = rayOrigin.y - charPosition.y - col.radius + Settings.SnapToGroundDistance;
+                rayDistance = rayOrigin.y - charPosition.y - col.radius + m_Settings.SnapToGroundDistance;
             }
             else
             {
@@ -215,10 +215,10 @@ namespace Main.Characters
                 // If character falling
                 if (m_Character.Rb.velocity.y < 0)
                 {
-                    if (m_Character.Rb.velocity.y < -Settings.MaxFallSpeed)
+                    if (m_Character.Rb.velocity.y < -m_Settings.MaxFallSpeed)
                     {
                         var newFallVelocity = m_Character.Rb.velocity;
-                        newFallVelocity.y = -Settings.MaxFallSpeed;
+                        newFallVelocity.y = -m_Settings.MaxFallSpeed;
 
                         m_Character.Rb.velocity = newFallVelocity;
                         return;
@@ -226,7 +226,7 @@ namespace Main.Characters
 
                     // Make character fall faster for better jump feel (Stops floaty looking falling)
                     m_Character.Rb.velocity +=
-                        Vector3.up * (Physics.gravity.y * (Settings.FallMultiplier) * Time.deltaTime);
+                        Vector3.up * (Physics.gravity.y * (m_Settings.FallMultiplier) * Time.deltaTime);
                 }
             }
         }
@@ -238,21 +238,21 @@ namespace Main.Characters
             m_MoveDirection = moveDirection;
 
             float speed = 0;
-            if (IsWalking) speed = Settings.WalkSpeed;
-            else if (IsRunning) speed = Settings.RunSpeed;
-            else if (!IsGrounded) speed = Settings.AirSpeed;
-            else if (m_IsCrouchWalking) speed = Settings.CrouchWalkSpeed;
+            if (IsWalking) speed = m_Settings.WalkSpeed;
+            else if (IsRunning) speed = m_Settings.RunSpeed;
+            else if (!IsGrounded) speed = m_Settings.AirSpeed;
+            else if (m_IsCrouchWalking) speed = m_Settings.CrouchWalkSpeed;
 
             var angleeBetweenMoveAndFacingDirections = Vector3.Angle(CachedTransform.forward, moveDirection);
             var anglePercent = angleeBetweenMoveAndFacingDirections / piInDeg;
             
             if (m_Character.isTargeting)
             {
-                speed *= Settings.MoveAgainstFacingDirectionWhileTargetingCurve.Evaluate(1 - anglePercent);
+                speed *= m_Settings.MoveAgainstFacingDirectionWhileTargetingCurve.Evaluate(1 - anglePercent);
             }
             else
             {
-                speed *= Settings.MoveAgainstFacingDirectionCurve.Evaluate(1 - anglePercent);
+                speed *= m_Settings.MoveAgainstFacingDirectionCurve.Evaluate(1 - anglePercent);
             }
             
             var newVelocity = moveDirection * speed;
@@ -280,7 +280,7 @@ namespace Main.Characters
             var charPosition = charTransform.position;
 
             var rayOrigin = charPosition;
-            rayOrigin.y += Settings.StepHeight;
+            rayOrigin.y += m_Settings.StepHeight;
 
             // Front
             var forward = m_MoveDirection;
@@ -305,7 +305,7 @@ namespace Main.Characters
 
         private void ObstacleRayCast(Vector3 rayOrigin, Vector3 direction, int layerMask)
         {
-            if (!Physics.Raycast(rayOrigin, direction, out var frontLeftHit, Settings.ObstacleCheckSize, layerMask))
+            if (!Physics.Raycast(rayOrigin, direction, out var frontLeftHit, m_Settings.ObstacleCheckSize, layerMask))
                 return;
 
             if (m_HasAirVelocity)
@@ -326,7 +326,7 @@ namespace Main.Characters
         protected bool CheckIfSlopeIsTraversable(Vector3 slopeNormal)
         {
             var slopeAngle = Vector3.Angle(slopeNormal, Vector3.up);
-            return slopeAngle < Settings.MaxSlopeAngle;
+            return slopeAngle < m_Settings.MaxSlopeAngle;
         }
 
         public virtual void HandleRotation(float targetAngle)
@@ -338,12 +338,12 @@ namespace Main.Characters
             var smoothTime = 0f;
 
             if (IsRunning)
-                smoothTime = Settings.TurnSmoothTimeWhileRunning * Time.deltaTime;
+                smoothTime = m_Settings.TurnSmoothTimeWhileRunning * Time.deltaTime;
             else if (!IsGrounded)
-                smoothTime = Settings.TurnSmoothTimeWhileInAir * Time.deltaTime;
+                smoothTime = m_Settings.TurnSmoothTimeWhileInAir * Time.deltaTime;
             else
             {
-                smoothTime = Settings.TurnSmoothTime * Time.deltaTime;
+                smoothTime = m_Settings.TurnSmoothTime * Time.deltaTime;
             }
 
             var smoothedRotationAngle = Mathf.SmoothDampAngle(
@@ -371,7 +371,7 @@ namespace Main.Characters
             m_Character.Rb.useGravity = true;
 
             // Calculate jump force vector
-            var jumpVector = new Vector3(0, Settings.VerticalJumpPower, 0);
+            var jumpVector = new Vector3(0, m_Settings.VerticalJumpPower, 0);
             
             // Add horizontal force (air velocity)
             if (MoveDirection == Vector3.zero)
@@ -380,7 +380,7 @@ namespace Main.Characters
             }
             else
             {
-                SetAirVelocity(m_MoveDirection * Settings.HorizontalJumpPower);
+                SetAirVelocity(m_MoveDirection * m_Settings.HorizontalJumpPower);
             }
 
             // Remove any downward velocity on player before adding jump force to make jump work
@@ -413,7 +413,7 @@ namespace Main.Characters
             {
                 // Make character not rise as much
                 m_Character.Rb.velocity +=
-                    Vector3.up * (Physics.gravity.y * Settings.LowJumpMultiplier * Time.deltaTime);
+                    Vector3.up * (Physics.gravity.y * m_Settings.LowJumpMultiplier * Time.deltaTime);
             }
 
             // IF character is falling
@@ -449,7 +449,7 @@ namespace Main.Characters
             m_Character.Rb.velocity += m_CurrentAirVelocity;
             
             m_CurrentAirVelocity =
-                Vector3.MoveTowards(m_CurrentAirVelocity, Vector3.zero, Settings.SpeedAirVelocityIsReducedAt);
+                Vector3.MoveTowards(m_CurrentAirVelocity, Vector3.zero, m_Settings.SpeedAirVelocityIsReducedAt);
 
             if (Vector3.Distance(Vector3.zero, m_CurrentAirVelocity) < 0.01)
             {
