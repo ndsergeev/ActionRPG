@@ -8,7 +8,7 @@ namespace Main
 
     
     [CreateAssetMenu(fileName = "Player_CrouchWalk_ActionSO", menuName =
-        "Scriptable Objects/State Machine/Player Actions/New Player_CrouchWalk_ActionSO", order = 60)]
+        "State Machine/Player/New Player_CrouchWalk_ActionSO", order = 60)]
     public class PlayerCrouchWalkActionSO : ActionSO
     {
         private PlayerMB m_Player;

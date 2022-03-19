@@ -7,7 +7,7 @@ namespace Main
     using Main.Characters;
     
     [CreateAssetMenu(fileName = "Player_Run_ActionSO", 
-        menuName = "Scriptable Objects/State Machine/Player Actions/New Player_Run_ActionSO", order = 60)]
+        menuName = "State Machine/Player/New Player_Run_ActionSO", order = 60)]
     public class PlayerRunActionSO : ActionSO
     {
         private PlayerMB m_Player;

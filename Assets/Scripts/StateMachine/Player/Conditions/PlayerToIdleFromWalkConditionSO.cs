@@ -7,7 +7,7 @@ namespace Main
     using Main.Characters;
     
     [CreateAssetMenu(fileName = "Player_ToIdleFromWalk_ConditionSO", menuName =
-        "Scriptable Objects/State Machine/Player Conditions/New Player_ToIdleFromWalk_ConditionSO", order = 45)]
+        "State Machine/Player/New Player_ToIdleFromWalk_ConditionSO", order = 45)]
     public class PlayerToIdleFromWalkConditionSO : ConditionSO
     {
         public override bool CanTransit(CharacterMB character)

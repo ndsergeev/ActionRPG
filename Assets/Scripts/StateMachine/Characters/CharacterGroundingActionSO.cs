@@ -1,4 +1,3 @@
-
 namespace Main
 {
     using UnityEngine;
@@ -7,7 +6,7 @@ namespace Main
     using Main.Core.StateMachine;
     
     [CreateAssetMenu(fileName = "Character_Grounding_ActionSO",
-        menuName = "Scriptable Objects/State Machine/Character Actions/New Character_Grounding_ActionSO", order = 60)]
+        menuName = "State Machine/Character/New Character_Grounding_ActionSO", order = 60)]
     public class CharacterGroundingActionSO : ActionSO
     {
         public override void OnEnter(CharacterMB character)

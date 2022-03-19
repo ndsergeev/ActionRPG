@@ -5,7 +5,7 @@ namespace Main.Core.StateMachine
 {
     using UnityEngine;
     
-    [CreateAssetMenu(fileName = "StateTableSO", menuName = "Scriptable Objects/State Machine/New StateTableSO", order = 0)]
+    [CreateAssetMenu(fileName = "StateTableSO", menuName = "State Machine/New StateTableSO", order = 0)]
     public class StateTableSO : ScriptableObject
     {
         // [Space]

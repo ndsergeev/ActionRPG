@@ -8,7 +8,7 @@ namespace Main
     using Main.Characters;
     
     [CreateAssetMenu(fileName = "Player_ToCrouch_ConditionSO", menuName =
-        "Scriptable Objects/State Machine/Player Conditions/New Player_ToCrouch_ConditionSO", order = 45)]
+        "State Machine/Player/New Player_ToCrouch_ConditionSO", order = 45)]
     public class PlayerToCrouchConditionSO : ConditionSO
     {
         public override bool CanTransit(CharacterMB character)

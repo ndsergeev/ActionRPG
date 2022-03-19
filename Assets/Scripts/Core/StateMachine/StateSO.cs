@@ -5,7 +5,7 @@ namespace Main.Core.StateMachine
 {
     using UnityEngine;
     
-    [CreateAssetMenu(fileName = "StateSO", menuName = "Scriptable Objects/State Machine/New StateSO", order = 15)]
+    [CreateAssetMenu(fileName = "StateSO", menuName = "State Machine/New StateSO", order = 15)]
     public class StateSO : ScriptableObject
     {
         [HideInInspector]

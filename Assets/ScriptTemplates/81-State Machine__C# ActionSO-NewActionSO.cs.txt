@@ -5,7 +5,7 @@ namespace Main
     using Main.Core;
     using Main.Core.StateMachine;
     
-    [CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "Scriptable Objects/State Machine/New #SCRIPTNAME#", order = 60)]
+    [CreateAssetMenu(fileName = "#SCRIPTNAME#", menuName = "State Machine/New #SCRIPTNAME#", order = 60)]
     public class #SCRIPTNAME# : ActionSO
     {
         public override void OnEnter(CharacterMB character)

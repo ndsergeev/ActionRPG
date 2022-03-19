@@ -1,4 +1,3 @@
-
 namespace Main.Core.Editor
 {
     using UnityEditor;
