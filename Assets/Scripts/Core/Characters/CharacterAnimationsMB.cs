@@ -1,5 +1,3 @@
-using UnityEditorInternal;
-
 namespace Main.Core
 {
     using UnityEngine;

@@ -1,5 +1,3 @@
-using ICSharpCode.NRefactory.PrettyPrinter;
-
 namespace Main
 {
     using UnityEngine;
@@ -18,9 +16,7 @@ namespace Main
         }
 
         public override void OnUpdate(CharacterMB character)
-        {
-            
-        }
+        { }
 
         public override void OnExit(CharacterMB character)
         {

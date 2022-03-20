@@ -2033,7 +2033,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1171629969}
-  m_LocalRotation: {x: 0.001735857, y: 0.97997797, z: 0.19891477, w: -0.008551911}
+  m_LocalRotation: {x: 0.0017358644, y: 0.97997797, z: 0.19891477, w: -0.008551949}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2173,7 +2173,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404363070}
-  m_LocalRotation: {x: 0.00198008, y: 0.9738788, z: 0.22690074, w: -0.008498686}
+  m_LocalRotation: {x: 0.0019800803, y: 0.9738788, z: 0.22690074, w: -0.008498686}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2223,6 +2223,36 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 375006546}
+--- !u!1 &1565497534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1565497535}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1565497535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565497534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.030654063, y: 0.90287596, z: -0.014397536}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1615985374
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,7 +2366,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640606953}
-  m_LocalRotation: {x: 0.0018923365, y: 0.97616684, z: 0.21684603, w: -0.008518653}
+  m_LocalRotation: {x: 0.0018923392, y: 0.97616684, z: 0.21684603, w: -0.008518667}
   m_LocalPosition: {x: 0.039049923, y: 0.45132077, z: 2.237223}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2854,6 +2884,10 @@ PrefabInstance:
       propertyPath: m_WalkWhileTargetingBlendSpeed
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2054657362760465901, guid: 401ac3dd9e95bc340ac08f30239ea4a8, type: 3}
+      propertyPath: m_Settings
+      value: 
+      objectReference: {fileID: 11400000, guid: 28a2c8e0c909e8f4a941dedf040d77ec, type: 2}
     - target: {fileID: 2054657362760465902, guid: 401ac3dd9e95bc340ac08f30239ea4a8, type: 3}
       propertyPath: m_Name
       value: Player
